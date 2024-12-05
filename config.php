@@ -1,9 +1,9 @@
 <?php
 // config.php
-$host = 'localhost'; // ou l'adresse de votre serveur
-$db = 'nom_de_la_base_de_donnees';
-$user = 'nom_utilisateur';
-$pass = 'mot_de_passe';
+$host = 'sqlprive-pc2372-001.eu.clouddb.ovh.net:35167'; // ou l'adresse de votre serveur
+$db = 'cefiidev1410';
+$user = 'cefiidev1410';
+$pass = '8YTq84Xay';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

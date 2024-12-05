@@ -90,6 +90,10 @@ ul ul li {
     transform: scale(1.2); /* Agrandissement de 20% */
 }
 
-h1  {
-    border-color: 3px solid yellow;
+@media (max-width : 1000px) {
+    h1 {
+        left : 50%;
+        top : 10%;
+    }
+
 }

@@ -20,7 +20,36 @@ document.addEventListener('DOMContentLoaded', function() {
         showError("Une erreur est survenue. Veuillez réessayer plus tard.");
     }
 
-    envoyerBtn.addEventListener('click', envoyerCommande);
+    envoyerBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du bouton
+        if (validateForm()) {
+            const formData = new FormData(document.forms[0]); // Récupère les données du formulaire
+
+            console.log("Données envoyées :", {
+                nom: document.getElementById('nom').value,
+                prenom: document.getElementById('prenom').value,
+                num_tel: document.getElementById('num_tel').value,
+                email: document.getElementById('email').value,
+                quantiteNuit: document.getElementById('quantite-nuit').value,
+                quantiteRepasMidi: document.getElementById('quantite-Repas-midi').value,
+                quantiteRepasSoir: document.getElementById('quantite-Repas-soir').value
+            });
+
+            fetch('reservation.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); // Affiche le message de retour de reservation.php
+                window.location.href = 'index.html'; // Redirige vers la page d'accueil
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert('Une erreur est survenue lors de l\'envoi des données.');
+            });
+        }
+    });
     
 });
 
@@ -59,10 +88,9 @@ function verifierAvantEnvoi() {
 function envoyerCommande() {
     if (validateForm()) {
         const nom = document.getElementById('nom');
-        const telephone = document.getElementById('telephone');
+        const num_tel = document.getElementById('num_tel');
         const email = document.getElementById('email');
-        const mailtoLink = `mailto:?subject=Réservation&body=Nom: ${nom.value}%0D%0AEmail: ${email.value}%0D%0A...`;
-        window.location.href = mailtoLink;
+        
         alert('Votre demande de réservation a bien été effectuée, vous recevrez le récapitulatif de votre demande par mail sous peu. Merci de votre confiance.');
     }
 }
@@ -70,7 +98,7 @@ function envoyerCommande() {
 function validateForm() {
     const nom = document.getElementById('nom');
     const email = document.getElementById('email');
-    const telephone = document.getElementById('telephone');
+    const num_tel = document.getElementById('num_tel');
     const conditions = document.getElementById('conditions');
 
     let valid = true;
@@ -83,12 +111,12 @@ function validateForm() {
         nom.classList.remove('error');
     }
 
-    if (telephone.value.trim() === '' || /[a-zA-Z]/.test(telephone.value) || telephone.value.length !== 10) {
-        telephone.classList.add('error');
+    if (num_tel.value.trim() === '' || /[a-zA-Z]/.test(num_tel.value) || num_tel.value.length !== 10) {
+        num_tel.classList.add('error');
         alert('Veuillez entrer un numéro de téléphone valide, contenant uniquement 10 chiffres.');
         valid = false;
     } else {
-        telephone.classList.remove('error');
+        num_tel.classList.remove('error');
     }
 
     if (email.value.trim() === '' || !email.value.includes('@')) {
@@ -110,13 +138,13 @@ function validateForm() {
 function resetForm() {
     document.getElementById('nom').value = '';
     document.getElementById('prenom').value = '';
-    document.getElementById('telephone').value = '';
+    document.getElementById('num_tel').value = '';
     document.getElementById('email').value = '';
     document.getElementById('conditions').checked = false;
 
     document.getElementById('nom').classList.remove('error');
     document.getElementById('prenom').classList.remove('error');
-    document.getElementById('telephone').classList.remove('error');
+    document.getElementById('num_tel').classList.remove('error');
     document.getElementById('email').classList.remove('error');
 
     document.getElementById('quantite-nuit').value = 0;
