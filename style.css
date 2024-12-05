@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f5;
+    margin: 0;
+    padding: 0;
+}
+nav {
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+li {
+    position: relative;
+    margin-right: 20px;
+}
+a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block;
+}
+li:hover > ul {
+    display: block;
+}
+ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+ul ul li {
+    width: 150px;
+}
+
+.c-item {
+    height : 480px;
+}
+
+.c-img {
+    height : 100%;
+    object-fit: cover;
+}
+
+/* Styles pour les blocs */
+.block {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.block:nth-child(odd) {
+    background-color: beige;
+}
+
+.block:nth-child(even) {
+    background-color: gray;
+    flex-direction: row-reverse;
+}
+
+.block.contact {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+/* Effet de survol pour les icônes */
+.icon-hover {
+    transition: transform 0.3s ease; /* Transition douce */
+}
+
+.icon-hover:hover {
+    transform: scale(1.2); /* Agrandissement de 20% */
+}
+
+/* Effet de survol pour les encarts */
+.card-hover {
+    transition: transform 0.3s ease; /* Transition douce */
+}
+
+.card-hover:hover {
+    transform: scale(1.2); /* Agrandissement de 20% */
+}
+
+h1  {
+    border-color: 3px solid yellow;
+}

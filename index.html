@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Le Petit Chalet dans La Montagne</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+            <div class="container-fluid">
+                <!-- Logo -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="Images/Logo-principal.png" alt="Logo" height="60">
+                </a>
+                
+                <!-- Menu burger pour mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Menu de navigation -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Activités
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="activites.html#motoneige">Motoneige</a></li>
+                                <li><a class="dropdown-item" href="activites.html#randonnée">Randonnée</a></li>
+                                <li><a class="dropdown-item" href="activites.html#kayak">Kayak</a></li>
+                                <li><a class="dropdown-item" href="activites.html#escalade">Escalade</a></li>
+                                <li><a class="dropdown-item" href="activites.html#ski">Ski</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reservation.html">Réserver un séjour</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Titre du lieu -->
+    <h1 style="position: absolute; left: 10%; top: 20%; z-index: 10; font-family: Wensley, modern serif; font-size: 2em; color: white; margin: 0; padding: 10px; background-color: rgba(165, 42, 42, 0.5); border: 3px solid black; border-radius: 10px;">
+        Le Petit Chalet dans La Montagne
+    </h1>
+
+    <!-- Carousel -->
+    <section class="position-relative">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item c-item active">
+                    <img src="Images/Diapo accueil/img1.jpg" class="d-block w-100 c-img" alt="Image 1">
+                </div>
+                <div class="carousel-item c-item">
+                    <img src="Images/Diapo accueil/img2.jpg" class="d-block w-100 c-img" alt="Image 2">
+                </div>
+                <div class="carousel-item c-item">
+                    <img src="Images/Diapo accueil/img3.jpg" class="d-block w-100 c-img" alt="Image 3">
+                </div>
+            </div>
+            
+            <!-- Flèches de navigation -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Nouveaux blocs -->
+        <div class="row">
+            <!-- Bloc Activités -->
+            <div class="col-12 block d-flex align-items-center" style="background-color: beige; padding: 20px;">
+                <div class="col-6 d-flex justify-content-center align-items-center">
+                    <img src="Images/Prés/motoneige.jpg" alt="Réserver un séjour" style="width: 100%; height: auto;">
+                </div>
+                <div class="col-6 d-flex flex-column justify-content-center align-items-center text-center">
+                    <a href="activites.html" class="card-hover" style="background-color: #3b3b3b; color: white; border-radius: 20px; padding: 10px 20px; text-decoration: none; font-family: 'Great Vibes', cursive; display: flex; flex-direction: column; align-items: center;">
+                        <i class="fas fa-umbrella-beach fa-2x"></i>
+                        <span style="font-size: 2em; margin-top: 10px;">Activités</span>
+                    </a>
+                    <p style="margin-top: 20px;">Découvrez les activités de saison disponibles</p>
+                </div>
+            </div>
+
+            <!-- Bloc Réserver un séjour -->
+            <div class="col-12 block d-flex align-items-center" style="background-color: gray; padding: 20px;">
+                <div class="col-6 d-flex justify-content-center align-items-center">
+                    <img src="Images/Prés/lodge.jpg" alt="Réserver un séjour" style="width: 100%; height: auto;">
+                </div>
+                <div class="col-6 d-flex flex-column justify-content-center align-items-center text-center">
+                    <a href="reservation.html" class="card-hover" style="background-color: #3b3b3b; color: white; border-radius: 20px; padding: 10px 20px; text-decoration: none; font-family: 'Great Vibes', cursive; display: flex; flex-direction: column; align-items: center;">
+                        <i class="fas fa-calendar-alt fa-2x"></i>
+                        <span style="font-size: 2em; margin-top: 10px;">Réservez un séjour</span>
+                    </a>
+                    <p style="margin-top: 20px;">Réservez votre séjour dès maintenant pour profiter de nos offres exceptionnelles.</p>
+                </div>
+            </div>
+
+            <!-- Bloc Contact -->
+            <div class="col-12 block contact d-flex flex-column align-items-center" style="background-color: black; color: white; padding: 10px; max-width: 30%; margin: auto;">
+                <h3>Contact</h3>
+                <div id="map" style="height: 0; width: 100%; position: relative; padding-top: 100%;">
+                    <!-- Intégration Google Maps -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509123!2d144.9537353153164!3d-37.81627997975157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11b1b3%3A0x5045675218ceed0!2sMelbourne%20CBD%2C%20Melbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1616161616161!5m2!1sen!2sus" 
+                    width="100%" height="100%" style="border:0; position: absolute; top: 0; left: 0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: #333; color: white; padding: 20px; text-align: center;">
+        <h4 style="margin-bottom: 10px;">Suivez-nous sur nos réseaux sociaux :</h4>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+            <a href="#" style="color: white; margin: 0 10px; display: flex; align-items: center; padding: 10px; border: 2px solid white; border-radius: 10px; transition: transform 0.3s ease; text-decoration: none;">
+                <i class="fab fa-facebook fa-2x" style="color: #3b5998; margin-right: 5px;"></i>
+                Facebook
+            </a>
+            <a href="#" style="color: white; margin: 0 10px; display: flex; align-items: center; padding: 10px; border: 2px solid white; border-radius: 10px; transition: transform 0.3s ease; text-decoration: none;">
+                <i class="fab fa-twitter fa-2x" style="color: #1DA1F2; margin-right: 5px;"></i>
+                Twitter
+            </a>
+            <a href="#" style="color: white; margin: 0 10px; display: flex; align-items: center; padding: 10px; border: 2px solid white; border-radius: 10px; transition: transform 0.3s ease; text-decoration: none;">
+                <i class="fab fa-instagram fa-2x" style="color: #C13584; margin-right: 5px;"></i>
+                Instagram
+            </a>
+        </div>
+        <div style="margin-top: 10px; font-size: 0.8em;">
+            <a href="#" style="color: white;">Mentions légales</a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        footer a:hover {
+            transform: scale(1.1); /* Agrandissement de 10% au survol */
+        }
+    </style>
+</body>
+</html>
