@@ -97,3 +97,33 @@ ul ul li {
     }
 
 }
+
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: transparent; /* Supprimer l'arrière-plan par défaut des icônes */
+    background-color: rgba(255, 255, 255, 0.8); /* Arrière-plan blanc avec transparence */
+    border-radius: 50%; /* Arrondir les coins */
+    width: 40px; /* Largeur des flèches */
+    height: 40px; /* Hauteur des flèches */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
+}
+
+
+
+.carousel-indicators button {
+    background-color: rgba(255, 255, 255, 0.5); /* Couleur de fond des indicateurs */
+    border: none; /* Supprimer la bordure */
+}
+
+.carousel-indicators .active {
+    background-color: rgba(0, 123, 255, 0.7); /* Couleur de fond pour l'indicateur actif */
+}
+
+footer a:hover {
+    transform: scale(1.1); /* Agrandissement de 10% au survol */
+}
