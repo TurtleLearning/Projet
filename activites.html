@@ -10,3 +10,289 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="Images/cabin-logo.png" alt="Le Petit Chalet" height="50">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="bi bi-house-door"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-4" href="#summer">
+                            <i class="bi bi-sun"></i> Été
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-4" href="#winter">
+                            <i class="bi bi-snow"></i> Hiver
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section Été -->
+    <section id="summer" class="summer-activities py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Activités d'Été</h2>
+            <div class="row g-4">
+                <!-- Carte Trekking -->
+                <div class="col-md-4">
+                    <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#trekkingModal">
+                        <img src="Images/Activities/trekking.jpg" class="card-img-top" alt="Trekking">
+                        <div class="card-body">
+                            <h3 class="card-title">Trekking</h3>
+                            <p class="card-text">Découvrez nos sentiers de randonnée à travers les Alpes...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte Parapente -->
+                <div class="col-md-4">
+                    <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#parapenteModal">
+                        <img src="Images/Activities/parapente.jpg" class="card-img-top" alt="Parapente">
+                        <div class="card-body">
+                            <h3 class="card-title">Parapente</h3>
+                            <p class="card-text">Survolez les sommets en toute sécurité...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte VTT -->
+                <div class="col-md-4">
+                    <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#vttModal">
+                        <img src="Images/Activities/vtt.jpg" class="card-img-top" alt="VTT">
+                        <div class="card-body">
+                            <h3 class="card-title">VTT</h3>
+                            <p class="card-text">Parcourez nos pistes adaptées à tous les niveaux...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Hiver -->
+    <section id="winter" class="winter-activities py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Activités d'Hiver</h2>
+            <div class="row g-4">
+                <!-- Carte Motoneige -->
+                <div class="col-md-4">
+                    <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#motoneigeModal">
+                        <img src="Images/Activities/motoneige.jpg" class="card-img-top" alt="Motoneige">
+                        <div class="card-body">
+                            <h3 class="card-title">Motoneige</h3>
+                            <p class="card-text">Aventurez-vous sur nos circuits balisés en motoneige...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte Ski de fond -->
+                <div class="col-md-4">
+                    <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#skidefondModal">
+                        <img src="Images/Activities/skidefond.jpg" class="card-img-top" alt="Ski de fond">
+                        <div class="card-body">
+                            <h3 class="card-title">Ski de fond</h3>
+                            <p class="card-text">Profitez de nos pistes damées pour le ski de fond...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte Ski Alpin -->
+                <div class="col-md-4">
+                    <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#skialpinModal">
+                        <img src="Images/Activities/skialpin.jpg" class="card-img-top" alt="Ski Alpin">
+                        <div class="card-body">
+                            <h3 class="card-title">Ski Alpin</h3>
+                            <p class="card-text">Dévalez nos pistes adaptées à tous les niveaux...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals pour chaque activité -->
+    <!-- Modal Trekking -->
+    <div class="modal fade" id="trekkingModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Trekking en montagne</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="Images/Activities/trekking-detail.jpg" alt="Trekking détail" class="img-fluid mb-3">
+                    <h4>Description détaillée</h4>
+                    <p>Découvrez nos sentiers de randonnée à travers les Alpes...</p>
+                    <h4>Informations pratiques</h4>
+                    <ul>
+                        <li>Durée : 2h à 5h</li>
+                        <li>Niveau requis : Intermédiaire à confirmé</li>
+                        <li>Équipement recommandé : Chaussures de marche, vêtements adaptés</li>
+                        <li>Tarifs : Gratuit, accès libre</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals pour les autres activités -->
+    <!-- Modal Parapente -->
+    <div class="modal fade" id="parapenteModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Parapente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="Images/Activities/parapente.jpg" alt="Parapente détail" class="img-fluid mb-3">
+                    <h4>Description détaillée</h4>
+                    <p>Découvrez les sensations uniques du vol en parapente...</p>
+                    <h4>Informations pratiques</h4>
+                    <ul>
+                        <li>Durée : 1h30</li>
+                        <li>Niveau requis : Débutant accepté</li>
+                        <li>Équipement fourni</li>
+                        <li>Tarifs : À partir de 80€</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal VTT -->
+    <div class="modal fade" id="vttModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">VTT en montagne</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="Images/Activities/vtt.jpg" alt="VTT détail" class="img-fluid mb-3">
+                    <h4>Description détaillée</h4>
+                    <p>Parcourez nos pistes adaptées à tous les niveaux, des sentiers familiaux aux descentes techniques...</p>
+                    <h4>Informations pratiques</h4>
+                    <ul>
+                        <li>Durée : 2h à journée complète</li>
+                        <li>Niveau requis : Tous niveaux</li>
+                        <li>Équipement : Location possible sur place</li>
+                        <li>Tarifs : Location VTT à partir de 25€/demi-journée</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Motoneige -->
+    <div class="modal fade" id="motoneigeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Motoneige</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="Images/Activities/motoneige.jpg" alt="Motoneige détail" class="img-fluid mb-3">
+                    <h4>Description détaillée</h4>
+                    <p>Aventurez-vous sur nos circuits balisés en motoneige pour une expérience unique dans la neige...</p>
+                    <h4>Informations pratiques</h4>
+                    <ul>
+                        <li>Durée : 1h à 3h</li>
+                        <li>Niveau requis : Permis B obligatoire</li>
+                        <li>Équipement : Fourni (combinaison, casque, gants)</li>
+                        <li>Tarifs : À partir de 95€/personne</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ski de fond -->
+    <div class="modal fade" id="skidefondModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ski de fond</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="Images/Activities/skidefond.jpg" alt="Ski de fond détail" class="img-fluid mb-3">
+                    <h4>Description détaillée</h4>
+                    <p>Profitez de nos pistes damées pour le ski de fond, une activité complète en pleine nature...</p>
+                    <h4>Informations pratiques</h4>
+                    <ul>
+                        <li>Durée : À votre convenance</li>
+                        <li>Niveau requis : Tous niveaux</li>
+                        <li>Équipement : Location possible sur place</li>
+                        <li>Tarifs : Forfait journée 15€, location matériel 20€</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ski Alpin -->
+    <div class="modal fade" id="skialpinModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ski Alpin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="Images/Activities/skialpin.jpg" alt="Ski Alpin détail" class="img-fluid mb-3">
+                    <h4>Description détaillée</h4>
+                    <p>Dévalez nos pistes adaptées à tous les niveaux, des pistes vertes aux noires...</p>
+                    <h4>Informations pratiques</h4>
+                    <ul>
+                        <li>Durée : Forfait demi-journée ou journée</li>
+                        <li>Niveau requis : Tous niveaux</li>
+                        <li>Équipement : Location possible sur place</li>
+                        <li>Tarifs : Forfait journée adulte 45€, enfant 35€</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <!-- ... contenu du footer ... -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script optimisé
+        document.addEventListener('DOMContentLoaded', function() {
+            var modals = document.querySelectorAll('.modal');
+            modals.forEach(function(modal) {
+                new bootstrap.Modal(modal);
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

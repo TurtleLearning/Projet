@@ -31,12 +31,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Insertion dans la base de données
-    $stmt = $pdo->prepare("INSERT INTO reservations_nuitees (nom, prenom, num_tel, email, quantite_nuit, quantite_repas_midi, quantite_repas_soir) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    if ($stmt->execute([$nom, $prenom, $num_tel, $email, $quantiteNuit, $quantiteRepasMidi, $quantiteRepasSoir])) {
-        echo "Réservation réussie.";
-    } else {
-        echo "Erreur lors de la réservation : " . implode(", ", $stmt->errorInfo());
+    // Ajout de la validation des quantités
+    if ($quantiteNuit < 0 || $quantiteRepasMidi < 0 || $quantiteRepasSoir < 0) {
+        echo "Les quantités ne peuvent pas être négatives.";
+        exit;
+    }
+
+    try {
+        $stmt = $pdo->prepare("INSERT INTO reservations_nuitees (nom, prenom, num_tel, email, quantite_nuit, quantite_repas_midi, quantite_repas_soir) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        if ($stmt->execute([$nom, $prenom, $num_tel, $email, $quantiteNuit, $quantiteRepasMidi, $quantiteRepasSoir])) {
+            echo "Réservation réussie.";
+        } else {
+            throw new Exception("Erreur lors de la réservation");
+        }
+    } catch (Exception $e) {
+        echo "Une erreur est survenue : " . $e->getMessage();
     }
 }
 ?>

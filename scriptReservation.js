@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const quantiteNuit = document.getElementById('quantite-nuit');
-    const quantiteRepasmidi = document.getElementById('quantite-Repas-midi');
-    const quantiteRepassoir = document.getElementById('quantite-Repas-soir');
+    const quantiteRepasMidi = document.getElementById('quantite-Repas-midi');
+    const quantiteRepasSoir = document.getElementById('quantite-Repas-soir');
     const verifierBtn = document.getElementById('verifier-btn');
     const imprimerBtn = document.getElementById('imprimer-btn');
     const envoyerBtn = document.getElementById('envoyer-btn');
     const reinitialiserBtn = document.getElementById('reinitialiser-btn');
 
     quantiteNuit.addEventListener('input', calculateTotals);
-    quantiteRepasmidi.addEventListener('input', calculateTotals);
-    quantiteRepassoir.addEventListener('input', calculateTotals);
+    quantiteRepasMidi.addEventListener('input', calculateTotals);
+    quantiteRepasSoir.addEventListener('input', calculateTotals);
     
     verifierBtn.addEventListener('click', verifierAvantEnvoi);
     imprimerBtn.addEventListener('click', () => window.print());
@@ -41,8 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.text())
             .then(data => {
-                alert(data); // Affiche le message de retour de reservation.php
-                window.location.href = 'index.html'; // Redirige vers la page d'accueil
+                if (data.includes("réussie")) {
+                    alert('Réservation effectuée avec succès !');
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Erreur : ' + data);
+                }
             })
             .catch(error => {
                 console.error('Erreur:', error);
@@ -129,6 +133,20 @@ function validateForm() {
 
     if (!conditions.checked) {
         alert('Vous devez accepter les conditions générales.');
+        valid = false;
+    }
+
+    const quantiteNuit = parseInt(document.getElementById('quantite-nuit').value);
+    const quantiteRepasMidi = parseInt(document.getElementById('quantite-Repas-midi').value);
+    const quantiteRepasSoir = parseInt(document.getElementById('quantite-Repas-soir').value);
+
+    if (quantiteNuit < 0 || quantiteRepasMidi < 0 || quantiteRepasSoir < 0) {
+        alert('Les quantités ne peuvent pas être négatives.');
+        valid = false;
+    }
+
+    if (quantiteNuit === 0 && quantiteRepasMidi === 0 && quantiteRepasSoir === 0) {
+        alert('Veuillez sélectionner au moins une nuit ou un repas.');
         valid = false;
     }
 

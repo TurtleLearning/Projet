@@ -1,3 +1,7 @@
+*, *::before, *::after{
+    box-sizing: border-box; 
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f5;
@@ -97,3 +101,163 @@ ul ul li {
     }
 
 }
+
+/* activite.html */
+
+/* Sections principales */
+.summer-activities {
+    background: linear-gradient(to bottom, #fff7e6, #ffe0b3);
+    padding: 40px 0;
+}
+
+.winter-activities {
+    background: linear-gradient(to bottom, #e6f3ff, #cce6ff);
+    padding: 40px 0;
+}
+
+/* Titres des sections */
+.summer-activities h2 {
+    color: #ff6600;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+}
+
+.winter-activities h2 {
+    color: #0066cc;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+}
+
+/* Cartes d'activités */
+.summer-activities .activity-card {
+    border-color: #ff8533;
+    transition: transform 0.3s ease;
+}
+
+.winter-activities .activity-card {
+    border-color: #3399ff;
+    transition: transform 0.3s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+/* Styles de la navbar */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.05);
+}
+
+/* Style commun pour tous les liens de navigation */
+.nav-link {
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem !important; /* Force une taille uniforme */
+}
+
+/* Barre de soulignement au survol */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #0066cc;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 80%;
+    left: 10%;
+}
+
+/* Style pour la page active */
+.nav-link.active::after {
+    width: 80%;
+    left: 10%;
+}
+
+/* Harmonisation des styles pour le menu déroulant Activités */
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+/* Suppression des styles spécifiques au dropdown qui pourraient causer des différences */
+.nav-item.dropdown .nav-link {
+    padding: 0.5rem 1rem !important;
+}
+
+/* Couleurs spécifiques pour les liens */
+.nav-link[href="#summer"] {
+    color: #ff6600;
+}
+
+.nav-link[href="#summer"]:hover {
+    color: #ff8533;
+}
+
+.nav-link[href="#summer"]::after {
+    background-color: #ff6600;
+}
+
+.nav-link[href="#winter"] {
+    color: #0066cc;
+}
+
+.nav-link[href="#winter"]:hover {
+    color: #3399ff;
+}
+
+.nav-link[href="#winter"]::after {
+    background-color: #0066cc;
+}
+
+/* Style pour le lien d'accueil */
+.nav-link[href="index.html"] {
+    color: #333;
+}
+
+.nav-link[href="index.html"]:hover {
+    color: #666;
+}
+
+.nav-link[href="index.html"]::after {
+    background-color: #333;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        text-align: center;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 0;
+    }
+}
+.dropdown-toggle::after {
+    border: none;
+}
+
+.detail-images img {
+    aspect-ratio: 4/3;
+  }
