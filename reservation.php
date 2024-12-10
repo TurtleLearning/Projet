@@ -14,6 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quantiteNuit = (int)$_POST['quantite-nuit'];
     $quantiteRepasMidi = (int)$_POST['quantite-Repas-midi'];
     $quantiteRepasSoir = (int)$_POST['quantite-Repas-soir'];
+    
+    // Récupération et formatage des dates
+    $dateDebut = validateInput($_POST['date-debut']);
+    $dateFin = validateInput($_POST['date-fin']);
+    
+    // Conversion du format "d / m / Y" vers "Y-m-d" pour la BDD
+    $dateDebut = DateTime::createFromFormat('d / m / Y', $dateDebut)->format('Y-m-d');
+    $dateFin = DateTime::createFromFormat('d / m / Y', $dateFin)->format('Y-m-d');
 
     // Validation des données
     if (empty($nom) || empty($num_tel) || empty($email)) {
@@ -38,8 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO reservations_nuitees (nom, prenom, num_tel, email, quantite_nuit, quantite_repas_midi, quantite_repas_soir) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        if ($stmt->execute([$nom, $prenom, $num_tel, $email, $quantiteNuit, $quantiteRepasMidi, $quantiteRepasSoir])) {
+        $stmt = $pdo->prepare("INSERT INTO reservations_nuitees (nom, prenom, num_tel, email, quantite_nuit, quantite_repas_midi, quantite_repas_soir, date_debut, date_fin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        
+        if ($stmt->execute([$nom, $prenom, $num_tel, $email, $quantiteNuit, $quantiteRepasMidi, $quantiteRepasSoir, $dateDebut, $dateFin])) {
             echo "Réservation réussie.";
         } else {
             throw new Exception("Erreur lors de la réservation");

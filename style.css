@@ -1,6 +1,66 @@
-*, *::before, *::after{
-    box-sizing: border-box; 
-}
+/*RESET COMPLET */
+
+/* Modern CSS Reset */
+
+/* Remove default margin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Set core root defaults */
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+  
+  /* Ensure smooth scrolling for accessibility */
+  body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  /* Remove list styles on ul, ol elements */
+  ul, ol {
+    list-style: none;
+  }
+  
+  /* Remove default quotes on blockquote, q elements */
+  blockquote, q {
+    quotes: none;
+  }
+  blockquote::before, blockquote::after,
+  q::before, q::after {
+    content: '';
+    content: none;
+  }
+  
+  /* Set core body defaults */
+  body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
+    margin: 0;
+  }
+  
+  /* Make images easier to work with */
+  img, picture {
+    max-width: 100%;
+    display: block;
+  }
+  
+  /* Inherit fonts for inputs and buttons */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /* Remove all animations and transitions for people that prefer not to see them */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none;
+      transition: none;
+      scroll-behavior: auto;
+    }
+  }
 
 body {
     font-family: Arial, sans-serif;
@@ -19,10 +79,7 @@ ul {
     padding: 0;
     display: flex;
 }
-li {
-    position: relative;
-    margin-right: 20px;
-}
+
 a {
     text-decoration: none;
     color: #333;
@@ -40,9 +97,7 @@ ul ul {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-ul ul li {
-    width: 150px;
-}
+
 
 .c-item {
     height : 480px;
@@ -206,6 +261,55 @@ ul ul li {
     padding: 0.5rem 1rem !important;
 }
 
+/* Style du dropdown menu */
+.nav-item.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    width: 100%; /* Prend la même largeur que le lien parent */
+    min-width: unset; /* Supprime la largeur minimale par défaut */
+    text-align: center;
+    border-radius: 0 0 8px 8px;
+    margin-top: 0;
+    border-top: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Animation à l'ouverture du dropdown */
+.dropdown:hover .dropdown-menu {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    background-color: transparent !important; /* Supprime l'arrière-plan au hover */
+    transition: color 0.3s ease;
+}
+
+/* Style au survol des items */
+.dropdown-item:hover {
+    color: #0066cc;
+    background-color: transparent !important;
+}
+
+/* Supprime la flèche par défaut du dropdown */
+.dropdown-toggle::after {
+    border: none;
+}
+
+/* Style au survol des items du dropdown */
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
 /* Couleurs spécifiques pour les liens */
 .nav-link[href="#summer"] {
     color: #ff6600;
@@ -261,3 +365,300 @@ ul ul li {
 .detail-images img {
     aspect-ratio: 4/3;
   }
+
+/* -------------------------- FOOTER --------------------------- */
+
+/* Style du footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+/* Grid layout */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 4rem; /* Espace pour le bouton contact */
+}
+
+/* Ligne de séparation verticale */
+.footer-grid::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    height: 60%; /* Réduit la hauteur de la ligne */
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Colonne gauche - Liens légaux */
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.footer-link:hover {
+    color: #ddd;
+    text-decoration: underline;
+}
+
+/* Colonne droite - Réseaux sociaux */
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    padding: 0.5rem;
+    gap: 1rem;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+}
+
+.social-link i {
+    width: 30px;
+}
+
+/* Bouton Contact */
+.contact-button {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #d4c19c;
+    color: #333;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.contact-button:hover {
+    transform: translateX(-50%) scale(1.1);
+    background-color: #c4b089;
+}
+
+.contact-button i {
+    font-size: 1.2rem;
+}
+
+/* --------------------------------------------- */
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-bottom: 6rem;
+    }
+
+    .footer-grid::after {
+        display: none;
+    }
+
+    .footer-social {
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        padding-top: 2rem;
+        margin-top: 1rem;
+    }
+
+    .contact-button {
+        bottom: 1rem;
+    }
+}
+
+/* --------------------------------------------- */
+
+/* -------------------------- CONTENEURS --------------------------- */
+
+/* Style des images dans les blocs */
+.block img {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des conteneurs de description */
+.description-container {
+    border: 1px solid #ff0000;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* Style des liens avec icônes */
+.card-hover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #3399ff;
+    margin-bottom: 20px; /* Espace entre l'icône et la description */
+}
+
+/* Style de l'icône */
+.card-hover i {
+    font-size: 2.5rem;
+    margin-bottom: 15px; /* Espace entre l'icône et le texte */
+    color: #333;
+}
+
+/* Style du texte */
+.card-hover span {
+    font-size: 1.5rem;
+    font-weight: 500;
+    position: relative;
+}
+
+/* Effet de soulignement au survol */
+.card-hover span::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: #333;
+    transition: all 0.3s ease;
+}
+
+/* Animation du soulignement au survol */
+.card-hover:hover span::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Style de la description */
+.description-container p {
+    margin-top: 20px; /* Espace entre le titre et la description */
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* --------------------------------------------- */
+
+/* -------------------------- CAROUSEL --------------------------- */
+
+
+/* Style des flèches du carousel */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    border: 5px solid rgba(0, 0, 0, 0.3); /* Bordure noire légère */
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 20px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 25px;
+    height: 25px;
+}
+
+/* Style des indicateurs du carousel */
+.carousel-indicators {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 25px;
+    padding: 5px 15px;
+    margin: 0 auto;
+    bottom: 20px;
+    width: fit-content;
+
+    border: 3px solid rgba(0, 0, 0, 0.7); /* Bordure noire légère */
+}
+
+.carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: #666;
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Bordure noire légère */
+}
+
+.carousel-indicators button.active {
+    background-color: #000;
+}
+
+/* --------------------------------------------- */
+
+/* -------------------------- RESERVATIONS --------------------------- */
+
+.entete {
+    margin-bottom: 3em;
+}
+
+.date-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.clear-date {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    display: none; /* Caché par défaut */
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-date:hover {
+    color: #ff0000;
+}
+
+/* Afficher la croix quand le champ a une valeur */
+.date-input-container.has-value .clear-date {
+    display: flex;
+}

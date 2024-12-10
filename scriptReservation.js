@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const quantiteNuit = document.getElementById('quantite-nuit');
     const quantiteRepasMidi = document.getElementById('quantite-Repas-midi');
     const quantiteRepasSoir = document.getElementById('quantite-Repas-soir');
-    const verifierBtn = document.getElementById('verifier-btn');
     const imprimerBtn = document.getElementById('imprimer-btn');
     const envoyerBtn = document.getElementById('envoyer-btn');
     const reinitialiserBtn = document.getElementById('reinitialiser-btn');
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     quantiteRepasMidi.addEventListener('input', calculateTotals);
     quantiteRepasSoir.addEventListener('input', calculateTotals);
     
-    verifierBtn.addEventListener('click', verifierAvantEnvoi);
     imprimerBtn.addEventListener('click', () => window.print());
     if (reinitialiserBtn) {
         reinitialiserBtn.addEventListener('click', resetForm);
@@ -55,6 +53,86 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Initialisation du calendrier
+    const dateDebut = flatpickr("#date-debut", {
+        locale: "fr",
+        minDate: "today",
+        dateFormat: "d / m / Y",
+        onChange: function(selectedDates, dateStr, instance) {
+            const container = instance.element.closest('.date-input-container');
+            container.classList.toggle('has-value', dateStr !== '');
+            dateFin.set('minDate', dateStr);
+            calculerNuits();
+        }
+    });
+
+    const dateFin = flatpickr("#date-fin", {
+        locale: "fr",
+        minDate: "today",
+        dateFormat: "d / m / Y",
+        onChange: function(selectedDates, dateStr, instance) {
+            const container = instance.element.closest('.date-input-container');
+            container.classList.toggle('has-value', dateStr !== '');
+            calculerNuits();
+        }
+    });
+
+    function calculerNuits() {
+        const debut = document.getElementById('date-debut').value;
+        const fin = document.getElementById('date-fin').value;
+        
+        if (debut && fin) {
+            
+            const [jourDebut, moisDebut, anneeDebut] = debut.split(' / ');
+            const [jourFin, moisFin, anneeFin] = fin.split(' / ');
+            
+            const dateDebut = new Date(anneeDebut, moisDebut - 1, jourDebut);
+            const dateFin = new Date(anneeFin, moisFin - 1, jourFin);
+            
+            const diffTime = Math.abs(dateFin - dateDebut);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('quantite-nuit').value = diffDays;
+            calculateTotals();
+        }
+    }
+
+    function verifierDisponibilite(dateDebut, dateFin) {
+        fetch('check_dates.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `dateDebut=${dateDebut}&dateFin=${dateFin}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.disponible) {
+                alert('Ces dates ne sont pas disponibles. Veuillez en choisir d\'autres.');
+                document.getElementById('date-debut').value = '';
+                document.getElementById('date-fin').value = '';
+                document.getElementById('quantite-nuit').value = '0';
+                calculateTotals();
+            }
+        })
+        .catch(error => console.error('Erreur:', error));
+    }
+
+    document.querySelectorAll('.clear-date').forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            if (input) {
+                const fp = input._flatpickr;
+                if (fp) {
+                    fp.clear();
+                }
+                input.closest('.date-input-container').classList.remove('has-value');
+                document.getElementById('quantite-nuit').value = '0';
+                calculateTotals();
+            }
+        });
+    });
 });
 
 function calculateTotals() {
