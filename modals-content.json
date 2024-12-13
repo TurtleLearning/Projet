@@ -1,0 +1,24 @@
+{
+    "cgv": {
+        "title": "Conditions Générales de Vente",
+        "content": {
+            "article1": {
+                "title": "Objet et champ d'application",
+                "text": "Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre la société [Nom de la société], ci-après dénommée \"le Prestataire\", et toute personne physique ou morale effectuant une réservation sur le site [www.nomdusite.com], ci-après dénommée \"le Client\"."
+            },
+            "article2": {
+                "title": "Réservations et tarifs",
+                "sections": {
+                    "2.1": {
+                        "title": "Réservation",
+                        "points": [
+                            "La réservation devient effective après confirmation par le Prestataire et règlement de l'acompte par le Client",
+                            "Un email de confirmation sera envoyé au Client",
+                            "Les tarifs sont indiqués en euros TTC"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

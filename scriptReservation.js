@@ -133,6 +133,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    const nombreTotal = document.getElementById('nombre-total');
+    const nombreEnfants = document.getElementById('nombre-enfants');
+    
+    // Ajouter les écouteurs d'événements pour les nouveaux champs
+    nombreTotal.addEventListener('input', function() {
+        const total = parseInt(this.value) || 0;
+        const enfants = parseInt(nombreEnfants.value) || 0;
+        
+        // Vérifier que le nombre d'enfants ne dépasse pas le total
+        if (enfants > total) {
+            nombreEnfants.value = total;
+        }
+        calculateTotals();
+    });
+    
+    nombreEnfants.addEventListener('input', function() {
+        const total = parseInt(nombreTotal.value) || 0;
+        const enfants = parseInt(this.value) || 0;
+        
+        // Vérifier que le nombre d'enfants ne dépasse pas le total
+        if (enfants > total) {
+            this.value = total;
+        }
+        calculateTotals();
+    });
 });
 
 function calculateTotals() {
@@ -140,13 +166,34 @@ function calculateTotals() {
     const repasMidi = parseInt(document.getElementById('quantite-Repas-midi').value) || 0;
     const repasSoir = parseInt(document.getElementById('quantite-Repas-soir').value) || 0;
     
-    let PRIX_NUIT = 15;
-    let PRIX_REPAS_MIDI = 7;
-    let PRIX_REPAS_SOIR = 15;
+    const nombreTotal = parseInt(document.getElementById('nombre-total').value) || 1;
+    const nombreEnfants = parseInt(document.getElementById('nombre-enfants').value) || 0;
+    const nombreAdultes = nombreTotal - nombreEnfants;
     
-    const nuitTotal = Nuit * PRIX_NUIT;
-    const repasmidiTotal = repasMidi * PRIX_REPAS_MIDI;
-    const repassoirTotal = repasSoir * PRIX_REPAS_SOIR;
+    // Prix pour adultes
+    const PRIX_NUIT_ADULTE = 15;
+    const PRIX_REPAS_MIDI_ADULTE = 7;
+    const PRIX_REPAS_SOIR_ADULTE = 15;
+    
+    // Prix pour enfants
+    const PRIX_NUIT_ENFANT = 5;
+    const PRIX_REPAS_MIDI_ENFANT = 5;
+    const PRIX_REPAS_SOIR_ENFANT = 5;
+    
+    // Calcul des totaux pour adultes
+    const nuitTotalAdultes = Nuit * PRIX_NUIT_ADULTE * nombreAdultes;
+    const repasmidiTotalAdultes = repasMidi * PRIX_REPAS_MIDI_ADULTE * nombreAdultes;
+    const repassoirTotalAdultes = repasSoir * PRIX_REPAS_SOIR_ADULTE * nombreAdultes;
+    
+    // Calcul des totaux pour enfants
+    const nuitTotalEnfants = Nuit * PRIX_NUIT_ENFANT * nombreEnfants;
+    const repasmidiTotalEnfants = repasMidi * PRIX_REPAS_MIDI_ENFANT * nombreEnfants;
+    const repassoirTotalEnfants = repasSoir * PRIX_REPAS_SOIR_ENFANT * nombreEnfants;
+    
+    // Totaux combinés
+    const nuitTotal = nuitTotalAdultes + nuitTotalEnfants;
+    const repasmidiTotal = repasmidiTotalAdultes + repasmidiTotalEnfants;
+    const repassoirTotal = repassoirTotalAdultes + repassoirTotalEnfants;
     
     document.getElementById('sous-total-nuit').value = nuitTotal.toFixed(2) + ' euros';
     document.getElementById('sous-total-repas-midi').value = repasmidiTotal.toFixed(2) + ' euros';
@@ -228,6 +275,19 @@ function validateForm() {
         valid = false;
     }
 
+    const nombreTotal = parseInt(document.getElementById('nombre-total').value) || 0;
+    const nombreEnfants = parseInt(document.getElementById('nombre-enfants').value) || 0;
+    
+    if (nombreTotal < 1) {
+        alert('Le nombre total de personnes doit être au moins 1.');
+        valid = false;
+    }
+    
+    if (nombreEnfants > nombreTotal) {
+        alert('Le nombre d\'enfants ne peut pas dépasser le nombre total de personnes.');
+        valid = false;
+    }
+
     return valid;
 }
 
@@ -237,6 +297,8 @@ function resetForm() {
     document.getElementById('num_tel').value = '';
     document.getElementById('email').value = '';
     document.getElementById('conditions').checked = false;
+    document.getElementById('nombre-total').value ='';
+    document.getElementById('nombre-enfants').value ='';
 
     document.getElementById('nom').classList.remove('error');
     document.getElementById('prenom').classList.remove('error');
@@ -246,6 +308,9 @@ function resetForm() {
     document.getElementById('quantite-nuit').value = 0;
     document.getElementById('quantite-Repas-midi').value = 0;
     document.getElementById('quantite-Repas-soir').value = 0;
+
+    document.getElementById('nombre-total').value = '1';
+    document.getElementById('nombre-enfants').value = '0';
 
     calculateTotals();
 }

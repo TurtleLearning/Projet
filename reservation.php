@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quantiteNuit = (int)$_POST['quantite-nuit'];
     $quantiteRepasMidi = (int)$_POST['quantite-Repas-midi'];
     $quantiteRepasSoir = (int)$_POST['quantite-Repas-soir'];
+    $nombreTotal = (int)$_POST['nombre-total'];
+    $nombreEnfants = (int)$_POST['nombre-enfants'];
     
     // Récupération et formatage des dates
     $dateDebut = validateInput($_POST['date-debut']);
@@ -46,9 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO reservations_nuitees (nom, prenom, num_tel, email, quantite_nuit, quantite_repas_midi, quantite_repas_soir, date_debut, date_fin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO reservations_nuitees (nom, prenom, num_tel, email, quantite_nuit, quantite_repas_midi, quantite_repas_soir, date_debut, date_fin, nombre_total, nombre_enfants) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
-        if ($stmt->execute([$nom, $prenom, $num_tel, $email, $quantiteNuit, $quantiteRepasMidi, $quantiteRepasSoir, $dateDebut, $dateFin])) {
+        if ($stmt->execute([$nom, $prenom, $num_tel, $email, $quantiteNuit, $quantiteRepasMidi, $quantiteRepasSoir, $dateDebut, $dateFin, $nombreTotal, $nombreEnfants])) {
             echo "Réservation réussie.";
         } else {
             throw new Exception("Erreur lors de la réservation");
