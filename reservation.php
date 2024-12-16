@@ -1,6 +1,7 @@
 <?php
 // reservation.php
 require 'config.php';
+date_default_timezone_set('Europe/Paris');
 
 function validateInput($data) {
     return htmlspecialchars(stripslashes(trim($data)));
@@ -21,36 +22,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dateDebut = validateInput($_POST['date-debut']);
     $dateFin = validateInput($_POST['date-fin']);
     
-    // Conversion du format "d / m / Y" vers "Y-m-d" pour la BDD
-    $dateDebut = DateTime::createFromFormat('d / m / Y', $dateDebut)->format('Y-m-d');
-    $dateFin = DateTime::createFromFormat('d / m / Y', $dateFin)->format('Y-m-d');
-
-    // Validation des données
-    if (empty($nom) || empty($num_tel) || empty($email)) {
-        echo "Tous les champs obligatoires doivent être remplis.";
-        exit;
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Adresse email invalide.";
-        exit;
-    }
-
-    if (!preg_match('/^[0-9]{10}$/', $num_tel)) {
-        echo "Numéro de téléphone invalide.";
-        exit;
-    }
-
-    // Ajout de la validation des quantités
-    if ($quantiteNuit < 0 || $quantiteRepasMidi < 0 || $quantiteRepasSoir < 0) {
-        echo "Les quantités ne peuvent pas être négatives.";
-        exit;
-    }
+    // Conversion du format "d/m/Y" vers "Y-m-d" pour la BDD
+    $dateDebut = DateTime::createFromFormat('d/m/Y', $dateDebut)->format('Y-m-d');
+    $dateFin = DateTime::createFromFormat('d/m/Y', $dateFin)->format('Y-m-d');
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO reservations_nuitees (nom, prenom, num_tel, email, quantite_nuit, quantite_repas_midi, quantite_repas_soir, date_debut, date_fin, nombre_total, nombre_enfants) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        // Insertion directe sans vérification
+        $stmt = $pdo->prepare("INSERT INTO reservations_nuitees (
+            nom, 
+            prenom, 
+            num_tel, 
+            email, 
+            quantite_nuit, 
+            quantite_repas_midi, 
+            quantite_repas_soir, 
+            date_debut, 
+            date_fin, 
+            nombre_total, 
+            nombre_enfants
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
-        if ($stmt->execute([$nom, $prenom, $num_tel, $email, $quantiteNuit, $quantiteRepasMidi, $quantiteRepasSoir, $dateDebut, $dateFin, $nombreTotal, $nombreEnfants])) {
+        if ($stmt->execute([
+            $nom, 
+            $prenom, 
+            $num_tel, 
+            $email, 
+            $quantiteNuit, 
+            $quantiteRepasMidi, 
+            $quantiteRepasSoir, 
+            $dateDebut, 
+            $dateFin, 
+            $nombreTotal, 
+            $nombreEnfants,
+        ])) {
             echo "Réservation réussie.";
         } else {
             throw new Exception("Erreur lors de la réservation");

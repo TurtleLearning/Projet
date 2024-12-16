@@ -6,9 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const envoyerBtn = document.getElementById('envoyer-btn');
     const reinitialiserBtn = document.getElementById('reinitialiser-btn');
 
-    quantiteNuit.addEventListener('input', calculateTotals);
-    quantiteRepasMidi.addEventListener('input', calculateTotals);
-    quantiteRepasSoir.addEventListener('input', calculateTotals);
+    // quantiteNuit.addEventListener('input', calculateTotals);
+    // quantiteRepasMidi.addEventListener('input', calculateTotals);
+    // quantiteRepasSoir.addEventListener('input', calculateTotals);
+
+    const inputs = [quantiteNuit, quantiteRepasMidi, quantiteRepasSoir];
+    inputs.forEach(input => input.addEventListener('input', calculateTotals));
     
     imprimerBtn.addEventListener('click', () => window.print());
     if (reinitialiserBtn) {
@@ -19,36 +22,71 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     envoyerBtn.addEventListener('click', function(event) {
-        event.preventDefault(); // Empêche le comportement par défaut du bouton
+        event.preventDefault();
         if (validateForm()) {
-            const formData = new FormData(document.forms[0]); // Récupère les données du formulaire
-
-            console.log("Données envoyées :", {
-                nom: document.getElementById('nom').value,
-                prenom: document.getElementById('prenom').value,
-                num_tel: document.getElementById('num_tel').value,
-                email: document.getElementById('email').value,
-                quantiteNuit: document.getElementById('quantite-nuit').value,
-                quantiteRepasMidi: document.getElementById('quantite-Repas-midi').value,
-                quantiteRepasSoir: document.getElementById('quantite-Repas-soir').value
-            });
-
-            fetch('reservation.php', {
+            const dateDebut = document.getElementById('date-debut').value;
+            const dateFin = document.getElementById('date-fin').value;
+            
+            // Vérifier la disponibilité avant d'envoyer
+            fetch('check_dates.php', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `dateDebut=${dateDebut}&dateFin=${dateFin}`
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
-                if (data.includes("réussie")) {
-                    alert('Réservation effectuée avec succès !');
-                    window.location.href = 'index.html';
+                if (data.disponible) {
+                    // Si disponible, procéder à l'envoi du formulaire
+                    const formData = new FormData(document.forms[0]);
+                    
+                    const now = new Date();
+                    const timestamp = now.getFullYear() + '-' + 
+                                     String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                                     String(now.getDate()).padStart(2, '0') + ' ' + 
+                                     String(now.getHours()).padStart(2, '0') + ':' + 
+                                     String(now.getMinutes()).padStart(2, '0') + ':' + 
+                                     String(now.getSeconds()).padStart(2, '0');
+                    
+                    formData.append('timestamp', timestamp);
+                    
+                    console.log("Données envoyées :", {
+                        nom: document.getElementById('nom').value,
+                        prenom: document.getElementById('prenom').value,
+                        num_tel: document.getElementById('num_tel').value,
+                        email: document.getElementById('email').value,
+                        quantiteNuit: document.getElementById('quantite-nuit').value,
+                        quantiteRepasMidi: document.getElementById('quantite-Repas-midi').value,
+                        quantiteRepasSoir: document.getElementById('quantite-Repas-soir').value,
+                        timestamp: timestamp
+                    });
+
+                    fetch('reservation.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        if (data.includes("réussie")) {
+                            alert('Réservation effectuée avec succès !');
+                            window.location.href = 'index.html';
+                        } else {
+                            alert('Erreur : ' + data);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        alert('Une erreur est survenue lors de l\'envoi des données.');
+                    });
                 } else {
-                    alert('Erreur : ' + data);
+                    alert('Ces dates ne sont pas disponibles. Veuillez en choisir d\'autres.');
+                    return false;
                 }
             })
             .catch(error => {
                 console.error('Erreur:', error);
-                alert('Une erreur est survenue lors de l\'envoi des données.');
+                alert('Une erreur est survenue lors de la vérification des dates.');
             });
         }
     });
@@ -161,7 +199,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function calculateTotals() {
+/**
+ * Calcule les totaux de la réservation en fonction des quantités sélectionnées
+ * @param {Event} event - L'événement de changement de quantité
+ * @returns {void}
+ */
+function calculateTotals(event) {
     const Nuit = parseInt(document.getElementById('quantite-nuit').value) || 0;
     const repasMidi = parseInt(document.getElementById('quantite-Repas-midi').value) || 0;
     const repasSoir = parseInt(document.getElementById('quantite-Repas-soir').value) || 0;
@@ -206,24 +249,38 @@ function calculateTotals() {
     document.getElementById('total-ttc').value = totalTTC.toFixed(2) + ' euros';
 }
 
-function verifierAvantEnvoi() {
-    if (validateForm()) {
-        const nom = document.getElementById('nom');
-        nom.value = nom.value.toUpperCase();
-        alert('Formulaire vérifié avec succès.');
-    }
+/**
+ * Réinitialise le formulaire de réservation
+ * @returns {void}
+ */
+function resetForm() {
+    document.getElementById('nom').value = '';
+    document.getElementById('prenom').value = '';
+    document.getElementById('num_tel').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('conditions').checked = false;
+    document.getElementById('nombre-total').value ='';
+    document.getElementById('nombre-enfants').value ='';
+
+    document.getElementById('nom').classList.remove('error');
+    document.getElementById('prenom').classList.remove('error');
+    document.getElementById('num_tel').classList.remove('error');
+    document.getElementById('email').classList.remove('error');
+
+    document.getElementById('quantite-nuit').value = 0;
+    document.getElementById('quantite-Repas-midi').value = 0;
+    document.getElementById('quantite-Repas-soir').value = 0;
+
+    document.getElementById('nombre-total').value = '1';
+    document.getElementById('nombre-enfants').value = '0';
+
+    calculateTotals();
 }
 
-function envoyerCommande() {
-    if (validateForm()) {
-        const nom = document.getElementById('nom');
-        const num_tel = document.getElementById('num_tel');
-        const email = document.getElementById('email');
-        
-        alert('Votre demande de réservation a bien été effectuée, vous recevrez le récapitulatif de votre demande par mail sous peu. Merci de votre confiance.');
-    }
-}
-
+/**
+ * Valide le formulaire avant envoi
+ * @returns {boolean} - Retourne true si le formulaire est valide, false sinon
+ */
 function validateForm() {
     const nom = document.getElementById('nom');
     const email = document.getElementById('email');
@@ -265,12 +322,12 @@ function validateForm() {
     const quantiteRepasMidi = parseInt(document.getElementById('quantite-Repas-midi').value);
     const quantiteRepasSoir = parseInt(document.getElementById('quantite-Repas-soir').value);
 
-    if (quantiteNuit < 0 || quantiteRepasMidi < 0 || quantiteRepasSoir < 0) {
+    if (quantiteNuit < 0 || quantiteRepasMidi < 0 || quantiteRepasSoir < 0) { /* Ces lignes sont utiles comme sécurité côté JavaScript, car même si l'interface utilise des inputs de type "number", certains navigateurs permettent de saisir des valeurs négatives ou un utilisateur pourrait modifier les valeurs via les outils de développement. */
         alert('Les quantités ne peuvent pas être négatives.');
         valid = false;
     }
 
-    if (quantiteNuit === 0 && quantiteRepasMidi === 0 && quantiteRepasSoir === 0) {
+    if (quantiteNuit === 0 && quantiteRepasMidi === 0 && quantiteRepasSoir === 0) { /* Cette validation est importante car elle vérifie qu'au moins un service est réservé. C'est une règle métier essentielle. */
         alert('Veuillez sélectionner au moins une nuit ou un repas.');
         valid = false;
     }
@@ -286,6 +343,10 @@ function validateForm() {
     if (nombreEnfants > nombreTotal) {
         alert('Le nombre d\'enfants ne peut pas dépasser le nombre total de personnes.');
         valid = false;
+    }
+
+    if (valid) {
+        nom.value = nom.value.trim().toUpperCase(); /* Force l'écriture du nom de famille en majuscule dans la table correspondante de la BDD. */
     }
 
     return valid;
@@ -320,3 +381,128 @@ function showError(message) {
     errorMessage.textContent = message;
     errorMessage.style.display = 'block';
 }
+
+// Ajouter une validation plus stricte des emails
+function validateEmail(email) {
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return regex.test(email);
+}
+
+// Ajouter une validation plus stricte des numéros de téléphone
+function validatePhone(phone) {
+    const regex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+    return regex.test(phone);
+}
+
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+// Fonction pour récupérer les dates réservées
+async function getReservedDates() {
+    try {
+        const response = await fetch('get_reserved_dates.php');
+        const reservations = await response.json();
+        
+        // Créer un tableau de toutes les dates réservées
+        let disabledDates = [];
+        reservations.forEach(reservation => {
+            let currentDate = new Date(reservation.date_debut);
+            const endDate = new Date(reservation.date_fin);
+            
+            while (currentDate <= endDate) {
+                disabledDates.push(new Date(currentDate));
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+        });
+        
+        return disabledDates;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des dates réservées:', error);
+        return [];
+    }
+}
+
+async function initializeCalendars() {
+    const calendarConfig = {
+        locale: "fr",
+        minDate: "today",
+        dateFormat: "d/m/Y",
+        onChange: function(selectedDates, dateStr, instance) {
+            const container = instance.element.closest('.date-input-container');
+            container.classList.toggle('has-value', dateStr !== '');
+            
+            if (instance.element.id === 'date-debut' && selectedDates[0]) {
+                const dateFin = document.querySelector("#date-fin")._flatpickr;
+                dateFin.set('minDate', selectedDates[0]);
+            }
+        }
+    };
+    
+    flatpickr("#date-debut", calendarConfig);
+    flatpickr("#date-fin", calendarConfig);
+}
+
+function initializeEmptyCalendars() {
+    const calendarConfig = {
+        locale: "fr",
+        minDate: "today",
+        dateFormat: "d/m/Y",
+        onValueUpdate: calculerNuits
+    };
+    
+    initializeCalendarsWithConfig(calendarConfig);
+}
+
+function initializeCalendarsWithDates(disabledDates) {
+    const calendarConfig = {
+        locale: "fr",
+        minDate: "today",
+        dateFormat: "d/m/Y",
+        disable: disabledDates,
+        onValueUpdate: calculerNuits
+    };
+    
+    initializeCalendarsWithConfig(calendarConfig);
+}
+
+function initializeCalendarsWithConfig(config) {
+    // Initialiser date début
+    flatpickr("#date-debut", {
+        ...config,
+        onChange: function(selectedDates, dateStr, instance) {
+            if (selectedDates[0]) {
+                const dateFin = document.querySelector("#date-fin")._flatpickr;
+                dateFin.set('minDate', selectedDates[0]);
+                
+                const container = instance.element.closest('.date-input-container');
+                container.classList.toggle('has-value', dateStr !== '');
+            }
+        }
+    });
+
+    // Initialiser date fin
+    flatpickr("#date-fin", {
+        ...config,
+        onChange: function(selectedDates, dateStr, instance) {
+            const container = instance.element.closest('.date-input-container');
+            container.classList.toggle('has-value', dateStr !== '');
+        }
+    });
+}
+
+function convertFrenchDateToISO(dateStr) {
+    const [day, month, year] = dateStr.split('/').map(num => num.trim());
+    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+}
+
+// Appeler l'initialisation au chargement
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCalendars();
+    // ... reste du code existant ...
+});
