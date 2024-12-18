@@ -77,7 +77,8 @@ body {
 nav {
     background-color: #fff;
     padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
 }
 ul {
     list-style-type: none;
@@ -207,9 +208,15 @@ ul ul {
 
 /* Styles de la navbar */
 .navbar {
-    background-color: rgba(255, 255, 255, 0.0) !important; /* Fond semi-transparent */
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Fond semi-transparent */
     backdrop-filter: blur(10px); /* Effet de flou sur l'arrière-plan */
     padding: 0.5rem 1rem;
+}
+
+.navbar-nav {
+    background-color: rgba(255, 255, 255, 0.5) !important; /* Fond semi-transparent */
+    border-radius: 2em;
+    padding: 0.5rem 1.5rem;
 }
 
 .navbar-brand img {
@@ -229,7 +236,7 @@ ul ul {
 }
 
 /* Barre de soulignement au survol */
-.nav-link::after {
+a.nav-link::after {
     content: '';
     position: absolute;
     width: 0;
@@ -240,7 +247,7 @@ ul ul {
     transition: all 0.3s ease;
 }
 
-.nav-link:hover::after {
+a.nav-link:hover::after {
     width: 80%;
     left: 10%;
 }
@@ -248,9 +255,8 @@ ul ul {
 /* Harmonisation des styles pour le menu déroulant Activités */
 .dropdown-toggle::after {
     display: inline-block;
-    margin-left: 0.255em;
-    vertical-align: 0.255em;
     content: "";
+    margin-left: 0! important; /* Genre de truc à la con qui prend 3h à solutionner */
     border-top: 0.3em solid;
     border-right: 0.3em solid transparent;
     border-bottom: 0;
@@ -381,6 +387,10 @@ ul ul {
 
 .nav-link[href="index.html"]::after {
     background-color: #333;
+}
+
+button.navbar-toggler {
+    margin-bottom : 1em;
 }
 
 /* Responsive */
@@ -791,15 +801,14 @@ ul ul {
 /* Style du header et de la navbar */
 .header-container {
     padding: 1rem 2rem;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .brand-group {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-left: 20px;
 }
 
 .main-title {
@@ -984,7 +993,7 @@ section::before {
     color: white;
 }
 
-/* Bloc droit (Nom jusqu'à Email) */
+/* Bloc droit (Nom jusqu'�� Email) */
 .personal-info-block {
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 15px;
@@ -1302,6 +1311,11 @@ section::before {
     background-color: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+P.avant-propos {
+    border: #000 1px solid;
+    margin-bottom: 5em;
 }
 
 .info-block {
@@ -1744,4 +1758,574 @@ textarea {
     padding-left: 0;
     margin-bottom: 0.5rem;
     text-align: left;
+}
+
+.activity-booking-section {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* .time-slot {
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.time-slot.full {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.time-slot:hover:not(.full) {
+  background: #0056b3;
+  transform: translateY(-2px);
+} */
+
+/* Styles pour la FAQ */
+.faq-container {
+    max-width: 100%;
+    margin-top: 2rem;
+}
+
+.faq-container h3 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-family: 'Playfair Display', serif;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    overflow: hidden;
+    height: fit-content;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 1rem;
+    background: #f8f9fa;
+    border: none;
+    text-align: left;
+    font-weight: 500;
+    color: #2c3e50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #e9ecef;
+}
+
+.faq-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    padding: 0 1rem;
+    background: white;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    border: #000 1px solid;
+}
+
+.faq-answer.active {
+    max-height: 500px;
+    padding: 1rem;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.faq-answer p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Style des titres et textes de la page contact */
+.contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.contact-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #2c3e50, transparent);
+}
+
+.avant-propos {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    text-align: justify;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+}
+
+/* Style des titres des blocs d'information */
+.info-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid rgba(44, 62, 80, 0.2);
+}
+
+/* Style des labels du formulaire */
+.form-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Style des placeholders */
+.form-control::placeholder {
+    font-style: italic;
+    color: #999 !important; /* Forcer la couleur */
+    font-size: 0.9rem;
+    opacity: 0.7; /* Ajouter de l'opacité pour un effet plus doux */
+}
+
+/* Assurer que les champs de formulaire ont la bonne couleur de texte */
+.contact-form-container .form-control {
+    color: #333; /* Couleur du texte saisi */
+    background-color: #fff; /* Fond blanc */
+}
+
+/* Support pour différents navigateurs */
+.form-control::-webkit-input-placeholder { /* Chrome/Safari/Opera */
+    color: #999 !important;
+    opacity: 0.7;
+}
+.form-control::-moz-placeholder { /* Firefox */
+    color: #999 !important;
+    opacity: 0.7;
+}
+.form-control:-ms-input-placeholder { /* IE/Edge */
+    color: #999 !important;
+    opacity: 0.7;
+}
+
+/* Responsive pour la page activités */
+@media (max-width: 991.98px) {
+    /* Ajustement des sections été/hiver */
+    .summer-activities, .winter-activities {
+        padding: 2rem 0;
+    }
+
+    .summer-activities h2, .winter-activities h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Ajustement des cartes d'activités */
+    .activity-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .activity-card .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .activity-card .card-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Amélioration des modales */
+    .modal-dialog {
+        max-width: 95%;
+        margin: 1rem auto;
+    }
+
+    .modal-body img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .modal-title {
+        font-size: 1.8rem;
+    }
+
+    .modal-body h4 {
+        font-size: 1.4rem;
+        margin-top: 1.5rem;
+    }
+
+    .modal-body ul {
+        padding-left: 1.2rem;
+    }
+
+    .modal-body li {
+        margin-bottom: 0.8rem;
+    }
+}
+
+/* Ajustements pour les très petits écrans */
+@media (max-width: 576px) {
+    /* Réduction des marges */
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Ajustement des titres */
+    .summer-activities h2, .winter-activities h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Optimisation des cartes */
+    .activity-card {
+        margin: 0 0.5rem 1.5rem 0.5rem;
+    }
+
+    .activity-card .card-title {
+        font-size: 1.3rem;
+    }
+
+    .activity-card .card-text {
+        font-size: 0.9rem;
+    }
+
+    /* Ajustement des mentions "Cliquer" */
+    .click-info, .click-info-top {
+        font-size: 0.7rem;
+    }
+
+    /* Optimisation des modales */
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+
+    .modal-body h4 {
+        font-size: 1.2rem;
+    }
+
+    .modal-body p, .modal-body li {
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsive pour la page réservation */
+@media (max-width: 991.98px) {
+    /* Ajustement du titre de réservation */
+    .reservation-title {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Ajustement des colonnes du formulaire */
+    .form-columns {
+        flex-direction: column; /* Passer à une colonne sur mobile */
+    }
+
+    .form-column {
+        width: 100%; /* Prendre toute la largeur */
+        margin-bottom: 1.5rem; /* Espacement entre les colonnes */
+    }
+
+    /* Ajustement des champs de formulaire */
+    .input-group {
+        flex-direction: column; /* Passer à une colonne pour les champs */
+    }
+
+    .form-label {
+        margin-bottom: 0.5rem; /* Espacement entre le label et le champ */
+    }
+
+    /* Ajustement des boutons */
+    .buttons-container {
+        flex-direction: column; /* Passer à une colonne pour les boutons */
+        align-items: center; /* Centrer les boutons */
+    }
+
+    .buttons-container button {
+        width: 100%; /* Prendre toute la largeur */
+        margin-bottom: 0.5rem; /* Espacement entre les boutons */
+    }
+
+    /* Ajustement des alertes */
+    #error-message {
+        margin-top: 1rem; /* Espacement au-dessus de l'alerte */
+    }
+}
+
+/* Ajustements pour les très petits écrans */
+@media (max-width: 576px) {
+    /* Réduction des marges */
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Ajustement des titres */
+    .reservation-title {
+        font-size: 1.5rem;
+    }
+
+    /* Ajustement des champs de formulaire */
+    .form-control {
+        font-size: 0.9rem; /* Réduire la taille de la police */
+    }
+
+    /* Ajustement des sous-totaux */
+    .total-container input {
+        font-size: 0.9rem; /* Réduire la taille de la police */
+    }
+}
+
+/* Ajustements pour la page réservation */
+@media (max-width: 991.98px) {
+    /* Empêcher le débordement du texte */
+    .form-label {
+        font-size: 0.9rem;
+        word-wrap: break-word;
+        white-space: normal;
+        color: white !important; /* Forcer la couleur blanche */
+    }
+
+    /* Ajustement des champs de date */
+    .date-input-container {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .date-input-container input {
+        width: 100%;
+        background-color: white;
+        color: #333;
+    }
+
+    /* Ajustement des totaux */
+    .pricing-block .input-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .pricing-block .input-group input {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        background-color: white;
+        color: #333;
+    }
+
+    /* Ajustement des sous-totaux */
+    .total-container input {
+        background-color: white;
+        color: #333;
+        width: 100%;
+    }
+
+    /* Ajustement de la largeur des conteneurs */
+    .personal-info-block,
+    .conditions-container,
+    .pricing-block {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    /* Style spécifique pour le nombre d'enfants */
+    .input-group.mb-3 {
+        width: 100%;
+        padding-right: 1rem;
+    }
+}
+
+/* Ajustement pour les très petits écrans */
+@media (max-width: 576px) {
+    .input-group, 
+    .input-group input,
+    .form-control {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+    }
+}
+
+/* Style général des boutons de réservation */
+#envoyer-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+#reinitialiser-btn {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+}
+
+/* Style au survol */
+#envoyer-btn:hover {
+    background-color: #218838;
+}
+
+#reinitialiser-btn:hover {
+    background-color: #e0a800;
+    color: #000;
+}
+
+/* Style pour rendre les champs de date plus accessibles sur mobile */
+.date-input-container input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+/* Style pour l'icône de calendrier par défaut (grands écrans) */
+.date-input-container::after {
+    display: none; /* Cache l'emoji calendrier par défaut */
+}
+
+/* Affiche l'emoji calendrier uniquement sur mobile */
+@media (max-width: 991.98px) {
+    .date-input-container::after {
+        content: '\1F4C5';  /* Emoji calendrier */
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        display: block; /* Affiche l'emoji sur mobile */
+    }
+}
+
+/* Style des champs de saisie et totaux dans le pricing-block */
+.pricing-block .input-group .form-control {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Style spécifique pour les champs de quantité */
+.pricing-block .input-group input[type="number"] {
+    background-color: white !important;
+    color: #333 !important;
+    font-weight: normal; /* Changé de bold à normal */
+}
+
+/* Style pour les placeholders */
+.pricing-block .input-group input::placeholder {
+    font-weight: normal; /* Assure que les placeholders ne sont pas en gras */
+}
+
+/* Style pour le champ de nuits qui est en readonly */
+.pricing-block #quantite-nuit {
+    background-color: white !important;
+    color: #333 !important;
+}
+
+/* Style pour tous les inputs de sous-total */
+.pricing-block input[id^="sous-total"] {
+    background-color: rgba(31, 24, 24, 0.7) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: normal; /* Assure que le texte n'est pas en gras */
+}
+
+.pricing-block input[id^="total-ttc"] {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: normal; /* Assure que le texte n'est pas en gras */
+}
+
+/* Style pour le total et sous-total */
+.total-container .form-control {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Style de base pour le conteneur de date */
+.date-input-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Style pour le champ de date */
+.date-input-container input {
+    cursor: pointer;
+    width: 100%;
+    background-color: white !important;
+    color: #333 !important;
+}
+
+/* Style pour la croix rouge */
+.clear-date {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    z-index: 3;
+    display: none;
+}
+
+/* Style pour l'icône Flatpickr */
+.flatpickr-calendar-icon {
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    pointer-events: none !important;
+}
+
+/* États des icônes selon la sélection */
+.date-input-container.has-value .clear-date {
+    display: block;
+}
+
+.date-input-container.has-value .flatpickr-calendar-icon {
+    display: none !important;
 }

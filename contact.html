@@ -39,16 +39,26 @@
             <!-- Colonne de gauche - Formulaire -->
             <div class="col-md-6">
                 <div class="contact-form-container p-4">
-                    <h2>Nous Contacter</h2>
+                    <h2 class="contact-title">Nous Contacter</h2>
+                    <p class="avant-propos">
+                        Bienvenue sur notre site !
+                        <br><br>Si vous avez des interrogations concernant notre établissement, 
+                        vous pouvez d'abord consulter la foire aux questions (FAQ) ci-dessous ou bien Snous faire part 
+                        directement de votre demande par mail en remplissant le formulaire ci-dessous.
+                        Nous nous efforcerons de vous répondre dans les plus brefs délais. 
+                        <br><br>En vous souhaitant une agréable visite !
+                    </p>
                     <form action="contact.php" method="POST">
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom complet</label>
-                            <input type="text" class="form-control" id="nom" name="nom" required>
+                            <input type="text" class="form-control" id="nom" name="nom" 
+                                   placeholder="Jean Dupont" required>
                         </div>
                         
                         <div class="mb-3">
                             <label for="contact" class="form-label">Email ou Téléphone</label>
-                            <input type="text" class="form-control" id="contact" name="contact" required>
+                            <input type="text" class="form-control" id="contact" name="contact" 
+                                   placeholder="jean.dupont@email.com ou 06.00.00.00.00" required>
                         </div>
                         
                         <div class="mb-3">
@@ -62,27 +72,55 @@
                         
                         <div class="mb-3">
                             <label for="message" class="form-label">Votre message</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                            <textarea class="form-control" id="message" name="message" rows="4" 
+                                      placeholder="Décrivez votre demande ici..." required></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Envoyer</button>
                     </form>
                     
-                    <!-- Ajout des réseaux sociaux -->
-                    <div class="footer-social mt-auto pt-4">
-                        <div class="social-links">
-                            <a href="#" class="social-link">
-                                <i class="fab fa-facebook fa-2x"></i>
-                                <span>Facebook</span>
-                            </a>
-                            <a href="#" class="social-link">
-                                <i class="fab fa-twitter fa-2x"></i>
-                                <span>Twitter</span>
-                            </a>
-                            <a href="#" class="social-link">
-                                <i class="fab fa-instagram fa-2x"></i>
-                                <span>Instagram</span>
-                            </a>
+                    <!-- FAQ Section -->
+                    <div class="faq-container mt-5">
+                        <h3>Questions Fréquentes</h3>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Comment puis-je réserver le chalet ?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                Vous pouvez réserver directement sur notre site dans la section "Réserver un séjour" ou nous contacter par téléphone. Nous répondons sous 24h maximum.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Quels sont les horaires d'arrivée et de départ ?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                Les arrivées se font à partir de 15h et les départs avant 11h. Des arrangements sont possibles sur demande selon disponibilité.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Les animaux sont-ils acceptés ?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                Oui, les animaux de compagnie sont les bienvenus avec un supplément de 15€ par jour. Merci de nous prévenir à l'avance.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Y a-t-il un accès WiFi ?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                Oui, une connexion WiFi gratuite et illimitée est disponible dans tout le chalet. Le code d'accès vous sera fourni à votre arrivée.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,7 +145,7 @@
                 </div>
 
                 <!-- Bloc 3 - Accès -->
-                <div class="info-block p-4">
+                <div class="info-block p-4 mb-4">
                     <h3>Comment nous trouver</h3>
                     <h4>En été</h4>
                     <p>Accès facile par la route départementale D123. Parking disponible devant le chalet.</p>
@@ -122,8 +160,50 @@
                     74000 La Montagne<br>
                     France</p>
                 </div>
+
+                <!-- Bloc 4 - Réseaux Sociaux -->
+                <div class="info-block p-4">
+                    <h3>Nos Réseaux Sociaux</h3>
+                    <div class="social-links-contact">
+                        <a href="#" class="social-link-contact">
+                            <i class="bi bi-facebook"></i>
+                            <span>Suivez-nous sur Facebook</span>
+                        </a>
+                        <a href="#" class="social-link-contact">
+                            <i class="bi bi-instagram"></i>
+                            <span>Découvrez notre Instagram</span>
+                        </a>
+                        <a href="#" class="social-link-contact">
+                            <i class="bi bi-twitter-x"></i>
+                            <span>Retrouvez-nous sur X</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+                
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.faq-icon');
+                    
+                    // Toggle active class
+                    question.classList.toggle('active');
+                    answer.classList.toggle('active');
+                    
+                    // Adjust max-height for smooth animation
+                    if (answer.classList.contains('active')) {
+                        answer.style.maxHeight = "fit-content";
+                    } else {
+                        answer.style.maxHeight = 0;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

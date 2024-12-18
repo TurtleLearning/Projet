@@ -141,6 +141,7 @@
     </section>
 
     <!-- Modals pour chaque activité -->
+     
     <!-- Modal Trekking -->
     <div class="modal fade" id="trekkingModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -286,13 +287,72 @@
         </div>
     </div>
 
-    <footer>
-        <!-- ... contenu du footer ... -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <!-- Colonne gauche -->
+            <div class="footer-links">
+                <a href="#" class="footer-link" onclick="openModal('cgv')">Conditions générales de vente</a>
+                <a href="#" class="footer-link" onclick="openModal('privacy')">Politique de confidentialité</a>
+                <a href="#" class="footer-link" onclick="openModal('cookies')">Gestion des cookies</a>
+            </div>
+    
+            <!-- Colonne droite -->
+            <div class="footer-social">
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook fa-2x"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter fa-2x"></i>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram fa-2x"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+                <a href="contact.html" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    Contact
+                </a>
+            </div>
+        </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="modalFooter.js"></script>
+    <script src="cookieConsent.js"></script>
+    <style>
+        footer a:hover {
+            transform: scale(1.1); /* Agrandissement de 10% au survol */
+        }
+    </style>
+    <!-- Pop-up Cookies -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-content">
+            <h3>🍪 Utilisation des cookies</h3>
+            <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site.</p>
+            <div class="cookie-buttons">
+                <button id="acceptCookies" class="btn btn-success">Accepter</button>
+                <button id="refuseCookies" class="btn btn-secondary">Refuser</button>
+            </div>
+        </div>
+    </div>
+    <!-- Ajout des attributs ARIA -->
+    <button aria-label="Fermer" class="close-button">×</button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="modalFooter.js"></script>
+    <script src="cookieConsent.js"></script>
+    <style>
+        footer a:hover {
+            transform: scale(1.1); /* Agrandissement de 10% au survol */
+        }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Script optimisé
+        // Script optimisé pour les modales
         document.addEventListener('DOMContentLoaded', function() {
             var modals = document.querySelectorAll('.modal');
             modals.forEach(function(modal) {
