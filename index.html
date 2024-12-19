@@ -15,11 +15,11 @@
 </head>
 <body>
     <header class="header-container">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-xxl navbar-light">
             <div class="container-fluid">
                 <!-- Logo et titre groupés -->
                 <div class="brand-group">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand p-0 m-0" href="index.html">
                         <img src="Images/cabin-logo.png" alt="Logo" height="60">
                     </a>
                     <h1 class="main-title">Le Petit Chalet dans La Montagne</h1>
@@ -31,7 +31,7 @@
                 </button>
                 
                 <!-- Menu de navigation -->
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end" style="gap:2em" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="activites.html">
@@ -98,10 +98,10 @@
                 <div class="col-6 d-flex flex-column justify-content-center align-items-center text-center">
                     <div class="description-container">
                         <a href="activites.html" class="card-hover">
-                            <i class="fas fa-umbrella-beach fa-2x"></i>
+                            <i class="fa-solid fa-person-skiing-nordic"></i>
                             <span>Activités</span>
                         </a>
-                        <p>Découvrez les activités de saison disponibles</p>
+                        <p>Découvrez les activités de saison disponibles.</p>
                     </div>
                 </div>
             </div>
@@ -117,12 +117,27 @@
                             <i class="fas fa-calendar-alt fa-2x"></i>
                             <span>Réservez un séjour</span>
                         </a>
-                        <p>Réservez votre séjour dès maintenant pour profiter de nos offres exceptionnelles.</p>
+                        <p>Réservez votre séjour dès maintenant pour profiter d'un moment de sérénité en altitude.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Ajout du bouton "Retour en haut" avant le footer -->
+    <button id="back-to-top" class="back-to-top-btn" aria-label="Retour en haut de la page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Modification de la structure des modales pour ajouter un overlay -->
+    <div id="modalOverlay" class="modal-overlay"></div>
+    <div id="modalContainer" class="modal-card">
+        <div class="modal-header">
+            <h2 id="modalTitle"></h2>
+            <button class="close-button" aria-label="Fermer">×</button>
+        </div>
+        <div id="modalContent" class="modal-content"></div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -176,7 +191,5 @@
             </div>
         </div>
     </div>
-    <!-- Ajout des attributs ARIA -->
-    <button aria-label="Fermer" class="close-button">×</button>
 </body>
 </html>

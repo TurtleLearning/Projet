@@ -210,13 +210,18 @@ ul ul {
 .navbar {
     background-color: rgba(255, 255, 255, 0.1) !important; /* Fond semi-transparent */
     backdrop-filter: blur(10px); /* Effet de flou sur l'arrière-plan */
-    padding: 0.5rem 1rem;
+    padding: 2em 2em;
 }
 
 .navbar-nav {
     background-color: rgba(255, 255, 255, 0.5) !important; /* Fond semi-transparent */
     border-radius: 2em;
-    padding: 0.5rem 1.5rem;
+    padding: 1em;
+    gap : 2em;
+}
+
+.navbar-brand {
+    margin-right: none !important;
 }
 
 .navbar-brand img {
@@ -231,12 +236,14 @@ ul ul {
 .nav-link {
     font-weight: 500;
     position: relative;
+    display: inline-block;
+    padding: 0.5rem 0 !important; /* Override Bootstrap padding */
+    margin: 0 1rem;
     transition: color 0.3s ease;
-    padding: 0.5rem 1rem !important; /* Force une taille uniforme */
 }
 
 /* Barre de soulignement au survol */
-a.nav-link::after {
+.nav-link::after {
     content: '';
     position: absolute;
     width: 0;
@@ -247,20 +254,14 @@ a.nav-link::after {
     transition: all 0.3s ease;
 }
 
-a.nav-link:hover::after {
-    width: 80%;
-    left: 10%;
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
 }
 
 /* Harmonisation des styles pour le menu déroulant Activités */
 .dropdown-toggle::after {
-    display: inline-block;
-    content: "";
-    margin-left: 0! important; /* Genre de truc à la con qui prend 3h à solutionner */
-    border-top: 0.3em solid;
-    border-right: 0.3em solid transparent;
-    border-bottom: 0;
-    border-left: 0.3em solid transparent;
+    display: none !important; /* Supprime la flèche par défaut de Bootstrap */
 }
 
 /* Suppression des styles spécifiques au dropdown qui pourraient causer des différences */
@@ -330,6 +331,7 @@ a.nav-link:hover::after {
 /* Alignement du dropdown avec le parent */
 .nav-item.dropdown {
     position: relative;
+    z-index: 1;
 }
 
 .nav-item.dropdown .dropdown-menu {
@@ -413,12 +415,30 @@ button.navbar-toggler {
 
 /* -------------------------- FOOTER --------------------------- */
 
-/* Style du footer */
+
 .footer {
-    background-color: #333;
-    color: white;
-    padding: 2rem;
-    margin-top: 3rem;
+    background-color: rgba(27, 5, 5, 0.85);
+    margin-top: 4rem;
+    padding: 5rem;
+    border-radius: 30px 30px 0 0;
+    backdrop-filter: blur(5px);
+    box-shadow: 
+        0 -10px 20px rgba(46, 6, 6, 0.1),
+        0 0 30px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 20px 10px rgba(121, 148, 0, 0.3);
+    border-radius: 30px 30px 0 0;
+    pointer-events: none;
 }
 
 /* Grid layout */
@@ -825,10 +845,7 @@ button.navbar-toggler {
 /* Espacement et style des sections */
 section {
     margin: 4rem auto;
-    padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 30px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: #000 2.5px solid;
 }
 
 /* Espacement spécifique pour le carousel */
@@ -842,14 +859,7 @@ section {
     margin: 2rem 0;
     border-radius: 20px;
     transition: all 0.3s ease;
-}
-
-/* Footer avec transparence */
-.footer {
-    background-color: rgba(51, 51, 51, 0.9);
-    margin-top: 4rem;
-    padding: 2rem;
-    border-radius: 30px 30px 0 0;
+    border: #000 1px solid;
 }
 
 /* Media queries pour la responsivité */
@@ -887,18 +897,19 @@ section {
 }
 
 /* Style des sections avec effet de flou sur les bords */
-section {
+
+/* section {
     margin: 4rem auto;
     padding: 2rem;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 30px;
     box-shadow: 
         0 0 20px rgba(0, 0, 0, 0.1),
-        0 0 40px rgba(255, 255, 255, 0.3); /* Effet de halo lumineux */
+        0 0 40px rgba(255, 255, 255, 0.3); Effet de halo lumineux
     backdrop-filter: blur(5px);
     position: relative;
     overflow: hidden;
-}
+} */
 
 /* Effet de flou sur les bords des sections */
 section::before {
@@ -944,31 +955,7 @@ section::before {
     pointer-events: none;
 }
 
-/* Footer avec effet de flou */
-.footer {
-    background-color: rgba(51, 51, 51, 0.85);
-    margin-top: 4rem;
-    padding: 2rem;
-    border-radius: 30px 30px 0 0;
-    backdrop-filter: blur(5px);
-    box-shadow: 
-        0 -10px 20px rgba(0, 0, 0, 0.1),
-        0 0 30px rgba(255, 255, 255, 0.2);
-    position: relative;
-    overflow: hidden;
-}
 
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: inset 0 0 20px 10px rgba(155, 136, 136, 0.3);
-    border-radius: 30px 30px 0 0;
-    pointer-events: none;
-}
 
 /* Style général du formulaire de réservation */
 .reservation-form {
@@ -993,7 +980,7 @@ section::before {
     color: white;
 }
 
-/* Bloc droit (Nom jusqu'�� Email) */
+/* Bloc droit (Nom jusqu'à Email) */
 .personal-info-block {
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 15px;
@@ -2095,86 +2082,6 @@ textarea {
 
 /* Ajustements pour les très petits écrans */
 @media (max-width: 576px) {
-    /* Réduction des marges */
-    .container {
-        padding: 0 1rem;
-    }
-
-    /* Ajustement des titres */
-    .reservation-title {
-        font-size: 1.5rem;
-    }
-
-    /* Ajustement des champs de formulaire */
-    .form-control {
-        font-size: 0.9rem; /* Réduire la taille de la police */
-    }
-
-    /* Ajustement des sous-totaux */
-    .total-container input {
-        font-size: 0.9rem; /* Réduire la taille de la police */
-    }
-}
-
-/* Ajustements pour la page réservation */
-@media (max-width: 991.98px) {
-    /* Empêcher le débordement du texte */
-    .form-label {
-        font-size: 0.9rem;
-        word-wrap: break-word;
-        white-space: normal;
-        color: white !important; /* Forcer la couleur blanche */
-    }
-
-    /* Ajustement des champs de date */
-    .date-input-container {
-        width: 100%;
-        margin-bottom: 1rem;
-    }
-
-    .date-input-container input {
-        width: 100%;
-        background-color: white;
-        color: #333;
-    }
-
-    /* Ajustement des totaux */
-    .pricing-block .input-group {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .pricing-block .input-group input {
-        width: 100%;
-        margin-bottom: 0.5rem;
-        background-color: white;
-        color: #333;
-    }
-
-    /* Ajustement des sous-totaux */
-    .total-container input {
-        background-color: white;
-        color: #333;
-        width: 100%;
-    }
-
-    /* Ajustement de la largeur des conteneurs */
-    .personal-info-block,
-    .conditions-container,
-    .pricing-block {
-        width: 100%;
-        padding: 1rem;
-    }
-
-    /* Style spécifique pour le nombre d'enfants */
-    .input-group.mb-3 {
-        width: 100%;
-        padding-right: 1rem;
-    }
-}
-
-/* Ajustement pour les très petits écrans */
-@media (max-width: 576px) {
     .input-group, 
     .input-group input,
     .form-control {
@@ -2328,4 +2235,155 @@ textarea {
 
 .date-input-container.has-value .flatpickr-calendar-icon {
     display: none !important;
+}
+
+/* Reset des styles Bootstrap pour les liens de navigation */
+.navbar-nav .nav-item {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 0 !important; /* Override Bootstrap padding */
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+}
+
+/* Style uniforme de la barre de soulignement */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #0066cc;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Styles spécifiques pour le dropdown */
+.dropdown-toggle::after {
+    display: none !important; /* Supprime la flèche par défaut de Bootstrap */
+}
+
+/* Media queries pour le responsive */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        align-items: center;
+    }
+
+    .nav-link {
+        margin: 0.5rem 0;
+        padding: 0.5rem 0 !important;
+    }
+}
+
+/* Style pour le bouton "Retour en haut" */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #d4c19c;
+    color: #333;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: none; /* Caché par défaut */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.back-to-top-btn:hover {
+    background-color: #c4b089;
+    transform: translateY(-3px);
+}
+
+/* Style pour l'overlay de la modale */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    cursor: pointer;
+}
+
+/* Ajustement du z-index de la modale */
+.modal-card {
+    z-index: 1001;
+}
+
+/* Style pour la modale active */
+.modal-overlay.active,
+.modal-card.active {
+    display: block;
+}
+
+/* Styles pour la navbar */
+@media (max-width: 1400px) {
+    .navbar-nav {
+        align-items: center;
+    }
+
+    .nav-link {
+        margin: 0.5rem 0;
+        padding: 0.5rem 0 !important;
+    }
+
+    /* Assure que le menu burger apparaît au bon breakpoint */
+    .navbar-expand-lg .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-expand-lg .navbar-collapse {
+        display: none !important;
+    }
+
+    .navbar-expand-lg .navbar-collapse.show {
+        display: block !important;
+    }
+
+    /* Ajustement du positionnement du menu déroulant */
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: column;
+    }
+
+    /* Ajustement pour le logo et le titre */
+    .brand-group {
+        max-width: 70%;
+    }
+
+    .main-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Styles pour les écrans plus larges */
+@media (min-width: 1401px) {
+    .navbar-expand-lg .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-expand-lg .navbar-collapse {
+        display: flex !important;
+    }
+
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: row;
+    }
 }
