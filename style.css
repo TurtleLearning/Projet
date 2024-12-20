@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap'); /* Police des nav-item */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap'); /* Police du titre*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap'); /* Police du footer*/
+
 /*RESET COMPLET */
 
 /* Modern CSS Reset */
@@ -213,15 +217,15 @@ ul ul {
     padding: 2em 2em;
 }
 
+.nav-item {
+    font-family: 'EB Garamond', serif;
+}
+
 .navbar-nav {
     background-color: rgba(255, 255, 255, 0.5) !important; /* Fond semi-transparent */
     border-radius: 2em;
     padding: 1em;
     gap : 2em;
-}
-
-.navbar-brand {
-    margin-right: none !important;
 }
 
 .navbar-brand img {
@@ -392,11 +396,12 @@ ul ul {
 }
 
 button.navbar-toggler {
-    margin-bottom : 1em;
+    display: flex;
+    align-items: center;
 }
 
 /* Responsive */
-@media (max-width: 991.98px) {
+/* @media (max-width: 991.98px) {
     .navbar-nav {
         text-align: center;
     }
@@ -411,14 +416,14 @@ button.navbar-toggler {
 
 .detail-images img {
     aspect-ratio: 4/3;
-  }
+  } */
 
 /* -------------------------- FOOTER --------------------------- */
 
 
 .footer {
     background-color: rgba(27, 5, 5, 0.85);
-    margin-top: 4rem;
+    margin-top: 3rem;
     padding: 5rem;
     border-radius: 30px 30px 0 0;
     backdrop-filter: blur(5px);
@@ -427,6 +432,9 @@ button.navbar-toggler {
         0 0 30px rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
 }
 
 .footer::before {
@@ -548,6 +556,24 @@ button.navbar-toggler {
 /* --------------------------------------------- */
 
 /* Responsive design */
+
+@media (max-width: 1000px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-bottom: 6rem;
+    }
+
+    .footer-grid::after {
+        display: none;
+    }
+
+    .footer-social {
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        padding-top: 2rem;
+        margin-top: 1rem;
+    }
+}
 @media (max-width: 768px) {
     .footer-grid {
         grid-template-columns: 1fr;
@@ -568,6 +594,25 @@ button.navbar-toggler {
     .contact-button {
         bottom: 1rem;
     }
+
+    .sec-ac {
+        flex-direction: column !important; /* Force le changement de direction */
+    }
+
+    .sec-ac > div {
+        width: 100%; /* Force la largeur complète pour les enfants directs */
+        margin-bottom: 1rem; /* Ajoute de l'espace entre les éléments */
+    }
+
+    .description-container {
+        font-size: 80%;
+        transform: scale(0.8);
+    }
+}
+
+/* Cibler le footer de la page contact */
+html.contact .footer-grid {
+    padding-bottom: 0;
 }
 
 /* --------------------------------------------- */
@@ -648,6 +693,7 @@ button.navbar-toggler {
 
 
 /* Style des flèches du carousel */
+
 .carousel-control-prev,
 .carousel-control-next {
     width: 50px;
@@ -736,7 +782,6 @@ button.navbar-toggler {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    z-index: 1000;
     opacity: 0;
     transition: all 0.3s ease;
     max-width: 800px;
@@ -772,6 +817,7 @@ button.navbar-toggler {
 
 .modal-content {
     line-height: 1.6;
+    z-index : -1;
 }
 
 /* Style du pop-up cookies */
@@ -832,8 +878,8 @@ button.navbar-toggler {
 }
 
 .main-title {
-    font-family: 'Wensley', 'modern serif';
-    font-size: 1.8em;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
     color: white;
     margin: 0;
     background-color: rgba(165, 42, 42, 0.5);
@@ -844,8 +890,7 @@ button.navbar-toggler {
 
 /* Espacement et style des sections */
 section {
-    margin: 4rem auto;
-    border: #000 2.5px solid;
+    margin-top: 4rem;
 }
 
 /* Espacement spécifique pour le carousel */
@@ -873,11 +918,6 @@ section {
     .main-title {
         font-size: 1.4em;
         padding: 6px 12px;
-    }
-
-    section {
-        margin: 3rem auto;
-        padding: 1.5rem;
     }
 }
 
@@ -913,21 +953,11 @@ section {
 
 /* Effet de flou sur les bords des sections */
 section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: inset 0 0 20px 10px rgba(255, 255, 255, 0.5);
-    border-radius: 30px;
-    pointer-events: none;
+    content: none;
 }
 
 /* Style spécifique pour le carousel */
-.carousel-section {
-    margin: 6rem auto;
-}
+
 
 /* Style des blocs avec effet de flou */
 .block {
@@ -1416,7 +1446,10 @@ textarea {
 .info-block h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
+    color: #2c3e50;
     margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid rgba(44, 62, 80, 0.2);
 }
 
 /* Style des sous-titres été/hiver */
@@ -1482,7 +1515,6 @@ textarea {
     transform: translate(-50%, -50%) scale(0.7);
     opacity: 0;
     transition: all 0.3s ease;
-    z-index: 1000;
 }
 
 .modal-card.active {
@@ -1760,27 +1792,6 @@ textarea {
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
-
-/* .time-slot {
-  padding: 0.5rem 1rem;
-  margin: 0.3rem;
-  border: none;
-  border-radius: 4px;
-  background: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.time-slot.full {
-  background: #6c757d;
-  cursor: not-allowed;
-}
-
-.time-slot:hover:not(.full) {
-  background: #0056b3;
-  transform: translateY(-2px);
-} */
 
 /* Styles pour la FAQ */
 .faq-container {
@@ -2338,6 +2349,7 @@ textarea {
 @media (max-width: 1400px) {
     .navbar-nav {
         align-items: center;
+        margin-top: 1em;
     }
 
     .nav-link {
@@ -2347,7 +2359,7 @@ textarea {
 
     /* Assure que le menu burger apparaît au bon breakpoint */
     .navbar-expand-lg .navbar-toggler {
-        display: block;
+        align-items: center;
     }
 
     .navbar-expand-lg .navbar-collapse {
@@ -2387,3 +2399,42 @@ textarea {
         flex-direction: row;
     }
 }
+
+/* Style pour cacher la modale et l'overlay par défaut */
+.modal-overlay,
+.modal-card {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Style quand la modale est active */
+.modal-overlay.active,
+.modal-card.active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ajuster l'alignement du menu burger */
+.navbar-toggler {
+    align-self: center; /* Centre verticalement le burger */
+}
+
+
+
+/* Ajuster le conteneur du header pour un meilleur alignement */
+.header-container .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ajuster le groupe logo + titre */
+.brand-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-grow: 1; /* Permet au groupe de prendre l'espace disponible */
+}
+
