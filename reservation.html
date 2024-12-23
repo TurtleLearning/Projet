@@ -20,7 +20,7 @@
 <body>
 
     <header class="header-container">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-xxl navbar-light">
             <div class="container-fluid">
                 <!-- Logo et titre groupés -->
                 <div class="brand-group">
@@ -132,7 +132,7 @@
                             
                             <div class="input-group mb-3">
                                 <label class="form-label">Nuit</label>
-                                <div class="input-group mb-3">
+                                <div class="input-pair">
                                     <input type="number" id="quantite-nuit" name="quantite-nuit" class="form-control" readonly>
                                     <input type="text" id="sous-total-nuit" class="form-control" readonly>
                                 </div>
@@ -140,15 +140,15 @@
                             
                             <div class="input-group mb-3">
                                 <label class="form-label">Repas de midi souhaité (Par adulte)</label>
-                                <div class="input-group mb-3">
-                                    <input type="number" id="quantite-Repas-midi" name="quantite-Repas-midi" class="form-control" placeholder="Combien en voulez-vous ?">
+                                <div class="input-pair">
+                                <input type="number" id="quantite-Repas-midi" name="quantite-Repas-midi" class="form-control" placeholder="Combien en voulez-vous ?">
                                     <input type="text" id="sous-total-repas-midi" class="form-control">
                                 </div>
                             </div>
                             
                             <div class="input-group mb-3">
                                 <label class="form-label">Repas du soir souhaité (Par adulte)</label>
-                                <div class="input-group mb-3">
+                                <div class="input-pair">
                                     <input type="number" id="quantite-Repas-soir" name="quantite-Repas-soir" class="form-control" placeholder="Combien en voulez-vous ?">
                                     <input type="text" id="sous-total-repas-soir" class="form-control">
                                 </div>
@@ -170,7 +170,7 @@
                 </div>
 
                 <div class="buttons-container">
-                    <button id="imprimer-btn" class="btn btn-secondary m-1">Imprimer</button>
+                    <button type="button" id="imprimer-btn" class="btn btn-secondary m-1">Imprimer</button>
                     <button type="reset" id="reinitialiser-btn" class="btn btn-warning m-1">Réinitialiser</button>
                     <button id="envoyer-btn" class="btn btn-success m-1">Valider ma réservation</button>
                 </div>
@@ -227,6 +227,7 @@
             </div>
         </div>
     </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="modalFooter.js"></script>
     <script src="cookieConsent.js"></script>
@@ -246,8 +247,6 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

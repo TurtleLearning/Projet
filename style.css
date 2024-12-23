@@ -1079,9 +1079,55 @@ section::before {
     margin-right: auto;
 }
 
-/* Style des groupes de champs */
+/* Style général des groupes de champs */
 .input-group {
     margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+/* Style spécifique pour le bloc pricing */
+.pricing-block .input-group {
+    flex-direction: column;
+    width: 100%;
+}
+
+.pricing-block .input-group .form-control {
+    width: 100%;
+}
+
+/* Style pour le groupe d'inputs côte à côte */
+.pricing-block .input-pair {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.pricing-block .input-pair .form-control {
+    flex: 1;
+}
+
+/* Style spécifique pour les informations personnelles */
+.personal-info-block .input-group {
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Style spécifique pour le formulaire de contact */
+.contact-form-container .input-group {
+    flex-direction: column;
+}
+
+/* Ajustements pour les labels */
+.input-group .form-label {
+    min-width: 100px;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+/* Ajustements pour les contrôles */
+.input-group .form-control {
+    flex: 1;
 }
 
 /* Style des labels */
@@ -1100,17 +1146,6 @@ section::before {
     border-radius: 8px;
 }
 
-/* Ajustement de l'espacement des champs */
-.personal-info-block .input-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
-}
-
-.personal-info-block .input-group:last-child {
-    margin-bottom: 0;
-}
-
 /* Message des champs requis */
 .required-fields {
     color: black;
@@ -1122,7 +1157,7 @@ section::before {
     width: fit-content;
 }
 
-/* Style des colonnes pour qu'elles aient la même hauteur */
+/* Style pour les colonnes pour qu'elles aient la même hauteur */
 .form-columns {
     display: flex;
     gap: 2rem;
@@ -1135,33 +1170,12 @@ section::before {
     flex-direction: column;
 }
 
-/* Style des blocs noirs pour qu'ils prennent toute la hauteur */
+/* Style pour les blocs noirs pour qu'ils prennent toute la hauteur */
 .pricing-block,
 .personal-info-block {
     flex: 1;
     display: flex;
     flex-direction: column;
-}
-
-/* Style des groupes de champs dans le bloc personnel */
-.personal-info-block .input-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Style des labels dans le bloc personnel */
-.personal-info-block .form-label {
-    min-width: 100px;
-    margin-bottom: 0;
-    white-space: nowrap;
-}
-
-/* Style des champs dans le bloc personnel */
-.personal-info-block .form-control {
-    flex: 1;
 }
 
 /* Style pour la mention des champs requis */
@@ -2436,5 +2450,50 @@ textarea {
     align-items: center;
     gap: 20px;
     flex-grow: 1; /* Permet au groupe de prendre l'espace disponible */
+}
+
+/* Ajustements spécifiques pour la page réservation */
+@media (max-width: 580px) {
+    /* Réorganisation des champs du bloc personnel */
+    .personal-info-block .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .personal-info-block .input-group .form-label {
+        margin-bottom: 0.5rem;
+    }
+
+    .personal-info-block .input-group .form-control {
+        width: 100%;
+    }
+
+    /* Réorganisation des champs du bloc pricing */
+    .pricing-block .input-group {
+        gap: 0.5rem;
+    }
+
+    .pricing-block .input-pair {
+        flex-direction: column;
+    }
+
+    .pricing-block .input-pair .form-control {
+        width: 100%;
+    }
+}
+
+/* Limitation de la largeur des boutons à partir de 1000px */
+@media (max-width: 1000px) {
+    .buttons-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .buttons-container button {
+        width: 50%;
+        margin: 5px 0;
+    }
 }
 
