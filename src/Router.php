@@ -3,14 +3,14 @@
 namespace App;
 
 class Router {
-    private $routes = [];
+    // private $routes = [];
     
-    public function addRoute($path, $handler, $method = 'GET') {
-        $this->routes[$path] = [
-            'handler' => $handler,
-            'method' => $method
-        ];
-    }
+    // public function addRoute($path, $handler, $method = 'GET') {
+    //     $this->routes[$path] = [
+    //         'handler' => $handler,
+    //         'method' => $method
+    //     ];
+    // }
     
     public function dispatch($request) {
         // Nettoyer la requête
@@ -46,21 +46,21 @@ class Router {
         require BASE_PATH . '/includes/layout/404.php';
     }
     
-    private function executeHandler($handler) {
-        list($controller, $method) = explode('@', $handler);
-        $controllerClass = "App\\Controllers\\{$controller}";
+    // private function executeHandler($handler) {
+    //     list($controller, $method) = explode('@', $handler);
+    //     $controllerClass = "App\\Controllers\\{$controller}";
         
-        if (!class_exists($controllerClass)) {
-            throw new \Exception("Controller {$controllerClass} not found");
-        }
+    //     if (!class_exists($controllerClass)) {
+    //         throw new \Exception("Controller {$controllerClass} not found");
+    //     }
         
-        $controllerInstance = new $controllerClass();
-        if (!method_exists($controllerInstance, $method)) {
-            throw new \Exception("Method {$method} not found in {$controllerClass}");
-        }
+    //     $controllerInstance = new $controllerClass();
+    //     if (!method_exists($controllerInstance, $method)) {
+    //         throw new \Exception("Method {$method} not found in {$controllerClass}");
+    //     }
         
-        return $controllerInstance->$method();
-    }
+    //     return $controllerInstance->$method();
+    // }
 }
 
 ?>

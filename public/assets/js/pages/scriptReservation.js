@@ -234,7 +234,7 @@ if (document.body.getAttribute('data-page') === 'reservation') {
         const quantiteRepasSoir = parseInt(document.getElementById('quantite_Repas_soir').value);
 
         if (quantiteNuit < 0 || quantiteRepasMidi < 0 || quantiteRepasSoir < 0) {
-            alert('Les quantités ne peuvent pas être négatives.');
+            alert('Les quantités de repas ne peuvent pas être négatives.');
             valid = false;
         }
 
