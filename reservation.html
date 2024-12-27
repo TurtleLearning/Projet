@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservations - Le Petit Chalet dans La Montagne</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+    <script defer src="scriptReservation.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/Images/favicon.png">
+
+</head>
+
+<body>
+
+    <header class="header-container">
+        <nav class="navbar navbar-expand-xxl navbar-light">
+            <div class="container-fluid">
+                <!-- Logo et titre groupés -->
+                <div class="brand-group">
+                    <a class="navbar-brand p-0 m-0" href="index.html">
+                        <img src="Images/cabin-logo.png" alt="Logo" height="60">
+                    </a>
+                    <h1 class="main-title">Le Petit Chalet dans La Montagne</h1>
+                </div>
+                
+                <!-- Menu burger pour mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Menu de navigation -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="activites.html">Activités</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="activites.html#summer">Été</a>
+                                <a class="dropdown-item" href="activites.html#winter">Hiver</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="reservation-title">Formulaire de réservation</h1>
+        <div class="required-fields-notice">* : champ requis</div>
+        
+        <form action="reservation.php" method="POST">
+            <div class="reservation-form">
+                <div class="form-columns">
+                    <!-- Colonne gauche -->
+
+                    <div class="form-column">
+                        <div class="personal-info-block">
+                            <div class="input-group">
+                                <label class="form-label">Nom *</label>
+                                <input type="text" id="nom" name="nom" class="form-control" placeholder="Veuillez entrer votre nom ici" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label class="form-label">Prénom *</label>
+                                <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Veuillez entrer votre prénom ici" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label class="form-label">Téléphone *</label>
+                                <input type="tel" id="num_tel" name="num_tel" class="form-control" placeholder="Veuillez entrer votre numéro de téléphone ici" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label class="form-label">Email *</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Veuillez entrer votre email" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label class="form-label">Nombre total de personnes *</label>
+                                <input type="number" id="nombre-total" name="nombre-total" class="form-control" value="1" min="1" required>
+                            </div>
+            
+                            <div class="input-group mb-3">
+                                <label class="form-label">Dont nombre d'enfants (12 ans et moins)</label>
+                                <input type="number" id="nombre-enfants" name="nombre-enfants" class="form-control" value="0" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="conditions-container mt-4">
+                            <div class="mb-3">
+                                <label for="date-debut" class="form-label">Date d'arrivée : *</label>
+                                <div class="date-input-container">
+                                    <input type="text" id="date-debut" name="date-debut" class="form-control" placeholder="Sélectionnez une date" required readonly>
+                                    <button type="button" class="clear-date" data-target="date-debut">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="date-fin" class="form-label">Date de départ : *</label>
+                                <div class="date-input-container">
+                                    <input type="text" id="date-fin" name="date-fin" class="form-control" placeholder="Sélectionnez une date" required readonly>
+                                    <button type="button" class="clear-date" data-target="date-fin">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input type="checkbox" id="conditions" class="form-check-input" required aria-required="true">
+                                <label class="form-check-label" for="conditions">J'accepte les conditions générales *</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- Colonne droite -->
+                    
+                    <div class="form-column">
+                        <div class="pricing-block">
+                            
+                            <div class="input-group mb-3">
+                                <label class="form-label">Nuit</label>
+                                <div class="input-pair">
+                                    <input type="number" id="quantite-nuit" name="quantite-nuit" class="form-control" readonly>
+                                    <input type="text" id="sous-total-nuit" class="form-control" readonly>
+                                </div>
+                            </div>
+                            
+                            <div class="input-group mb-3">
+                                <label class="form-label">Repas de midi souhaité (Par adulte)</label>
+                                <div class="input-pair">
+                                <input type="number" id="quantite-Repas-midi" name="quantite-Repas-midi" class="form-control" placeholder="Combien en voulez-vous ?">
+                                    <input type="text" id="sous-total-repas-midi" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="input-group mb-3">
+                                <label class="form-label">Repas du soir souhaité (Par adulte)</label>
+                                <div class="input-pair">
+                                    <input type="number" id="quantite-Repas-soir" name="quantite-Repas-soir" class="form-control" placeholder="Combien en voulez-vous ?">
+                                    <input type="text" id="sous-total-repas-soir" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="total-container">
+                                <div class="mb-3">
+                                    <label for="sous-total" class="form-label">Sous-total HT:</label>
+                                    <input type="text" id="sous-total" class="form-control" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="total-ttc" class="form-label">Total TTC (TVA 20%):</label>
+                                    <input type="text" id="total-ttc" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="buttons-container">
+                    <button type="button" id="imprimer-btn" class="btn btn-secondary m-1">Imprimer</button>
+                    <button type="reset" id="reinitialiser-btn" class="btn btn-warning m-1">Réinitialiser</button>
+                    <button id="envoyer-btn" class="btn btn-success m-1">Valider ma réservation</button>
+                </div>
+            </div>
+        </form>    
+        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+    </div>
+
+    <!-- Ajout du bouton "Retour en haut" avant le footer -->
+    <button id="back-to-top" class="back-to-top-btn" aria-label="Retour en haut de la page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Modification de la structure des modales pour ajouter un overlay -->
+    <div id="modalOverlay" class="modal-overlay"></div>
+    <div id="modalContainer" class="modal-card">
+        <div class="modal-header">
+            <h2 id="modalTitle"></h2>
+            <button class="close-button" aria-label="Fermer">×</button>
+        </div>
+        <div id="modalContent" class="modal-content"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <!-- Colonne gauche -->
+            <div class="footer-links">
+                <a href="#" class="footer-link" onclick="event.preventDefault(); openModal('cgv')">Conditions générales de vente</a> <!-- Afin de prévenir un retour en haut de la page -->
+                <a href="#" class="footer-link" onclick="event.preventDefault(); openModal('privacy')">Politique de confidentialité</a>
+                <a href="#" class="footer-link" onclick="event.preventDefault(); openModal('cookies')">Gestion des cookies</a>
+            </div>
+    
+            <!-- Colonne droite -->
+            <div class="footer-social">
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook fa-2x"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter fa-2x"></i>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram fa-2x"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+                <a href="contact.html" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    Contact
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="modalFooter.js"></script>
+    <script src="cookieConsent.js"></script>
+    <style>
+        footer a:hover {
+            transform: scale(1.1); /* Agrandissement de 10% au survol */
+        }
+    </style>
+    <!-- Pop-up Cookies -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-content">
+            <h3>🍪 Utilisation des cookies</h3>
+            <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site.</p>
+            <div class="cookie-buttons">
+                <button id="acceptCookies" class="btn btn-success">Accepter</button>
+                <button id="refuseCookies" class="btn btn-secondary">Refuser</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
