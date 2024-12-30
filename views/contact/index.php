@@ -12,7 +12,7 @@ include BASE_PATH . '/includes/layout/header.php';
         <div class="row">
             <!-- Colonne de gauche - Formulaire -->
             <div class="col-md-6">
-                <div class="contact-form-container p-4">
+                <div class="info-block contact-form-container p-4">
                     <h2 class="contact-title">Nous Contacter</h2>
                     <p class="avant-propos">
                         Bienvenue sur notre site !
@@ -104,7 +104,7 @@ include BASE_PATH . '/includes/layout/header.php';
             <!-- Colonne de droite - Informations -->
             <div class="col-md-6">
                 <!-- Bloc 1 - Coordonnées -->
-                <div class="info-block mt-4 mb-4 p-4">
+                <div class="info-block mb-4 p-4">
                     <h3>Nos Coordonnées</h3>
                     <p><i class="bi bi-telephone"></i> 00.01.02.03.04</p>
                     <p><i class="bi bi-envelope"></i> lepetitchaletdanslamontagne@outlook.fr</p>

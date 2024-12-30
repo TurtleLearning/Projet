@@ -59,8 +59,8 @@ include BASE_PATH . '/includes/layout/header.php';
                         <div class="mb-3">
                             <label for="date_debut" class="form-label">Date d'arrivée : *</label>
                             <div class="date-input-container">
-                                <input type="text" id="date_debut" name="date_debut" class="form-control" placeholder="Sélectionnez une date" required readonly>
-                                <button type="button" class="clear-date" data-target="date-debut">
+                                <input type="text" id="date_debut" name="date_debut" class="form-control" placeholder="Sélectionnez une date d'arrivée" required readonly>
+                                <button type="button" class="clear-date" data-target="date_debut">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
@@ -68,8 +68,8 @@ include BASE_PATH . '/includes/layout/header.php';
                         <div class="mb-3">
                             <label for="date_fin" class="form-label">Date de départ : *</label>
                             <div class="date-input-container">
-                                <input type="text" id="date_fin" name="date_fin" class="form-control" placeholder="Sélectionnez une date" required readonly>
-                                <button type="button" class="clear-date" data-target="date-fin">
+                                <input type="text" id="date_fin" name="date_fin" class="form-control" placeholder="Sélectionnez une date de départ" required readonly>
+                                <button type="button" class="clear-date" data-target="date_fin">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
@@ -88,15 +88,15 @@ include BASE_PATH . '/includes/layout/header.php';
                     <div class="pricing-block">
                         
                         <div class="input-group mb-3">
-                            <label class="form-label">Nuit</label>
+                            <label class="form-label">Total des nuits</label>
                             <div class="input-group">
-                                <input type="number" id="quantite_nuit" name="quantite_nuit" class="form-control" readonly>
+                                <input type="number" id="quantite_nuit" name="quantite_nuit" class="form-control" placeholder="Le total de vos nuits s'affichera ici" readonly>
                                 <input type="text" id="sous_total_nuit" class="form-control" readonly>
                             </div>
                         </div>
                         
                         <div class="input-group mb-3">
-                            <label class="form-label">Repas de midi souhaité (Par adulte)</label>
+                            <label class="form-label">Repas de midi souhaité(s) (Par adulte)</label>
                             <div class="input-group">
                                 <button type="button" class="btn btn-outline-secondary diminuer" id="decrease_midi" onclick="changeQuantity('quantite_Repas_midi', -1)">-</button>
                                 <input type="number" id="quantite_Repas_midi" name="quantite_repas_midi" class="form-control" placeholder="Combien en voulez-vous ?" min="0">
@@ -106,7 +106,7 @@ include BASE_PATH . '/includes/layout/header.php';
                         </div>
                         
                         <div class="input-group mb-3">
-                            <label class="form-label">Repas du soir souhaité (Par adulte)</label>
+                            <label class="form-label">Repas du soir souhaité(s) (Par adulte)</label>
                             <div class="input-group">
                                 <button type="button" class="btn btn-outline-secondary diminuer" id="decrease_soir" onclick="changeQuantity('quantite_Repas_soir', -1)">-</button>
                                 <input type="number" id="quantite_Repas_soir" name="quantite_repas_soir" class="form-control" placeholder="Combien en voulez-vous ?" min="0">

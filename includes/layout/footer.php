@@ -34,8 +34,7 @@
             </div>
         </div>
         <a href="contact.php" class="contact-button">
-            <i class="fas fa-envelope"></i>
-            Contact
+            <i class="fas fa-envelope">   Contact</i>
         </a>
     </footer>
     <!-- Scripts communs -->

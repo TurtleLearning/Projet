@@ -50,7 +50,6 @@ include BASE_PATH . '/includes/layout/header.php';
             <div class="col-md-6 col-12 d-flex flex-column justify-content-center align-items-center text-center">
                 <div class="description-container">
                     <a href="activites.php" class="card-hover">
-                        <i class="fa-solid fa-person-skiing-nordic"></i>
                         <span>Activités</span>
                     </a>
                     <p>Découvrez les activités de saison disponibles.</p>
@@ -65,8 +64,7 @@ include BASE_PATH . '/includes/layout/header.php';
             </div>
             <div class="col-md-6 col-12 d-flex flex-column justify-content-center align-items-center text-center">
                 <div class="description-container">
-                    <a href="reservationPage.php" class="card-hover">
-                        <i class="fas fa-calendar-alt fa-2x"></i>
+                    <a href="reservation.php" class="card-hover">
                         <span>Réservez un séjour</span>
                     </a>
                     <p>Réservez votre séjour dès maintenant pour profiter d'un moment de sérénité en altitude.</p>

@@ -6,100 +6,86 @@ include BASE_PATH . '/includes/layout/header.php';
 
 ?>
 
-<!-- Section Été -->
-<section id="summer" class="summer-activities py-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Activités d'Été</h2>
-        <div class="row g-4">
-            <!-- Carte Trekking -->
-            <div class="col-md-4">
-                <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#trekkingModal">
-                    <img src="../public/assets/Images/activites/trekking.jpg" class="card-img-top" alt="Trekking">
-                    <div class="card-body">
-                        <h3 class="card-title">Trekking</h3>
-                        <p class="card-text">Parcourez des sentiers sauvages et découvrez des paysages à couper le souffle, loin du tumulte quotidien.
-                            Le trekking vous reconnecte à la nature, renforce votre esprit et vous offre une aventure accessible à tous niveaux.
-                            Explorez forêts, montagnes et vallées en marchant à votre rythme. Chaque pas est une invitation à la liberté et à l'émerveillement.</p>
-                        <span class="click-info">Cliquez pour plus d'informations</span>
-                    </div>
-                </div>
+<!-- Activités d'Été -->
+<section id="summer" class="summer-activities">
+    <h2 class="text-center mb-4">Activités d'Été</h2>
+    <div class="activities-container">
+        <!-- Carte Trekking -->
+        <article class="card h-100 card-activity" data-bs-toggle="modal" data-bs-target="#trekkingModal">
+            <img src="../public/assets/Images/activites/trekking.jpg" class="card-img-top" alt="Trekking">
+            <div class="card-content">
+                <h3 class="card-title">Trekking</h3>
+                <p class="card-text">Parcourez des sentiers sauvages et découvrez des paysages à couper le souffle, loin du tumulte quotidien.
+                    Le trekking vous reconnecte à la nature, renforce votre esprit et vous offre une aventure accessible à tous niveaux.
+                    Explorez forêts, montagnes et vallées en marchant à votre rythme. Chaque pas est une invitation à la liberté et à l'émerveillement.</p>
+                <span class="click-info">Cliquez pour plus d'informations</span>
             </div>
+        </article>
 
-            <!-- Carte Parapente (inversée) -->
-            <div class="col-md-4">
-                <div class="card h-100 activity-card inverted" data-bs-toggle="modal" data-bs-target="#parapenteModal">
-                    <img src="../public/assets/Images/activites/parapente.jpg" class="card-img-top" alt="Parapente">
-                    <div class="card-body">
-                        <h3 class="card-title">Parapente</h3>
-                        <p class="card-text">Survolez les sommets pour une expérience unique en toute sécurité ...</p>
-                        <span class="click-info-top">Cliquez pour plus d'informations</span>
-                    </div>
-                </div>
+        <!-- Carte Parapente -->
+        <article class="card h-100 card-activity inverted" data-bs-toggle="modal" data-bs-target="#parapenteModal">
+            <img src="../public/assets/Images/activites/parapente.jpg" class="card-img-top" alt="Parapente">
+            <div class="card-content">
+                <h3 class="card-title">Parapente</h3>
+                <p class="card-text">Survolez les sommets pour une expérience unique en toute sécurité ...</p>
+                <span class="click-info">Cliquez pour plus d'informations</span>
             </div>
+        </article>
 
-            <!-- Carte VTT -->
-            <div class="col-md-4">
-                <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#vttModal">
-                    <img src="../public/assets/Images/activites/vtt.jpg" class="card-img-top" alt="VTT">
-                    <div class="card-body">
-                        <h3 class="card-title">VTT</h3>
-                        <p class="card-text">Enfourchez votre vélo et vivez des sensations fortes sur des sentiers sinueux et des descentes exaltantes.
-                            Le VTT mêle adrénaline, technicité et découverte de paysages variés. Que vous soyez amateur de balades tranquilles ou de défis sportifs,
-                            il y a une piste faite pour vous. Laissez-vous surprendre par le plaisir de rouler en pleine nature !</p>
-                        <span class="click-info">Cliquez pour plus d'informations</span>
-                    </div>
-                </div>
+
+        <!-- Carte VTT -->
+        <article class="card h-100 card-activity" data-bs-toggle="modal" data-bs-target="#vttModal">
+            <img src="../public/assets/Images/activites/vtt.jpg" class="card-img-top" alt="VTT">
+            <div class="card-content">
+                <h3 class="card-title">VTT</h3>
+                <p class="card-text">Enfourchez votre vélo et vivez des sensations fortes sur des sentiers sinueux et des descentes exaltantes.
+                    Le VTT mêle adrénaline, technicité et découverte de paysages variés. Que vous soyez amateur de balades tranquilles ou de défis sportifs,
+                    il y a une piste faite pour vous. Laissez-vous surprendre par le plaisir de rouler en pleine nature !</p>
+                <span class="click-info">Cliquez pour plus d'informations</span>
             </div>
-        </div>
-    </div>
+        </article>
+</div>
 </section>
 
-<!-- Section Hiver -->
-<section id="winter" class="winter-activities py-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Activités d'Hiver</h2>
-        <div class="row g-4">
-            <!-- Carte Motoneige -->
-            <div class="col-md-4">
-                <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#motoneigeModal">
-                    <img src="../public/assets/Images/activites/motoneige.jpg" class="card-img-top" alt="Motoneige">
-                    <div class="card-body">
-                        <h3 class="card-title">Motoneige</h3>
-                        <p class="card-text">Glissez à toute vitesse sur des étendues enneigées et découvrez des panoramas hivernaux spectaculaires.
-                            La motoneige vous offre une expérience unique entre adrénaline et contemplation dans des décors immaculés.
-                            Parfaite pour les amateurs de sensations fortes, elle promet des souvenirs inoubliables. Équipé et prêt,
-                            laissez-vous porter par le frisson de l'hiver.</p>
-                        <span class="click-info">Cliquez pour plus d'informations</span>
-                    </div>
-                </div>
+<!-- Activités d'Hiver -->
+<section id="winter" class="winter-activities">
+    <h2 class="text-center mb-4">Activités d'Hiver</h2>
+    <div class="activities-container">
+        <!-- Carte Motoneige -->
+        <article class="card h-100 card-activity" data-bs-toggle="modal" data-bs-target="#motoneigeModal">
+            <img src="../public/assets/Images/activites/motoneige.jpg" class="card-img-top" alt="Motoneige">
+            <div class="card-content">
+                <h3 class="card-title">Motoneige</h3>
+                <p class="card-text">Glissez à toute vitesse sur des étendues enneigées et découvrez des panoramas hivernaux spectaculaires.
+                    La motoneige vous offre une expérience unique entre adrénaline et contemplation dans des décors immaculés.
+                    Parfaite pour les amateurs de sensations fortes, elle promet des souvenirs inoubliables. Équipé et prêt,
+                    laissez-vous porter par le frisson de l'hiver.</p>
+                <span class="click-info">Cliquez pour plus d'informations</span>
             </div>
+        </article>
 
-            <!-- Carte Ski de fond (inversée) -->
-            <div class="col-md-4">
-                <div class="card h-100 activity-card inverted" data-bs-toggle="modal" data-bs-target="#skidefondModal">
-                    <img src="../public/assets/Images/activites/skidefond.jpg" class="card-img-top" alt="Ski de fond">
-                    <div class="card-body">
-                        <h3 class="card-title">Ski de fond</h3>
-                        <p class="card-text">Profitez de nos pistes damées pour le ski de fond...</p>
-                        <span class="click-info-top">Cliquez pour plus d'informations</span>
-                    </div>
-                </div>
+        <!-- Carte Ski de fond -->
+        <article class="card h-100 card-activity inverted" data-bs-toggle="modal" data-bs-target="#skidefondModal">
+            <img src="../public/assets/Images/activites/skidefond.jpg" class="card-img-top" alt="Ski de fond">
+            <div class="card-content">
+                <h3 class="card-title">Ski de fond</h3>
+                <p class="card-text">Profitez de nos pistes damées pour le ski de fond...</p>
+                <span class="click-info">Cliquez pour plus d'informations</span>
             </div>
+        </article>
 
-            <!-- Carte Ski Alpin -->
-            <div class="col-md-4">
-                <div class="card h-100 activity-card" data-bs-toggle="modal" data-bs-target="#skialpinModal">
-                    <img src="../public/assets/Images/activites/skialpin.jpg" class="card-img-top" alt="Ski Alpin">
-                    <div class="card-body">
-                        <h3 class="card-title">Ski Alpin</h3>
-                        <p class="card-text">Dévalez des pistes enneigées sous un ciel bleu éclatant et ressentez le plaisir de la glisse pure.
-                            Le ski alpin est une discipline qui allie vitesse, maîtrise et plaisir, avec des paysages de montagnes grandioses pour toile de fond.
-                            Débutant ou confirmé, chaque descente est une nouvelle aventure. Prêts à chausser vos skis pour une journée mémorable ?</p>
-                        <span class="click-info">Cliquez pour plus d'informations</span>
-                    </div>
-                </div>
+
+        <!-- Carte Ski Alpin -->
+        <article class="card h-100 card-activity" data-bs-toggle="modal" data-bs-target="#skialpinModal">
+            <img src="../public/assets/Images/activites/skialpin.jpg" class="card-img-top" alt="Ski Alpin">
+            <div class="card-content">
+                <h3 class="card-title">Ski Alpin</h3>
+                <p class="card-text">Dévalez des pistes enneigées sous un ciel bleu éclatant et ressentez le plaisir de la glisse pure.
+                    Le ski alpin est une discipline qui allie vitesse, maîtrise et plaisir, avec des paysages de montagnes grandioses pour toile de fond.
+                    Débutant ou confirmé, chaque descente est une nouvelle aventure. Prêts à chausser vos skis pour une journée mémorable ?</p>
+                <span class="click-info">Cliquez pour plus d'informations</span>
             </div>
-        </div>
+        </article>
     </div>
 </section>
 

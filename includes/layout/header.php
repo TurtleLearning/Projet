@@ -62,7 +62,10 @@
                         
                             $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 
-                            
+                            if ($currentPage !== 'index') {
+                                echo '<li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>';
+                            }
+
                             $pages = [
                                 'activites' => 'Activités',
                                 'reservation' => 'Réserver un séjour',
@@ -72,7 +75,7 @@
                             foreach ($pages as $page => $title) {
                                 if ($currentPage === $page) {
                                     
-                                    echo '<li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>';
+                                    continue;
                                 } else {
                                     echo '<li class="nav-item dropdown">';
                                     echo '<a class="nav-link" href="' . $page . '.php">' . $title . '</a>';
@@ -80,8 +83,8 @@
                                     if ($currentPage !== 'activites' && $page == 'activites') {
                                         echo
                                         '<ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="activites.php#summer">Été</a></li>
-                                            <li><a class="dropdown-item" href="activites.php#winter">Hiver</a></li>
+                                            <li style="width:100%;" ><a class="dropdown-item" href="activites.php#summer">Été</a></li>
+                                            <li style="width:100%;" ><a class="dropdown-item" href="activites.php#winter">Hiver</a></li>
                                         </ul>';
                                     }
                                     echo '</li>';
