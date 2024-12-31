@@ -7,13 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($pageTitle) ? $pageTitle : 'Le Petit Chalet dans La Montagne'; ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../public/assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" fetchpriority="low" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    
     <link rel="icon" type="image/x-icon" href="../public/assets/Images/favicon.png">
 
     <!-- CSS -->
@@ -28,11 +32,12 @@
     <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script defer src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
 
-    <script defer src="assets/js/common.js"></script>
-    <script defer src="assets/js/components/modal.js"></script>
-    <script defer src="assets/js/components/carousel.js"></script>
-    <script defer src="assets/js/FAQ.js"></script>
-    <script defer src="assets/js/pages/scriptReservation.js"></script>
+    <script defer                src="assets/js/indicResponsive.js"></script>
+    <script defer                src="assets/js/common.js"></script>
+    <script defer rel="prefetch" src="assets/js/components/modal.js"></script>
+    <script defer rel="prefetch" src="assets/js/components/carousel.js"></script>
+    <script defer rel="prefetch" src="assets/js/FAQ.js"></script>
+    <script defer                src="assets/js/pages/scriptReservation.js"></script>
 
 
 </head>

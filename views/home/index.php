@@ -43,7 +43,7 @@ include BASE_PATH . '/includes/layout/header.php';
 <section>
     <div class="row g-0">
         <!-- Bloc Activités -->
-        <div class="col-12 block sec-ac" style="background-color: beige; padding: 20px;">
+        <div class="col-12 block" style="background-color: beige; padding: 20px;">
             <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
                 <img src="../public/assets/Images/layout/motoneige.jpg" alt="Réserver un séjour" style="width: 100%; height: auto;">
             </div>
@@ -58,7 +58,7 @@ include BASE_PATH . '/includes/layout/header.php';
         </div>
 
         <!-- Bloc Réserver un séjour -->
-        <div class="col-12 block sec-ac" style="background-color: gray; padding: 20px;">
+        <div class="col-12 block" style="background-color: gray; padding: 20px;">
             <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
                 <img src="../public/assets/Images/layout/lodge.jpg" alt="Réserver un séjour" style="width: 100%; height: auto;">
             </div>
@@ -76,6 +76,7 @@ include BASE_PATH . '/includes/layout/header.php';
 
 <?php
 
+include BASE_PATH . '/includes/components/backToTop.php';
 include BASE_PATH . '/includes/components/backToTop.php';
 include BASE_PATH . '/includes/components/modals.php';
 include BASE_PATH . '/includes/components/cookies.php';

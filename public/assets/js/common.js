@@ -142,4 +142,4 @@
             cookieConsent.classList.remove('active');
         });
     });
-})(); 
+})();
