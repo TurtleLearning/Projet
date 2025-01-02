@@ -60,7 +60,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
-                <div class="collapse navbar-collapse justify-content-end" style="gap:2em" id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
 
                         <?php

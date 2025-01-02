@@ -1,4 +1,3 @@
-
 <div id="modalOverlay" class="modal-overlay"></div>
     <div id="modalContainer" class="modal-card">
         <div class="modal-header">

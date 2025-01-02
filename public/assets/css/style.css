@@ -284,9 +284,23 @@ input, button, textarea, select {
 
 .main-container {
     padding: 3em;
-    background: linear-gradient(180deg, #f37e48 20%,#e7f8ff 100%);
+    background: linear-gradient(180deg, #a52a2ab3 20%,#e7f8ff 100%);
     border-radius: 25px;
     margin: 5em;
+    position: relative; /* Assurez-vous que le conteneur est positionné */
+    z-index: 1; /* Assurez-vous que le conteneur est au-dessus de l'effet de flou */
+}
+
+.main-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5); /* Couleur blanche avec transparence */
+    filter: blur(15px); /* Appliquez le flou */
+    z-index: -1; /* Placez l'effet de flou derrière le conteneur */
 }
 
 .summer-activities,
@@ -299,7 +313,7 @@ input, button, textarea, select {
 .activities-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Force exactement 3 colonnes */
-    gap: 2rem;
+    gap: 3rem;
     padding: 0 2rem;
     margin: 0 auto;
 }
@@ -360,6 +374,12 @@ input, button, textarea, select {
     text-decoration: none;
     color: var(--color-primary);
     margin-bottom: var(--spacing-md);
+    font-family:var(--font-primary);
+}
+
+.block a:hover {
+    transition: linear 0.5s;
+    transform: scale(1.2);
 }
 
 /* Style de l'icône */
@@ -413,13 +433,14 @@ input, button, textarea, select {
 .summer-activities h2 {
     color: var(--color-dark);
     font-family:var(--font-activities);
-    font-size: var(--font-size-6xl);
+    font-size: 4em;
 }
 
 .winter-activities h2 {
-    color: #0066cc;
+    color: #000;
     font-family:var(--font-activities);
-    font-size: var(--font-size-6xl);
+    font-size: 4em;
+
 }
 
 /* Cartes d'activités */
@@ -590,20 +611,13 @@ input[type="number"]::-webkit-outer-spin-button {
 
 
 .block:nth-child(odd) {
-    background-color: beige;
+    background-color: rgba(245, 245, 220, 0.55);
 }
 
 .block:nth-child(even) {
-    background-color: gray;
+    background-color: rgba(185, 162, 172, 0.55);
     flex-direction: row-reverse;
 }
-
-.block.contact {
-    background-color: black;
-    color: white;
-    text-align: center;
-}
-
 
 .block img {
     border-radius: var(--border-radius-lg);
@@ -622,9 +636,8 @@ input[type="number"]::-webkit-outer-spin-button {
 .navbar-nav {
     background-color: var(--color-overlay-medium);
     border-radius: var(--border-radius-lg);
-    padding: var(--spacing-md);
     display: flex;
-    gap: var(--spacing-lg);
+    gap: 5em;
 }
 
 .navbar-brand {
@@ -654,11 +667,17 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 100%;
 }
 
+.nav-item {
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-xl);
+}
+
 /* ------------------------------------------------------------ */
 
 /* --------------------- DROPDOWN MENU --------------------- */
 
 /* Style du dropdown */
+
 .nav-item.dropdown {
     position: relative;
     z-index: 1000;
@@ -711,11 +730,6 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Harmonisation des styles pour le menu déroulant Activités */
 .dropdown-toggle::after {
     display: none !important; /* Supprime la flèche par défaut de Bootstrap */
-}
-
-/* Suppression des styles spécifiques au dropdown qui pourraient causer des différences */
-.nav-item.dropdown .nav-link {
-    padding: 0.5rem 1rem !important;
 }
 
 /* Style des items du dropdown */
@@ -932,7 +946,7 @@ html.contact .footer-grid {
     align-items: center;
     gap: var(--spacing-xs);
     background-color: var(--color-secondary-light);
-    color: var(--color-text);
+    color: #fff;
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius-md);
     text-decoration: none;
@@ -1298,6 +1312,7 @@ html.contact .footer-grid {
     padding: 1rem 2rem;
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
+    box-shadow: 0 10px 10px 10px rgba(255, 255, 255, 0.2), 0 5px 5px 10px rgba(255, 255, 255, 0.1);
 }
 
 .brand-group {
@@ -1436,12 +1451,15 @@ section::before {
     gap: 10px;
 }
 
+.input-group#nuit {
+    flex-direction: column;
+}
+
 /* Style spécifique pour le bloc pricing */
 .pricing-block .input-group {
     gap: 2em;
     width: 100%;
 }
-
 .pricing-block .input-group .form-control {
     width: 100%;
 }
@@ -1455,6 +1473,22 @@ section::before {
 
 .pricing-block .input-pair .form-control {
     flex: 1;
+}
+
+.personal-info-block .input-group .form-label {
+    margin-bottom: 0.5rem;
+}
+
+.personal-info-block .input-group .form-control {
+    width: 100%;
+}
+
+.pricing-block .input-pair {
+    flex-direction: column;
+}
+
+.pricing-block .input-pair .form-control {
+    width: 100%;
 }
 
 /* Style spécifique pour le formulaire de contact */
@@ -1578,7 +1612,7 @@ section::before {
     border-radius: var(--border-radius-md);
     margin-bottom: 2rem;
     text-align: center;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-primary);
     font-size: 1.1rem;
     width: fit-content;
     margin-left: auto;
@@ -1617,7 +1651,6 @@ textarea {
 .contact-form-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
     background-color: var(--color-gray);
     box-shadow: var(--shadow-md);
     border-radius: var(--border-radius-md);
@@ -1641,29 +1674,51 @@ textarea {
     min-height: 200px;
 }
 
-/* Style des blocs d'information */
-.info-block {
-    padding: 2rem !important;
-}
-
-/* Style pour les sections été/hiver */
-.info-block h4 {
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    border-radius:  var(--border-radius-sm);
-}
-
-/* Distinction été/hiver */
-.info-block h4:first-of-type {
+.ete {
     background-color: var(--color-yellow);
     color: var(--color-light);
 }
 
-.info-block h4:last-of-type {
+.hiver {
     background-color: var(--color-blue-light);
     color: var(--color-light);
 }
+
+#handicap {
+    background-color: var(--color-danger);
+    color: var(--color-light);
+}
+
+.ma-top {
+    margin-top: none
+}
+
+.info-block {
+    padding: 2rem !important;
+}
+
+/* Style des titres dans les blocs d'information */
+.info-block h3 {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-2xl);
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid rgba(44, 62, 80, 0.2);
+    text-align: center;
+}
+
+/* Style des sous-titres été/hiver */
+.info-block h4 {
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 1.2rem;
+    padding: 0.8rem;
+    border-radius:  var(--border-radius-sm);
+    text-align: center;
+}
+
 
 /* Ajustement des paragraphes */
 .info-block p {
@@ -1697,28 +1752,6 @@ textarea {
 #message {
     flex: 1;
     min-height: 300px;  /* Hauteur minimale augmentée */
-}
-
-/* Style des titres dans les blocs d'information */
-.info-block h3 {
-    font-family: var (--font-primary);
-    font-size: var(--font-size-2xl);
-    color: var(--color-secondary);
-    margin-bottom: var(--spacing-md);
-    padding-bottom: 0.8rem;
-    border-bottom: 2px solid rgba(44, 62, 80, 0.2);
-    text-align: center;
-}
-
-/* Style des sous-titres été/hiver */
-.info-block h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    margin-top: 2rem;
-    margin-bottom: 1.2rem;
-    padding: 0.8rem;
-    border-radius:  var(--border-radius-sm);
-    text-align: center;
 }
 
 /* Ajustement de l'espacement entre les champs */
@@ -1935,7 +1968,6 @@ textarea {
 }
 
 .faq-item {
-    margin-bottom: 2rem;
     overflow: hidden;
     height: fit-content;
 }
@@ -2237,29 +2269,7 @@ textarea {
     justify-content: space-between;
 }
 
-.personal-info-block .input-group .form-label {
-    margin-bottom: 0.5rem;
-}
-
-.personal-info-block .input-group .form-control {
-    width: 100%;
-}
-
-/* Réorganisation des champs du bloc pricing */
-.pricing-block .input-group {
-    gap: 0.5rem;
-}
-
-.pricing-block .input-pair {
-    flex-direction: column;
-}
-
-.pricing-block .input-pair .form-control {
-    width: 100%;
-}
-
 /* Style de la page 404.php */
-
 .error-page {
     background: rgba(255, 255, 255, 0.9);
     border-radius: var(--border-radius-md);
@@ -2295,19 +2305,24 @@ textarea {
     }
 }
 
-@media (min-width: 1400px) {
-    .navbar-expand-xxl .navbar-nav {
-        flex-direction: row;
+@media (min-width: 1400px) and (max-width: 1438px) {
+
+    .main-title {
+        padding: 0.4em 1.5em;
+        font-size: 2em;
     }
-    .navbar-expand-xxl .navbar-collapse {
-        display: flex !important;
-    }
-    .navbar-expand-xxl .navbar-toggler {
-        display: none;
-    }
+
+
 }
 
-@media (max-width: 1399px) {
+@media (min-width: 1000px) and (max-width: 1400px) {
+    .header-container .container-fluid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
     .navbar-expand-xxl .navbar-toggler {
         display: block;
     }
@@ -2317,6 +2332,38 @@ textarea {
     .navbar-expand-xxl .navbar-collapse.show {
         display: block !important;
     }
+}
+
+@media (min-width: 1401px) {
+    .navbar-nav {
+        margin: 0 3em;
+        padding: 1em 4em;
+    }
+
+    .navbar-expand-xxl .navbar-nav .nav-link{
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 1400px) {
+
+    .navbar-nav {
+        margin: 0;
+        padding: 0;
+    }
+
+    .brand-group {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 1rem 0;
+    }
+
+    .navbar-expand-xxl .navbar-toggler {
+        align-items: center;
+    }
+
     .navbar-expand-xxl .navbar-nav {
         flex-direction: column;
         width: 100%;
@@ -2324,6 +2371,8 @@ textarea {
     }
     .navbar-nav {
         margin-top: var(--spacing-md);
+        padding: var(--spacing-md);
+        gap: 2em;
     }
 
     .nav-item.dropdown {
@@ -2347,10 +2396,6 @@ textarea {
     .nav-link {
         margin: 0.5rem 0;
         padding: 0.5rem 0 !important;
-    }
-
-    .navbar-expand-xxl .navbar-toggler {
-        align-items: center;
     }
 
     .navbar-expand-xxl .navbar-collapse {
@@ -2391,7 +2436,7 @@ textarea {
     }
 
     .main-title {
-        font-size: 1.5rem;
+        font-size: 2.5rem;
     }
 
     .navbar-nav {
@@ -2496,14 +2541,6 @@ textarea {
         text-align: center;
     }
 
-    /* Style du groupe logo + titre */
-    .brand-group {
-        flex-direction: column;
-        align-items: center;
-        margin: 0;
-        padding: 1rem 0;
-    }
-
     /* Style du titre principal */
     .main-title {
         margin-top: 1rem;
@@ -2588,6 +2625,18 @@ textarea {
         font-size: 1.4em;
         padding: 6px 12px;
     }
+
+    .ma-top {
+        margin-top: 8px; /* mb-2 BS */
+    }
+
+    .contact-button {
+        left: 52%;
+        bottom: 1%;
+    }
+    .contact-button i {
+        font-size: 1rem;
+    }
 }
 
 /* ----------------------- MOBILE -----------------------------*/
@@ -2604,9 +2653,14 @@ textarea {
         padding: 0 1rem;
     }
 
+    .main-container {
+        padding: 0;
+        margin: 2em 0;
+    }
+
     /* Ajustement des titres */
     .summer-activities h2, .winter-activities h2 {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
     }
 
     /* Optimisation des cartes */
@@ -2696,10 +2750,10 @@ textarea {
     }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 400px) {
 
-    .contact-button i {
-        font-size: 1rem;
-    }
+
+
+
 }
 

@@ -29,7 +29,7 @@ include BASE_PATH . '/includes/layout/header.php';
                         
                         <div class="input-group">
                             <label class="form-label">Téléphone *</label>
-                            <input type="tel" id="num_tel" name="num_tel" class="form-control" placeholder="Veuillez entrer votre numéro de téléphone ici" required>
+                            <input type="tel" id="num_tel" name="num_tel" class="form-control" placeholder="Veuillez entrer votre numéro de téléphone" required>
                         </div>
                         
                         <div class="input-group">
@@ -89,7 +89,7 @@ include BASE_PATH . '/includes/layout/header.php';
                         
                         <div class="input-group mb-3">
                             <label class="form-label">Total des nuits</label>
-                            <div class="input-group">
+                            <div class="input-group" id="nuit">
                                 <input type="number" id="quantite_nuit" name="quantite_nuit" class="form-control" placeholder="Le total de vos nuits s'affichera ici" readonly>
                                 <input type="text" id="sous_total_nuit" class="form-control" readonly>
                             </div>

@@ -1,74 +1,84 @@
 <?php
 namespace App\Controllers;
 
-class ContactController {
-    public function index() {
+use Exception;
 
+class ContactController {
+    private $admin_email = "julinho52@hotmail.fr";
+
+    public function index() {
         $pageTitle = "Contact - Le Petit Chalet dans La Montagne";
         require BASE_PATH . '/views/contact/index.php';
     }
 
     public function store() {
         try {
-            // Récupérer et nettoyer les données du formulaire
-            $data = [
-                'nom' => filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING),
-                'prenom' => filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_STRING),
-                'num_tel' => filter_input(INPUT_POST, 'num_tel', FILTER_SANITIZE_STRING),
-                'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL),
-                'quantite_nuit' => filter_input(INPUT_POST, 'quantite-nuit', FILTER_SANITIZE_NUMBER_INT),
-                'quantite_repas_midi' => filter_input(INPUT_POST, 'quantite-Repas-midi', FILTER_SANITIZE_NUMBER_INT),
-                'quantite_repas_soir' => filter_input(INPUT_POST, 'quantite-Repas-soir', FILTER_SANITIZE_NUMBER_INT),
-                'date_debut' => filter_input(INPUT_POST, 'date-debut', FILTER_SANITIZE_STRING),
-                'date_fin' => filter_input(INPUT_POST, 'date-fin', FILTER_SANITIZE_STRING),
-                'nombre_total' => filter_input(INPUT_POST, 'nombre-total', FILTER_SANITIZE_NUMBER_INT),
-                'dont_enfants' => filter_input(INPUT_POST, 'nombre-enfants', FILTER_SANITIZE_NUMBER_INT)
-            ];
-        
-            // Validation supplémentaire
-            if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                throw new Exception("Format d'email invalide");
+            // Validation des données
+            $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
+            $contact = filter_input(INPUT_POST, 'contact', FILTER_SANITIZE_EMAIL);
+            $thematique = filter_input(INPUT_POST, 'thematique', FILTER_SANITIZE_STRING);
+            $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
+
+            // Vérifications
+            if (!$nom || !$contact || !$thematique || !$message) {
+                throw new Exception("Tous les champs sont obligatoires");
             }
-        
-            // Validation des dates
-            if (empty($data['date_debut']) || empty($data['date_fin'])) {
-                throw new Exception("Les dates sont requises");
+
+            if (!filter_var($contact, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception("L'adresse email n'est pas valide");
             }
-        
-            $dateDebut = new DateTime($data['date_debut']);
-            $dateFin = new DateTime($data['date_fin']);
-        
-            if ($dateDebut > $dateFin) {
-                throw new Exception("La date de fin doit être postérieure à la date de début");
+
+            // Envoi email admin
+            if (!$this->sendAdminEmail($nom, $contact, $thematique, $message)) {
+                throw new Exception("Erreur lors de l'envoi du mail administrateur");
             }
-        
-            // Validation des quantités
-            if ($data['nombre_total'] < 1) {
-                throw new Exception("Le nombre total de personnes doit être d'au moins 1");
-            }
-        
-            if ($data['dont_enfants'] < 0) {
-                throw new Exception("Le nombre d'enfants ne peut pas être négatif");
-            }
-        
-            if ($data['dont_enfants'] >= $data['nombre_total']) {
-                throw new Exception("Le nombre d'enfants ne peut pas être supérieur au nombre total de personnes");
-            }
-            
-            // Utiliser le contrôleur pour traiter la réservation
-            $result = $controller->processReservation($data);
-            
-            if ($result) {
-                echo json_encode(['success' => true, 'message' => 'Réservation réussie']);
-            } else {
-                throw new Exception("Erreur lors de la réservation");
-            }
-        
+
+            // Envoi confirmation utilisateur
+            $this->sendUserConfirmation($nom, $contact, $thematique);
+
+            // Message de succès
+            $_SESSION['message'] = "Votre message a été envoyé avec succès";
+            $_SESSION['message_type'] = "success";
+
+            // Redirection
+            header("Location: https://www.cefii-developpements.fr/julien1410/Projet+templates/public/contact.php");
+            exit();
+
         } catch (Exception $e) {
-            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+            $_SESSION['message'] = $e->getMessage();
+            $_SESSION['message_type'] = "danger";
+            header("Location: https://www.cefii-developpements.fr/julien1410/Projet+templates/public/contact.php");
+            exit();
         }
-        // Rediriger avec un message de succès
-        header('Location: contact.php?success=1');
-        exit;
+    }
+
+    private function sendAdminEmail($nom, $contact, $thematique, $message) {
+        $subject = "Nouveau message - " . $thematique;
+        $content = "Nouveau message reçu :\n\n";
+        $content .= "Nom : " . $nom . "\n";
+        $content .= "Contact : " . $contact . "\n";
+        $content .= "Thématique : " . $thematique . "\n\n";
+        $content .= "Message :\n" . $message;
+
+        $headers = "From: " . $contact . "\r\n";
+        $headers .= "Reply-To: " . $contact . "\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+
+        return mail($this->admin_email, $subject, $content, $headers);
+    }
+
+    private function sendUserConfirmation($nom, $email, $thematique) {
+        $subject = "Confirmation de réception - Le Petit Chalet dans La Montagne";
+        $content = "Bonjour " . $nom . ",\n\n";
+        $content .= "Nous avons bien reçu votre message concernant : " . $thematique . "\n\n";
+        $content .= "Nous vous répondrons dans les plus brefs délais.\n\n";
+        $content .= "Cordialement,\n";
+        $content .= "L'équipe du Petit Chalet dans La Montagne";
+
+        $headers = "From: " . $this->admin_email . "\r\n";
+        $headers .= "Reply-To: " . $this->admin_email . "\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+
+        return mail($email, $subject, $content, $headers);
     }
 }

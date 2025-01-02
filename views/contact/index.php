@@ -9,6 +9,16 @@ include BASE_PATH . '/includes/layout/header.php';
 <main class="container-fluid">
     
     <div class="container mt-5">
+        <!-- Affichage des messages de succès/erreur -->
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="alert alert-<?php echo $_SESSION['message_type']; ?>">
+                <?php 
+                echo $_SESSION['message']; 
+                unset($_SESSION['message']);
+                unset($_SESSION['message_type']);
+                ?>
+            </div>
+        <?php endif; ?>
         <div class="row">
             <!-- Colonne de gauche - Formulaire -->
             <div class="col-md-6">
@@ -33,7 +43,7 @@ include BASE_PATH . '/includes/layout/header.php';
                         <div class="mb-3">
                             <label for="contact" class="form-label">Email ou Téléphone</label>
                             <input type="text" class="form-control" id="contact" name="contact" 
-                                   placeholder="jean.dupont@email.com ou 06.00.00.00.00" required>
+                                   placeholder="xxxx@xxx.xxx ou 06.00.00.00.00" required>
                         </div>
                         
                         <div class="mb-3">
@@ -104,16 +114,41 @@ include BASE_PATH . '/includes/layout/header.php';
             <!-- Colonne de droite - Informations -->
             <div class="col-md-6">
                 <!-- Bloc 1 - Coordonnées -->
-                <div class="info-block mb-4 p-4">
+                <div class="info-block ma-top mb-2 b-2 p-4">
                     <h3>Nos Coordonnées</h3>
                     <p><i class="bi bi-telephone"></i> 00.01.02.03.04</p>
                     <p><i class="bi bi-envelope"></i> lepetitchaletdanslamontagne@outlook.fr</p>
                 </div>
 
-                <!-- Bloc 2 - Carte -->
+                <!-- Bloc 2 - Accès -->
+                <div class="info-block mb-2 p-4 ">
+                    <h3>Comment nous trouver</h3>
+                    <h4 class="ete">En été</h4>
+                    <p>Accès facile par la route départementale D123. Parking disponible devant le chalet.</p>
+                    
+                    <h4 class="hiver">En hiver</h4>
+                    <p>Accès possible uniquement avec véhicule équipé de chaînes ou pneus neige. 
+                    Service de navette disponible depuis le village en cas de fortes chutes de neige.</p>
+
+                    <h4 id="handicap">Handicap / Personnes à mobilité réduite</h4>
+                    <p>Nous attachons une grande importance à aider, et disposons de tous les moyens nécessaires capables d'accompagner,
+                    les personnes dont les capacités de mobilités et de prise en charge autonome sont réduites. De ce fait, si vous souhaitez vous rendre
+                    dans notre établissement, veuillez nous appeler directement au préalable, grâce au numéro de l'établissement disponible dans la rubrique "Nos coordonnées"
+                    afin de convenir ensemble de la meilleure manière de vous accueillir.
+                    <BR></BR>
+                    Du matériel adapté et une rampe d'accès sont disponibles sur place.</p>
+                    
+                    <p><u><strong>Adresse :</strong></u><br>
+                    Le Petit Chalet dans La Montagne<br>
+                    123 Route des Sapins<br>
+                    74000 La Montagne<br>
+                    France</p>
+                </div>
+                
+                <!-- Bloc 3 - Carte -->
                 <div class="info-block mb-4 p-4">
                     <h3>Notre Localisation</h3>
-                    <div id="map" style="height: 300px; width: 100%;">
+                    <div id="map" style="height: 500px; width: 100%;">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5559.865445205138!2d6.860025050830403!3d45.83262915972968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4789459fb534be51%3A0xa908728c5dcec4c0!2sMont%20Blanc!5e0!3m2!1sfr!2sfr!4v1735654393844!5m2!1sfr!2sfr"
                             width="100%" 
@@ -128,22 +163,6 @@ include BASE_PATH . '/includes/layout/header.php';
                     </div>
                 </div>
 
-                <!-- Bloc 3 - Accès -->
-                <div class="info-block p-4 mb-4">
-                    <h3>Comment nous trouver</h3>
-                    <h4>En été</h4>
-                    <p>Accès facile par la route départementale D123. Parking disponible devant le chalet.</p>
-                    
-                    <h4>En hiver</h4>
-                    <p>Accès possible uniquement avec véhicule équipé de chaînes ou pneus neige. 
-                    Service de navette disponible depuis le village en cas de fortes chutes de neige.</p>
-                    
-                    <p><strong>Adresse :</strong><br>
-                    Le Petit Chalet dans La Montagne<br>
-                    123 Route des Sapins<br>
-                    74000 La Montagne<br>
-                    France</p>
-                </div>
             </div>
         </div>
     </div>
