@@ -1,5 +1,5 @@
 <?php
-namespace App\Controllers;
+namespace App\src\controller;
 
 class ActivitesController {
     public function index() {

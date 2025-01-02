@@ -215,6 +215,12 @@ input, button, textarea, select {
 
 /* ----------------------- FORMULAIRES ---------------------------- */
 
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
 .form-control {
     width: 100%;
     padding: var(--spacing-sm);
@@ -1188,8 +1194,16 @@ html.contact .footer-grid {
 /* ---------------------------------------------------------------- */
 
 /* -------------------------- MODALES --------------------------- */
+/* Style pour les modales */
+#modalTitle {
+    font-family: var(--font-primary);
+    font-size: calc(var(--font-size-6xl));
+    color: var(--color-secondary);
+    padding-left: 1.3rem;
+    text-decoration: underline;
+}
 
-
+/* OUI */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1202,12 +1216,12 @@ html.contact .footer-grid {
     visibility: hidden;
     transition: var(--transition-default);
 }
-
+/* OUI */
 .modal-overlay.active {
     opacity: 1;
     visibility: visible;
 }
-
+/* OUI */
 .modal-card {
     position: fixed;
     top: 50%;
@@ -1225,33 +1239,17 @@ html.contact .footer-grid {
     overflow-y: auto;
     transition: var(--transition-default);
 }
-
+/* OUI */
 .modal-card.active {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
     visibility: visible;
 }
 
-.modal-title {
-    font-family: var(--font-primary);
-    font-size: 1.8rem;
-    color: var(--color-secondary);
-}
-
-.modal-close {
-    font-size: 1.5rem;
-    color: var(--color-text-light);
-    padding: var(--spacing-xs);
+.close-button {
+    font-size: 4rem;
+    color: var(--color-primary-dark);
     cursor: pointer;
-    transition: var(--transition-default);
-}
-
-.modal-close:hover {
-    color: var(--color-text);
-}
-
-.modal-content {
-    margin-bottom: var(--spacing-md);
 }
 
 .close-button:hover {
@@ -1259,8 +1257,41 @@ html.contact .footer-grid {
 }
 
 .modal-content {
+    margin-bottom: var(--spacing-md);
     line-height: 1.6;
     z-index : -1;
+}
+
+.modal-content h3 {
+    margin-top: 2em;
+}
+
+/* PAGE ACTIVITÉS */
+.modal-body h4 {
+    font-family: var(--font-primary);
+    font-size: 1.6rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-secondary);
+}
+
+.modal-body p {
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+}
+
+.modal-body ul li {
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-size: 1.1rem;
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: #666;
 }
 
 /* Style du pop-up cookies */
@@ -1861,41 +1892,6 @@ textarea {
     font-family: var(--font-primary);
     font-style: italic;
     font-size: 1.1rem;
-    line-height: 1.6;
-    color: #666;
-}
-
-/* Style pour les modales */
-.modal-title {
-    font-family: var(--font-primary);
-    font-size: calc(var(--font-size-xl));
-    color: var(--color-secondary);
-    padding-left: 1.3rem;
-}
-
-.modal-body h4 {
-    font-family: var(--font-primary);
-    font-size: 1.6rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--color-secondary);
-}
-
-.modal-body p {
-    font-family: var(--font-primary);
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #666;
-}
-
-.modal-body ul li {
-    font-family: var(--font-primary);
-    font-style: italic;
-    font-size: 1.1rem;
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
     line-height: 1.6;
     color: #666;
 }

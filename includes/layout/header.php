@@ -38,6 +38,8 @@
     <script defer rel="prefetch" src="assets/js/components/carousel.js"></script>
     <script defer rel="prefetch" src="assets/js/FAQ.js"></script>
     <script defer                src="assets/js/pages/scriptReservation.js"></script>
+    <script defer                src="assets/js/pages/scriptContact.js"></script>
+
 
 
 </head>

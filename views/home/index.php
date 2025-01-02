@@ -7,6 +7,7 @@ include BASE_PATH . '/includes/layout/header.php';
 ?>
 
 <section class="position-relative">
+    <h2 style="display: none">Carousel</h2>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item c-item active">
@@ -41,6 +42,7 @@ include BASE_PATH . '/includes/layout/header.php';
 
 <!-- Nouveaux blocs -->
 <section>
+    <h2 style="display: none">Séjour / Activités</h2>
     <div class="row g-0">
         <!-- Bloc Réserver un séjour -->
         <div class="col-12 block">
@@ -74,11 +76,20 @@ include BASE_PATH . '/includes/layout/header.php';
 </section>
 
 <?php
+include BASE_PATH . '/includes/components/backToTop.php';
+?>
+<br>
 
-include BASE_PATH . '/includes/components/backToTop.php';
-include BASE_PATH . '/includes/components/backToTop.php';
+<?php
 include BASE_PATH . '/includes/components/modals.php';
-include BASE_PATH . '/includes/components/cookies.php';
-include BASE_PATH . '/includes/layout/footer.php';
+?>
+<br>
 
+<?php
+include BASE_PATH . '/includes/components/cookies.php';
+?>
+<br>
+
+<?php
+include BASE_PATH . '/includes/layout/footer.php';
 ?>

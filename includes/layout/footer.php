@@ -37,7 +37,6 @@
             <i class="fas fa-envelope">   Contact</i>
         </a>
     </footer>
-    <!-- Scripts communs -->
 </body>
 
 </html>

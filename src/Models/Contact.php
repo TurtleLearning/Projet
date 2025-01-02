@@ -2,35 +2,31 @@
 
 namespace App\Models;
 
-require_once 'config/constants.php';
+use PDOException;
+use Exception;
+use App\Config\Database;
 
 class Contact {
     private $db;
-    private $data;
     
-    public function __construct($data = null) {
+    public function __construct() {
         $this->db = Database::getInstance()->getConnection();
-        $this->data = $data;
     }
     
-    // Méthode pour sauvegarder un message de contact
-    public function save() {
-        $query = "INSERT INTO contacts (
-            nom, contact, thematique, message, date_creation
-        ) VALUES (
-            :nom, :contact, :thematique, :message, NOW()
-        )";
+    public function create($nom, $contact, $thematique, $message) {
+        $query = "INSERT INTO contacts (nom, contact, thematique, message, date_creation) 
+                  VALUES (:nom, :contact, :thematique, :message, NOW())";
         
         try {
             $stmt = $this->db->prepare($query);
             return $stmt->execute([
-                'nom' => $this->data['nom'],
-                'contact' => $this->data['contact'],
-                'thematique' => $this->data['thematique'],
-                'message' => $this->data['message']
+                'nom' => $nom,
+                'contact' => $contact,
+                'thematique' => $thematique,
+                'message' => $message
             ]);
         } catch (PDOException $e) {
-            throw new Exception("Erreur lors de la sauvegarde du message");
+            throw new Exception("Erreur lors de la sauvegarde du message: " . $e->getMessage());
         }
     }
 }

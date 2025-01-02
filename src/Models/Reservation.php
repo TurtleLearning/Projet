@@ -17,11 +17,11 @@ class Reservation {
         $query = "INSERT INTO reservations_nuitees (
             nom, prenom, num_tel, email,
             quantite_nuit, quantite_repas_midi, quantite_repas_soir,
-            date_debut, date_fin, nombre_total, dont_enfants, total_ttc
+            date_debut, date_fin, nombre_total, dont_enfants
         ) VALUES (
             :nom, :prenom, :num_tel, :email,
             :quantite_nuit, :quantite_repas_midi, :quantite_repas_soir,
-            :date_debut, :date_fin, :nombre_total, :dont_enfants, :total_ttc
+            :date_debut, :date_fin, :nombre_total, :dont_enfants
         )";
         
         try {
@@ -37,11 +37,10 @@ class Reservation {
                 'date_debut' => $this->data['date_debut'],
                 'date_fin' => $this->data['date_fin'],
                 'nombre_total' => $this->data['nombre_total'],
-                'dont_enfants' => $this->data['dont_enfants'],
-                'total_ttc' => $this->data['total_ttc']
+                'dont_enfants' => $this->data['dont_enfants']
             ]);
         } catch (PDOException $e) {
-            throw new Exception("Erreur lors de la sauvegarde de la réservation: " . $e->getMessage());
+            throw new Exception("Erreur lors de la sauvegarde de la réservation");
         }
     }
     
@@ -51,20 +50,5 @@ class Reservation {
         $stmt = $this->db->prepare($query);
         $stmt->execute(['id' => $id]);
         return $stmt->fetch();
-    }
-
-    private function validateData() {
-        if (empty($this->data['nom']) || empty($this->data['email']) || 
-            empty($this->data['num_tel']) || empty($this->data['date_debut']) || 
-            empty($this->data['date_fin'])) {
-            throw new Exception("Tous les champs obligatoires doivent être remplis");
-        }
-        
-        if (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
-            throw new Exception("Format d'email invalide");
-        }
-        
-        // Validation des montants et recalcul du total
-        $this->validateAmounts();
     }
 }
