@@ -242,9 +242,9 @@ include BASE_PATH . '/includes/layout/header.php';
 
 <?php
 
-include BASE_PATH . '/includes/components/backToTop.php';
-include BASE_PATH . '/includes/components/modals.php';
-include BASE_PATH . '/includes/components/cookies.php';
-include BASE_PATH . '/includes/layout/footer.php';
+include BASE_PATH . '/includes/components/backToTop.php'; echo "\n";
+include BASE_PATH . '/includes/components/modals.php'; echo "\n";
+include BASE_PATH . '/includes/components/cookies.php'; echo "\n";
+include BASE_PATH . '/includes/layout/footer.php'; echo "\n";
 
 ?>

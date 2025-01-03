@@ -57,7 +57,7 @@ include BASE_PATH . '/includes/layout/header.php';
                     
                     <div class="conditions-container mt-4">
                         <div class="mb-3">
-                            <label for="date_debut" class="form-label">Date d'arrivée : *</label>
+                            <label for="date_debut" class="form-label">Date d'arrivée : * <u><i>(Après 14h impérativement)</i></u></label>
                             <div class="date-input-container">
                                 <input type="text" id="date_debut" name="date_debut" class="form-control" placeholder="Sélectionnez une date d'arrivée" required readonly>
                                 <button type="button" class="clear-date" data-target="date_debut">
@@ -66,7 +66,7 @@ include BASE_PATH . '/includes/layout/header.php';
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="date_fin" class="form-label">Date de départ : *</label>
+                            <label for="date_fin" class="form-label">Date de départ : * <u><i>(Avant 10h impérativement)</i></u></label>
                             <div class="date-input-container">
                                 <input type="text" id="date_fin" name="date_fin" class="form-control" placeholder="Sélectionnez une date de départ" required readonly>
                                 <button type="button" class="clear-date" data-target="date_fin">
@@ -142,9 +142,9 @@ include BASE_PATH . '/includes/layout/header.php';
 
 <?php
 
-include BASE_PATH . '/includes/components/backToTop.php';
-include BASE_PATH . '/includes/components/modals.php';
-include BASE_PATH . '/includes/components/cookies.php';
-include BASE_PATH . '/includes/layout/footer.php';
+include BASE_PATH . '/includes/components/backToTop.php'; echo "\n";
+include BASE_PATH . '/includes/components/modals.php'; echo "\n";
+include BASE_PATH . '/includes/components/cookies.php'; echo "\n";
+include BASE_PATH . '/includes/layout/footer.php'; echo "\n";
 
 ?>

@@ -183,14 +183,18 @@ input, button, textarea, select {
     font-weight: 500;
 }
 
+.btn:hover {
+    background-color: #000;
+}
+
 .btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-light);
+    background-color: var(--color-dark-alpha);
+    color: #fff;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-primary-dark);
-    transform: translateY(-2px);
+    background-color: var(--color-dark);
+    transform: scale(1.05);
 }
 
 .btn-secondary {
@@ -1267,6 +1271,10 @@ html.contact .footer-grid {
 }
 
 /* PAGE ACTIVITÉS */
+.modal-title {
+    padding-left: 1em;
+}
+
 .modal-body h4 {
     font-family: var(--font-primary);
     font-size: 1.6rem;
@@ -1664,15 +1672,6 @@ textarea {
     resize: vertical;
 }
 
-.btn-primary {
-    background-color: var(--color-secondary);
-    border: none;
-}
-
-.btn-primary:hover {
-    background-color: #34495e;
-}
-
 /* Ajout/modification des styles pour la page contact */
 .container.mt-5 .row {
     min-height: 100%;
@@ -1951,6 +1950,7 @@ textarea {
 .faq-container {
     max-width: 100%;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 /* Style des titres dans la FAQ */
@@ -2021,7 +2021,7 @@ textarea {
 
 /* Style des titres et textes de la page contact */
 .contact-title {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-primary);
     font-size: 2.5rem;
     color: var(--color-secondary);
     margin-bottom: 1.5rem;
@@ -2042,7 +2042,7 @@ textarea {
 }
 
 .avant-propos {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-primary);
     font-size: 1.1rem;
     line-height: 1.8;
     color: #666;
@@ -2055,7 +2055,7 @@ textarea {
 
 /* Style des labels du formulaire */
 .form-label {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-primary);
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
 }
@@ -2562,12 +2562,6 @@ textarea {
 @media (max-width: 991px) {
     .nav-link {
         margin: var(--spacing-xs) 0;
-    }
-
-    .header-container .container-fluid {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
     }
 
     .brand-group {

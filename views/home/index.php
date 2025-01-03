@@ -76,20 +76,10 @@ include BASE_PATH . '/includes/layout/header.php';
 </section>
 
 <?php
-include BASE_PATH . '/includes/components/backToTop.php';
-?>
-<br>
 
-<?php
-include BASE_PATH . '/includes/components/modals.php';
-?>
-<br>
+include BASE_PATH . '/includes/components/backToTop.php'; echo "\n";
+include BASE_PATH . '/includes/components/modals.php'; echo "\n";
+include BASE_PATH . '/includes/components/cookies.php'; echo "\n";
+include BASE_PATH . '/includes/layout/footer.php'; echo "\n";
 
-<?php
-include BASE_PATH . '/includes/components/cookies.php';
-?>
-<br>
-
-<?php
-include BASE_PATH . '/includes/layout/footer.php';
 ?>

@@ -40,8 +40,6 @@
     <script defer                src="assets/js/pages/scriptReservation.js"></script>
     <script defer                src="assets/js/pages/scriptContact.js"></script>
 
-
-
 </head>
 
 <body data-page="<?php echo basename($_SERVER['PHP_SELF'], '.php'); ?>">

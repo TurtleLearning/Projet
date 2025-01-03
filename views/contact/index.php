@@ -20,7 +20,7 @@ include BASE_PATH . '/includes/layout/header.php';
             </div>
         <?php endif; ?>
         <div class="row">
-            <!-- Colonne de gauche - Formulaire -->
+            <!-- Colonne de gauche -->
             <div class="col-md-6">
                 <div class="info-block contact-form-container p-4">
                     <h2 class="contact-title">Nous Contacter</h2>
@@ -28,44 +28,16 @@ include BASE_PATH . '/includes/layout/header.php';
                         Bienvenue sur notre site !
                         <br><br>Si vous avez des interrogations concernant notre établissement, 
                         vous pouvez d'abord consulter la foire aux questions (FAQ) ci-dessous ou bien
-                        de nous faire part directement de votre demande par mail en remplissant 
+                        nous faire part directement de votre demande par mail en remplissant 
                         au préalable le formulaire ci-dessous.
                         Nous nous efforcerons de vous répondre dans les plus brefs délais. 
-                        <br><br>En vous souhaitant une agréable visite !
+                        <br><br>En vous souhaitant une agréable visite sur notre site et au plaisir de
+                        vous voir bientôt dans notre établissement !
                     </p>
-                    <form action="contact.php" method="POST">
-                        <div class="mb-3">
-                            <label for="nom" class="form-label">Nom complet</label>
-                            <input type="text" class="form-control" id="nom" name="nom" 
-                                   placeholder="Jean Dupont" required>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="contact" class="form-label">Email ou Téléphone</label>
-                            <input type="text" class="form-control" id="contact" name="contact" 
-                                   placeholder="xxxx@xxx.xxx ou 06.00.00.00.00" required>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="thematique" class="form-label">Thématique</label>
-                            <select class="form-select" id="thematique" name="thematique" required>
-                                <option value="reservation">Réservation</option>
-                                <option value="activites">Activités</option>
-                                <option value="divers">Divers</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Votre message</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" 
-                                      placeholder="Décrivez votre demande ici..." required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Envoyer</button>
-                    </form>
-                    
-                    <!-- FAQ Section -->
+
+                    <!-- FAQ -->
                     <div class="faq-container">
+                        
                         <h3>Questions Fréquentes</h3>
                         
                         <div class="faq-item">
@@ -107,7 +79,40 @@ include BASE_PATH . '/includes/layout/header.php';
                                 Oui, une connexion WiFi gratuite et illimitée est disponible dans tout le chalet. Le code d'accès vous sera fourni à votre arrivée.
                             </div>
                         </div>
+                        
                     </div>
+
+                    <!-- Formulaire de contact -->
+                    <form action="contact.php" method="POST">
+                        <div class="mb-3">
+                            <label for="nom" class="form-label">Nom complet</label>
+                            <input type="text" class="form-control" id="nom" name="nom" 
+                                   placeholder="Jean Dupont" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="contact" class="form-label">Email ou Téléphone</label>
+                            <input type="text" class="form-control" id="contact" name="contact" 
+                                   placeholder="xxxx@xxx.xxx ou 06.00.00.00.00" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="thematique" class="form-label">Thématique</label>
+                            <select class="form-select" id="thematique" name="thematique" required>
+                                <option value="reservation">Réservation</option>
+                                <option value="activites">Activités</option>
+                                <option value="divers">Divers</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Votre message</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" 
+                                      placeholder="Décrivez votre demande ici..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </form>
                 </div>
             </div>
 
@@ -170,9 +175,9 @@ include BASE_PATH . '/includes/layout/header.php';
 
 <?php
 
-include BASE_PATH . '/includes/components/backToTop.php';
-include BASE_PATH . '/includes/components/modals.php';
-include BASE_PATH . '/includes/components/cookies.php';
-include BASE_PATH . '/includes/layout/footer.php';
+include BASE_PATH . '/includes/components/backToTop.php'; echo "\n";
+include BASE_PATH . '/includes/components/modals.php'; echo "\n";
+include BASE_PATH . '/includes/components/cookies.php'; echo "\n";
+include BASE_PATH . '/includes/layout/footer.php'; echo "\n";
 
 ?>

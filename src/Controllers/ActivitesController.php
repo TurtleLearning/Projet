@@ -1,13 +1,12 @@
 <?php
-namespace App\src\controller;
+namespace App\Controllers;
 
 class ActivitesController {
     public function index() {
         // Définir le titre de la page
         $pageTitle = "Activités - Le Petit Chalet dans La Montagne";
 
-        // Vous pourriez ajouter ici la logique pour charger des données depuis une base de données
-        // Par exemple, charger la liste des activités dynamiquement
+
         $activites = [
             'ete' => [
                 'trekking' => [

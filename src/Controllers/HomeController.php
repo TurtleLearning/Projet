@@ -1,5 +1,5 @@
 <?php
-namespace App\src\controller;
+namespace App\Controllers;
 
 class HomeController {
     public function index() {
