@@ -8,7 +8,7 @@ use DateTime;
 class Reservation {
     private $db;
     private $data;
-    
+
     public $nom;
     public $prenom;
     public $num_tel;
@@ -75,7 +75,7 @@ class Reservation {
             throw new Exception("La date de fin doit être postérieure à la date de début.");
         }
     }
-    
+
     // Méthode pour sauvegarder une réservation
     public function save() {
         $query = "INSERT INTO reservations_nuitees (
@@ -87,7 +87,7 @@ class Reservation {
             :quantite_nuit, :quantite_repas_midi, :quantite_repas_soir,
             :date_debut, :date_fin, :nombre_total, :dont_enfants, :total_ttc
         )";
-        
+
         try {
             $this->validate(); 
             $stmt = $this->db->prepare($query);

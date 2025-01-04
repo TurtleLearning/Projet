@@ -13,7 +13,6 @@ if (document.body.getAttribute('data-page') === 'reservation') {
             });
         });
 
-        // Stockage constantes
         const quantiteNuit = document.getElementById('quantite_nuit');
         const quantiteRepasMidi = document.getElementById('quantite_Repas_midi');
         const quantiteRepasSoir = document.getElementById('quantite_Repas_soir');
@@ -23,12 +22,28 @@ if (document.body.getAttribute('data-page') === 'reservation') {
         const nombreTotalInput = document.getElementById('nombre_total');
         const dontEnfantsInput = document.getElementById('dont_enfants');
 
-        // Rafraîchissement du calcul du total dès qu'une modification est écoutée.
         quantiteNuit.addEventListener('input', calculateTotals);
         quantiteRepasMidi.addEventListener('input', calculateTotals);
         quantiteRepasSoir.addEventListener('input', calculateTotals);
         nombreTotalInput.addEventListener('input', calculateTotals);
         dontEnfantsInput.addEventListener('input', calculateTotals);
+
+        imprimerBtn.addEventListener('click', () => window.print());
+        if (reinitialiserBtn) {
+            reinitialiserBtn.addEventListener('click', resetForm);
+        } else {
+            console.error("Bouton de réinitialisation non trouvé.");
+            showError("Une erreur est survenue. Veuillez réessayer plus tard.");
+        }
+
+        // Limiter le nombre d'enfants par rapport au total et en faire la limite
+        dontEnfantsInput.addEventListener('input', function() {
+            const nombreTotal = parseInt(nombreTotalInput.value) || 1;
+            if (parseInt(this.value) > nombreTotal) {
+                this.value = nombreTotal;
+            }
+            calculateTotals();
+        });
 
         envoyerBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -50,8 +65,8 @@ if (document.body.getAttribute('data-page') === 'reservation') {
             // Enlever "euros" du total_ttc
             const totalTTC = document.getElementById('total_ttc').value.replace(' euros', '');
             formData.append('total_ttc', totalTTC);
-
-            // Debug
+            
+            // Affiche le contenu de formData dans la console
             // console.log([...formData]);
 
             fetch('reservation.php', {
@@ -74,7 +89,7 @@ if (document.body.getAttribute('data-page') === 'reservation') {
             });
         });
 
-        // Gestion du calendrier (Flatpickr)
+        // Gestion du calendrier
         const dateDebut = flatpickr("#date_debut", {
             locale: "fr",
             minDate: "today",
@@ -149,6 +164,11 @@ if (document.body.getAttribute('data-page') === 'reservation') {
             let nombreEnfants = parseInt(document.getElementById('dont_enfants').value) || 0;
             const nombreAdultes = nombreTotal - nombreEnfants;
 
+            if (nombreEnfants > nombreTotal) {
+                nombreEnfants = nombreTotal;
+                document.getElementById('dont_enfants').value = nombreTotal;
+            }
+
             // Prix fixes
             const PRIX_NUIT_ADULTE = 15;
             const PRIX_NUIT_ENFANT = 5;
@@ -198,19 +218,23 @@ if (document.body.getAttribute('data-page') === 'reservation') {
             calculateTotals();
         }
 
+        dontEnfantsInput.addEventListener('input', function() {
+            const nombreTotal = parseInt(nombreTotalInput.value) || 1;
+            let nombreEnfants = parseInt(this.value) || 0;
+
+            // Si le nombre d'enfants dépasse le total
+            if (nombreEnfants > nombreTotal) {
+                nombreEnfants = nombreTotal;
+                this.value = nombreTotal;
+            }
+
+            calculateTotals();
+        });
+
         // Fonction pour formater la date
         function formatDate(dateStr) {
             const [jour, mois, annee] = dateStr.split(' / ');
             return `${annee}-${mois}-${jour}`; // Retourne au format "YYYY-MM-DD"
-        }
-
-        // Fonction impression
-        imprimerBtn.addEventListener('click', () => window.print());
-        if (reinitialiserBtn) {
-            reinitialiserBtn.addEventListener('click', resetForm);
-        } else {
-            console.error("Bouton de réinitialisation non trouvé.");
-            showError("Une erreur est survenue. Veuillez réessayer plus tard.");
-        }
+    }
     });
 }

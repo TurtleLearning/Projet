@@ -11,22 +11,20 @@ $scripts = [
 
     'index' => [
         "assets/js/components/carousel.js",
-        "assets/js/components/modal.js",
         "assets/js/indicResponsive.js",
         "assets/js/common.js"
     ],
 
     'reservation' => [
-        "assets/js/pages/validationReservation.js",
         "assets/js/pages/scriptReservation.js",
-        "assets/js/components/modal.js",
+        "assets/js/pages/validationReservation.js",
         "assets/js/common.js"
     ],
 
     'contact' => [
         "assets/js/FAQ.js",
+        "assets/js/pages/scriptContact.js",
         "assets/js/pages/validationContact.js",
-        "assets/js/components/modal.js",
         "assets/js/common.js"
     ],
 
