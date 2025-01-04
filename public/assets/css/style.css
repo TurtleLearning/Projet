@@ -220,9 +220,16 @@ input, button, textarea, select {
 /* ----------------------- FORMULAIRES ---------------------------- */
 
 .error-message {
-    color: #dc3545;
+    color: #a8dc35 !important;
     font-size: 0.875rem;
     margin-top: 0.25rem;
+    width: 100%;
+}
+
+.em > :not(label) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .form-control {
@@ -243,11 +250,9 @@ input, button, textarea, select {
 }
 
 
-
-.form-control:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+.form-control#quantite_nuit{
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
 }
 
 .form-group {
@@ -271,6 +276,13 @@ input, button, textarea, select {
     border-color: var(--color-primary);
 }
 
+/* Placeholder unifié */
+::placeholder {
+    color: var(--color-placeholder);
+    font-style: italic;
+    opacity: 0.4;
+}
+
 /* A cause de Bootstrap qui fait perdre un temps considérable */
 .form-control::placeholder {
     color: var(--color-placeholder);
@@ -279,11 +291,10 @@ input, button, textarea, select {
     text-align: start;
 }
 
-/* Placeholder unifié */
-::placeholder {
-    color: var(--color-placeholder);
-    font-style: italic;
-    opacity: 0.4;
+.form-control#quantite_nuit::placeholder {
+    text-align: center;
+    opacity: 1 !important;
+    color: white !important;
 }
 
 /* ---------------------------------------------------------------- */
@@ -2502,6 +2513,7 @@ textarea {
     #error-message {
         margin-top: 1rem;
     }
+
     .reservation-title {
         font-size: 2rem;
         text-align: center;

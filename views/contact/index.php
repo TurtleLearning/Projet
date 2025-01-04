@@ -22,7 +22,7 @@ include BASE_PATH . '/includes/layout/header.php';
         <div class="row">
             <!-- Colonne de gauche -->
             <div class="col-md-6">
-                <div class="info-block contact-form-container p-4">
+                <div class="info-block contact-form-container p-4" data-cookieconsent>
                     <h2 class="contact-title">Nous Contacter</h2>
                     <p class="avant-propos">
                         Bienvenue sur notre site !
@@ -83,7 +83,7 @@ include BASE_PATH . '/includes/layout/header.php';
                     </div>
 
                     <!-- Formulaire de contact -->
-                    <form action="contact.php" method="POST">
+                    <form id="formContact" action="contact.php" method="POST">
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom complet</label>
                             <input type="text" class="form-control" id="nom" name="nom" 
@@ -154,7 +154,7 @@ include BASE_PATH . '/includes/layout/header.php';
                 <div class="info-block mb-4 p-4">
                     <h3>Notre Localisation</h3>
                     <div id="map" style="height: 500px; width: 100%;">
-                        <iframe 
+                        <iframe data-cookieconsent="marketing"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5559.865445205138!2d6.860025050830403!3d45.83262915972968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4789459fb534be51%3A0xa908728c5dcec4c0!2sMont%20Blanc!5e0!3m2!1sfr!2sfr!4v1735654393844!5m2!1sfr!2sfr"
                             width="100%" 
                             height="100%" 
@@ -162,7 +162,7 @@ include BASE_PATH . '/includes/layout/header.php';
                             loading="lazy"
                             referrerpolicy="no-referrer"
                             allowfullscreen
-                            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                            sandbox="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
                             importance="low"
                         ></iframe>
                     </div>

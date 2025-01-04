@@ -122,6 +122,7 @@
 (function() {
     document.addEventListener('DOMContentLoaded', function() {
         const cookieConsent = document.getElementById('cookieConsent');
+        cookieConsent.setAttribute('data-cookieconsent', 'true');
         const     acceptBtn = document.getElementById('acceptCookies');
         const     refuseBtn = document.getElementById('refuseCookies');
     

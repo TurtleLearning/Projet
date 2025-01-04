@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Reservation;
-use DateTime;
+use App\Services\EmailService;
 use Exception;
 
 class ReservationController {
@@ -11,16 +11,16 @@ class ReservationController {
         try {
             // Debug
             error_log("Début de ReservationController::index()");
-            
+
             $pageTitle = "Réservation - Le Petit Chalet dans La Montagne";
-            
+
             // Debug
             error_log("Chargement de la vue reservation/index.php");
-            
+
             require BASE_PATH . '/views/reservation/index.php';
-            
+
             error_log("Vue chargée avec succès");
-            
+
         } catch (\Exception $e) {
             error_log("Erreur dans ReservationController::index() : " . $e->getMessage());
             error_log("Trace : " . $e->getTraceAsString());
@@ -30,11 +30,12 @@ class ReservationController {
 
     public function store() {
         try {
+            error_log("Début de store()");
             // Récupération des données POST
             $data = [
-                'nom' => filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING),
-                'prenom' => filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_STRING),
-                'num_tel' => filter_input(INPUT_POST, 'num_tel', FILTER_SANITIZE_STRING),
+                'nom' => trim(htmlspecialchars($_POST['nom'], ENT_QUOTES, 'UTF-8')),
+                'prenom' => trim(htmlspecialchars($_POST['prenom'], ENT_QUOTES, 'UTF-8')),
+                'num_tel' => trim(htmlspecialchars($_POST['num_tel'], ENT_QUOTES, 'UTF-8')),
                 'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL),
                 'quantite_nuit' => filter_input(INPUT_POST, 'quantite_nuit', FILTER_SANITIZE_NUMBER_INT),
                 'quantite_repas_midi' => filter_input(INPUT_POST, 'quantite_repas_midi', FILTER_SANITIZE_NUMBER_INT),
@@ -59,59 +60,36 @@ class ReservationController {
 
             // Instancier le modèle Reservation
             $reservation = new Reservation($data);
-            $reservation->save(); // Appeler la méthode pour sauvegarder
+            error_log("Modèle Reservation créé");
 
-            // Réponse pour le fetch
-            echo "Réservation réussie"; // Réponse à envoyer au fetch
+            $reservation->save();
+            error_log("Réservation sauvegardée");
+
+            // Email
+            error_log("Tentative de création du service email");
+            $emailService = new EmailService();
+            error_log("Service email créé");
+
+            error_log("Tentative d'envoi d'email");
+            $emailService->sendReservationConfirmation($data);
+            error_log("Email envoyé");
+
+            echo "Réservation réussie";
+
         } catch (Exception $e) {
-            error_log("Erreur dans ReservationController::store() : " . $e->getMessage());
-            echo "Erreur lors de la réservation : " . $e->getMessage(); // Afficher le message d'erreur
+            error_log($e->getMessage());
+            $_SESSION['error'] = "Une erreur est survenue";
+            header("Location: https://www.cefii-developpements.fr/julien1410/Projet/public/reservation.php");
+            exit();
         }
     }
 
     public function processReservation($data) {
         // Validation
         $this->validateData($data);
-        
+
         // Création de la réservation
         $reservation = new Reservation($data);
         return $reservation->save();
-    }
-    
-    private function validateData($data) {
-        // Validation de l'email
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            throw new Exception("Format d'email invalide");
-        }
-
-        // Validation des quantités
-        if (empty($data['quantite_nuit'])) {
-            throw new Exception("La quantité de nuit est requise");
-        }
-
-        // Validation des dates
-        if (empty($data['date_debut']) || empty($data['date_fin'])) {
-            throw new Exception("Les dates sont requises");
-        }
-
-        $dateDebut = new DateTime($data['date_debut']);
-        $dateFin = new DateTime($data['date_fin']);
-
-        if ($dateDebut > $dateFin) {
-            throw new Exception("La date de fin doit être postérieure à la date de début");
-        }
-
-        // Validation des quantités
-        if ($data['nombre_total'] < 1) {
-            throw new Exception("Le nombre total de personnes doit être d'au moins 1");
-        }
-
-        if ($data['dont_enfants'] < 0) {
-            throw new Exception("Le nombre d'enfants ne peut pas être négatif");
-        }
-
-        if ($data['dont_enfants'] >= $data['nombre_total']) {
-            throw new Exception("Le nombre d'enfants ne peut pas être supérieur au nombre total de personnes");
-        }
     }
 }
