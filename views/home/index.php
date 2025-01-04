@@ -6,7 +6,7 @@ include BASE_PATH . '/includes/layout/header.php';
 
 ?>
 
-<section class="position-relative">
+<section class="position-relative" data-cookieconsent>
     <h2 style="display: none">Carousel</h2>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
