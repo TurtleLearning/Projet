@@ -147,8 +147,7 @@ button {
     background: none;
     cursor: pointer;
 }
-  
-/* Remove default quotes on blockquote, q elements */
+
 blockquote, q {
     quotes: none;
 }
@@ -159,7 +158,6 @@ q::before, q::after {
     content: none;
 }
 
-/* Set core body defaults */
 body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
     margin: 0;
 }
@@ -2302,7 +2300,7 @@ textarea {
 
 /* ---------------------- RESPONSIVE ----------------------- */
 
-/* Préférences de réduction de mouvement */
+/* Préférences de réduction de mouvement - Accessibilité */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -2312,14 +2310,14 @@ textarea {
     }
 }
 
+/* ----------------------- MOBILE -----------------------------*/
+
 @media (min-width: 1400px) and (max-width: 1438px) {
 
     .main-title {
         padding: 0.4em 1.5em;
         font-size: 2em;
     }
-
-
 }
 
 @media (min-width: 1000px) and (max-width: 1400px) {
@@ -2383,11 +2381,11 @@ textarea {
     }
 
     .nav-item.dropdown {
-        width: 100%;
-        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        position: relative;
     }
 
     .dropdown-item {
@@ -2400,6 +2398,7 @@ textarea {
         width: 100%;
         text-align: center;
     }
+    
     .nav-link {
         margin: 0.5rem 0;
         padding: 0.5rem 0 !important;
@@ -2464,7 +2463,6 @@ textarea {
         display: block;
     }
 }
-
 
 @media (max-width: 1200px) {
 
@@ -2643,7 +2641,6 @@ textarea {
 
 /* ----------------------- MOBILE -----------------------------*/
 
-/* Ajustements pour les très petits écrans */
 @media (max-width: 576px) {
 
     :root {
@@ -2751,11 +2748,3 @@ textarea {
         padding: 4px 8px;
     }
 }
-
-@media (max-width: 400px) {
-
-
-
-
-}
-

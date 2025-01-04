@@ -7,16 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 wrap: true,
                 keyboard: true
             });
-
-            // Gestion des touches du clavier pour la navigation
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'ArrowLeft') {
-                    carousel.prev();
-                }
-                if (event.key === 'ArrowRight') {
-                    carousel.next();
-                }
-            });
         }
     }
 });

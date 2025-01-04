@@ -63,7 +63,7 @@
                         
                         <h3>3. Types de cookies</h3>
                         <p>Nous utilisons des cookies techniques nécessaires au fonctionnement du site et des cookies analytiques pour comprendre son utilisation.</p>
-                        
+
                         <h3>4. Gestion des cookies</h3>
                         <p>Vous pouvez à tout moment modifier vos préférences en matière de cookies dans les paramètres de votre navigateur.</p>
                     `;
@@ -71,7 +71,7 @@
                     return '';
             }
         }
-    
+
         // Fonction pour ouvrir la modale
         window.openModal = function(type) {
             modalTitle.textContent = getModalTitle(type);
@@ -80,26 +80,26 @@
             modalContainer.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-    
+
         // Fermeture de la modale
         function closeModal() {
             modalOverlay.classList.remove('active');
             modalContainer.classList.remove('active');
             document.body.style.overflow = '';
         }
-    
+
         // Événements pour fermer la modale
         closeButton.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', closeModal);
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
-    
+
         // Empêcher la propagation du clic sur la modale elle-même
         modalContainer.addEventListener('click', (e) => {
             e.stopPropagation();
         });
-    
+
         // Gestion du bouton "Retour en haut"
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
@@ -108,7 +108,7 @@
                 backToTopButton.style.display = 'none';
             }
         });
-    
+
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
