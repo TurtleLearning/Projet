@@ -29,6 +29,7 @@ if (document.body.getAttribute('data-page') === 'reservation') {
         dontEnfantsInput.addEventListener('input', calculateTotals);
 
         imprimerBtn.addEventListener('click', () => window.print());
+        
         if (reinitialiserBtn) {
             reinitialiserBtn.addEventListener('click', resetForm);
         } else {
