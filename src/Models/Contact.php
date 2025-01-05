@@ -45,6 +45,12 @@ class Contact {
     }
     
     public function create($nom, $contact, $thematique, $message) {
+
+        if (!isset($_SESSION['csrf_token']) || 
+        !isset($_POST['csrf_token']) || 
+        !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        throw new Exception("Token CSRF invalide");
+    }
         $this->setData($nom, $contact, $thematique, $message);
         $this->validate();
         

@@ -84,6 +84,7 @@ include BASE_PATH . '/includes/layout/header.php';
 
                     <!-- Formulaire de contact -->
                     <form id="formContact" action="contact.php" method="POST">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom complet</label>
                             <input type="text" class="form-control" id="nom" name="nom" 

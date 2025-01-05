@@ -1,7 +1,5 @@
 <?php
 
-/* La fonction d'autoload construit le chemin du fichier à partir du nom de la classe */
-
 spl_autoload_register(function ($class) {
     $prefix = 'App\\';
     $base_dir = __DIR__ . '/';

@@ -47,14 +47,6 @@ class ReservationController {
                 'total_ttc' => filter_input(INPUT_POST, 'total_ttc')
             ];
 
-            // Validation des données
-            if (empty($data['quantite_nuit'])) {
-                throw new Exception("La quantité de nuit est requise.");
-            }
-            if (empty($data['nombre_total'])) {
-                throw new Exception("Le nombre total de personnes est requis.");
-            }
-
             // Log des données pour débogage
             error_log("Données récupérées : " . print_r($data, true));
 

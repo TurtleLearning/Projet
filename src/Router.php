@@ -3,6 +3,11 @@
 namespace App;
 
 class Router {
+    private $routes = [];
+
+    public function addRoute($method, $path, $handler) {
+        $this->routes[$path] = ['method' => $method, 'handler' => $handler];
+    }
 
     public function dispatch($request) {
         // Nettoyer la requête
@@ -29,7 +34,8 @@ class Router {
 
         // Si aucune route trouvée, chercher le fichier PHP correspondant
         $filePath = BASE_PATH . '/public/' . $request . '.php';
-        if (file_exists($filePath)) {
+        // Vérification de sécurité pour le fichier
+        if (file_exists($filePath) && strpos($filePath, BASE_PATH . '/public/') === 0) {
             require $filePath;
             return;
         }
