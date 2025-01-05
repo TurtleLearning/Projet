@@ -9,18 +9,14 @@ use Exception;
 class ReservationController {
     public function index() {
         try {
-            // Debug
-            error_log("Début de ReservationController::index()");
 
+            if (!isset($_SESSION['csrf_token'])) {
+                $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            }
+            
             $pageTitle = "Réservation - Le Petit Chalet dans La Montagne";
-
-            // Debug
-            error_log("Chargement de la vue reservation/index.php");
-
             require BASE_PATH . '/views/reservation/index.php';
-
-            error_log("Vue chargée avec succès");
-
+    
         } catch (\Exception $e) {
             error_log("Erreur dans ReservationController::index() : " . $e->getMessage());
             error_log("Trace : " . $e->getTraceAsString());
@@ -55,6 +51,7 @@ class ReservationController {
             error_log("Modèle Reservation créé");
 
             $reservation->save();
+            echo json_encode(['status' => 'success', 'message' => 'Réservation réussie']);
             error_log("Réservation sauvegardée");
 
             // Email
@@ -70,8 +67,11 @@ class ReservationController {
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            $_SESSION['error'] = "Une erreur est survenue";
-            header("Location: https://www.cefii-developpements.fr/julien1410/Projet/public/reservation.php");
+            http_response_code(400); // Définit un code d'erreur HTTP
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage() ?: "Une erreur est survenue"
+            ]);
             exit();
         }
     }

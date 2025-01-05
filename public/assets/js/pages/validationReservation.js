@@ -102,13 +102,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Validation du prenom
-        if (!validateNom(nom)) {
+        if (!validatePrenom(prenom)) {
             showError(form.querySelector('#prenom'), 'Le prenom doit contenir entre 2 et 50 caractères et ne peut contenir que des lettres, espaces et tirets.');
             hasError = true;
         }
 
         // Validation du numéro de téléphone
-        if (!validateMessage(num_tel)) {
+        if (!validateTelephone(num_tel)) {
             showError(form.querySelector('#num_tel'), 'Le numéro de téléphone ne doit contenir que 10 chiffres et seulement 10.');
             hasError = true;
         }
@@ -119,11 +119,15 @@ document.addEventListener('DOMContentLoaded', function() {
             hasError = true;
         }
 
+        const submitButton = form.querySelector('#envoyer-btn');
+
         if (!hasError) {
             isSubmitting = true;
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'Envoi en cours...';
-            form.submit();
+            if(submitButton) {
+                submitButton.disabled = true;
+                submitButton.innerHTML = 'Envoi en cours...';
+            }
+             form.submit();
         }
     });
 });

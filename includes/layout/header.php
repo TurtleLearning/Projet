@@ -1,3 +1,16 @@
+<?php
+
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+use App\Config\CSRFProtection;
+
+CSRFProtection::initialize();
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -6,7 +19,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="<?php echo $_SESSION['csrf_token']; ?>">
+    <meta name="csrf-token" content="<?php echo CSRFProtection::getToken(); ?>">
     
     <title><?php echo isset($pageTitle) ? $pageTitle : 'Le Petit Chalet dans La Montagne'; ?></title>
 

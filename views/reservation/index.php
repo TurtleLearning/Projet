@@ -2,7 +2,10 @@
 
 $pageTitle = "Réservation - Le Petit Chalet dans La Montagne";
 
+use App\Config\CSRFProtection;
+
 include BASE_PATH . '/includes/layout/header.php';
+
 
 ?>
 
@@ -11,7 +14,7 @@ include BASE_PATH . '/includes/layout/header.php';
     <div class="required-fields-notice">* : champ requis</div>
 
     <form action="reservation.php" method="POST">
-    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+    <input type="hidden" name="csrf_token" value="<?php echo CSRFProtection::getToken(); ?>">
         <div class="reservation-form">
             <div class="form-columns">
                 <!-- Colonne gauche -->

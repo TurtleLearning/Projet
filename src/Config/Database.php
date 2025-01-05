@@ -26,7 +26,7 @@ class Database {
                 PDO::ATTR_EMULATE_PREPARES => false // Désactive l'émulation des requêtes préparées
             ]);
         } catch (PDOException $e) {
-            throw new Exception("Erreur de connexion à la base de données");
+            throw new \Exception("Erreur de connexion à la base de données");
         }
     }
     

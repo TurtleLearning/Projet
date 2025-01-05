@@ -4,6 +4,7 @@ namespace App\Models;
 use PDOException;
 use Exception;
 use App\Config\Database;
+use App\Config\CSRFProtection;
 
 class Contact {
     private $db;
@@ -43,17 +44,14 @@ class Contact {
             throw new Exception("La thématique sélectionnée n'est pas valide");
         }
     }
-    
+
     public function create($nom, $contact, $thematique, $message) {
 
-        if (!isset($_SESSION['csrf_token']) || 
-        !isset($_POST['csrf_token']) || 
-        !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-        throw new Exception("Token CSRF invalide");
-    }
+        CSRFProtection::verifyToken($_POST['csrf_token']);
+
         $this->setData($nom, $contact, $thematique, $message);
         $this->validate();
-        
+
         try {
             $stmt = $this->db->prepare("INSERT INTO contacts (nom, contact, thematique, message, date_creation) VALUES (:nom, :contact, :thematique, :message, NOW())");
             return $stmt->execute([

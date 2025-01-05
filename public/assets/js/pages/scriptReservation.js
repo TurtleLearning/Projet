@@ -50,6 +50,9 @@ if (document.body.getAttribute('data-page') === 'reservation') {
 
             const formData = new FormData();
 
+            const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+            formData.append('csrf_token', csrfToken);
+
             formData.append('nom', document.getElementById('nom').value);
             formData.append('prenom', document.getElementById('prenom').value);
             formData.append('num_tel', document.getElementById('num_tel').value);
@@ -74,15 +77,35 @@ if (document.body.getAttribute('data-page') === 'reservation') {
                 body: formData
             })
 
-            .then(response => response.text())
+            .then(response => {
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    return response.json();
+                }
+                return response.text();
+            })
+
             .then(data => {
-                if (data.includes("réussie")) {
-                    alert('Réservation effectuée avec succès. Vous recevrez sous-peu un récapitulatif de votre commande !');
-                    window.location.href = 'index.php';
-                } else {
-                    alert('Erreur : ' + data); // Affiche l'erreur
+                // Si data est un objet (JSON)
+                if (typeof data === 'object') {
+                    if (data.status === 'success') {
+                        alert('Réservation effectuée avec succès. Vous recevrez sous-peu un récapitulatif de votre commande !');
+                        window.location.href = 'index.php';
+                    } else {
+                        alert(data.message || 'Une erreur est survenue');
+                    }
+                } 
+                // Si data est une chaîne de caractères (texte)
+                else {
+                    if (data.includes("réussie")) {
+                        alert('Réservation effectuée avec succès. Vous recevrez sous-peu un récapitulatif de votre commande !');
+                        window.location.href = 'index.php';
+                    } else {
+                        alert('Erreur : ' + data);
+                    }
                 }
             })
+
             .catch(error => {
                 console.error('Erreur:', error);
                 alert('Une erreur est survenue lors de l\'envoi des données.');

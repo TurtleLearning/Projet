@@ -2,8 +2,10 @@
 namespace App\Models;
 
 use App\Config\Database;
+use App\Config\CSRFProtection;
 use Exception;
 use DateTime;
+
 
 class Reservation {
     private $db;
@@ -45,45 +47,42 @@ class Reservation {
     private function validate() {
         if (!preg_match('/^[A-Za-zÀ-ÿ\s-]{2,50}$/', $this->nom) || 
             !preg_match('/^[A-Za-zÀ-ÿ\s-]{2,50}$/', $this->prenom)) {
-            throw new Exception("Le nom et prénom doivent contenir entre 2 et 50 caractères alphabétiques");
+            throw new \Exception("Le nom et prénom doivent contenir entre 2 et 50 caractères alphabétiques");
         }
 
         if (!preg_match('/^\d{10}$/', $this->num_tel)) {
-            throw new Exception("Le numéro de téléphone doit contenir exactement 10 chiffres");
+            throw new \Exception("Le numéro de téléphone doit contenir exactement 10 chiffres");
         }
 
         if (!preg_match('/^[^\s@]+@[^\s@]+\.[^\s@]+$/', $this->email)) {
-            throw new Exception("Format d'email invalide");
+            throw new \Exception("Format d'email invalide");
         }
 
         if ($this->nombre_total < 1) {
-            throw new Exception("Le nombre total de personnes doit être d'au moins 1");
+            throw new \Exception("Le nombre total de personnes doit être d'au moins 1");
         }
 
         if ($this->dont_enfants < 0 || $this->dont_enfants >= $this->nombre_total) {
-            throw new Exception("Nombre d'enfants invalide");
+            throw new \Exception("Nombre d'enfants invalide");
         }
 
         // Validation des dates
         if (empty($this->data['date_debut']) || empty($this->data['date_fin'])) {
-            throw new Exception("Les dates de début et de fin sont requises.");
+            throw new \Exception("Les dates de début et de fin sont requises.");
         }
 
         $dateDebut = new DateTime($data['date_debut']);
         $dateFin = new DateTime($data['date_fin']);
         if ($dateDebut > $dateFin) {
-            throw new Exception("La date de fin doit être postérieure à la date de début.");
+            throw new \Exception("La date de fin doit être postérieure à la date de début.");
         }
     }
 
-    // Méthode pour sauvegarder une réservation
+    //  Sauvegarder une réservation
     public function save() {
 
-        if (!isset($_SESSION['csrf_token']) || 
-        !isset($_POST['csrf_token']) || 
-        !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-        throw new Exception("Token CSRF invalide");
-    }
+        CSRFProtection::verifyToken($_POST['csrf_token']);
+
         $query = "INSERT INTO reservations_nuitees (
             nom, prenom, num_tel, email,
             quantite_nuit, quantite_repas_midi, quantite_repas_soir,
@@ -113,7 +112,7 @@ class Reservation {
             ]);
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            throw new Exception("Erreur lors de la sauvegarde");
+            throw new \Exception("Erreur lors de la sauvegarde");
         }
     }
 }
