@@ -102,6 +102,7 @@ include BASE_PATH . '/includes/layout/header.php';
                         <div class="mb-3">
                             <label for="thematique" class="form-label">Thématique</label>
                             <select class="form-select" id="thematique" name="thematique" required>
+                            <option value="" selected disabled hidden>Veuiller choisir une thématique</option>
                                 <option value="reservation">Réservation</option>
                                 <option value="activites">Activités</option>
                                 <option value="divers">Divers</option>
@@ -143,7 +144,7 @@ include BASE_PATH . '/includes/layout/header.php';
                     les personnes dont les capacités de mobilités et de prise en charge autonome sont réduites. De ce fait, si vous souhaitez vous rendre
                     dans notre établissement, veuillez nous appeler directement au préalable, grâce au numéro de l'établissement disponible dans la rubrique "Nos coordonnées"
                     afin de convenir ensemble de la meilleure manière de vous accueillir.
-                    <BR></BR>
+                    <BR><BR>
                     Du matériel adapté et une rampe d'accès sont disponibles sur place.</p>
                     
                     <p><u><strong>Adresse :</strong></u><br>
@@ -159,14 +160,11 @@ include BASE_PATH . '/includes/layout/header.php';
                     <div id="map" style="height: 500px; width: 100%;">
                         <iframe data-cookieconsent="marketing"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5559.865445205138!2d6.860025050830403!3d45.83262915972968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4789459fb534be51%3A0xa908728c5dcec4c0!2sMont%20Blanc!5e0!3m2!1sfr!2sfr!4v1735654393844!5m2!1sfr!2sfr"
-                            width="100%" 
-                            height="100%" 
                             style="border:0;" 
                             loading="lazy"
                             referrerpolicy="no-referrer"
                             allowfullscreen
-                            sandbox="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-                            importance="low"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
                         ></iframe>
                     </div>
                 </div>

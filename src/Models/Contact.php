@@ -53,7 +53,9 @@ class Contact {
         $this->validate();
 
         try {
-            $stmt = $this->db->prepare("INSERT INTO contacts (nom, contact, thematique, message, date_creation) VALUES (:nom, :contact, :thematique, :message, NOW())");
+            $stmt = $this->db->prepare(
+                "INSERT INTO contacts   (nom, contact, thematique, message)
+                VALUES                  (:nom, :contact, :thematique, :message)");
             return $stmt->execute([
                 'nom' => $this->nom,
                 'contact' => $this->contact,

@@ -25,6 +25,14 @@ class Reservation {
     public $total_ttc;
 
     public function __construct($data = null) {
+
+        // Pour les test unitaires
+        // if (defined('TESTING_ENV') && TESTING_ENV === true) {
+        //     $this->db = \Tests\Config\TestDatabase::getInstance()->getConnection();
+        // } else {
+        //     $this->db = \App\Config\Database::getInstance()->getConnection();
+        // }
+
         $this->db = Database::getInstance()->getConnection();
         $this->data = $data;
 

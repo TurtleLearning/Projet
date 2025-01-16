@@ -65,7 +65,7 @@
                         <p>Nous utilisons des cookies techniques nécessaires au fonctionnement du site et des cookies analytiques pour comprendre son utilisation.</p>
 
                         <h3>4. Gestion des cookies</h3>
-                        <p>Vous pouvez à tout moment modifier vos préférences en matière de cookies dans les paramètres de votre navigateur.</p>
+                        <p>Vous pouvez à tout moment modifier vos préférences en matière de cookies dans les paramètres de votre navigateur en cliquant <a href="#" id="nouv_choix"><u>ICI</u></a></p>
                     `;
                 default:
                     return '';
@@ -79,6 +79,22 @@
             modalOverlay.classList.add('active');
             modalContainer.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Ajouter le gestionnaire d'événements pour le lien "ICI"
+            if (type === 'cookies') {
+                const nouvChoix = document.getElementById('nouv_choix');
+                if (nouvChoix) {
+                    nouvChoix.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        localStorage.removeItem('cookieChoice');
+                        closeModal();
+                        const cookieConsent = document.getElementById('cookieConsent');
+                        if (cookieConsent) {
+                            cookieConsent.classList.add('active');
+                        }
+                    });
+                }
+            }
         }
 
         // Fermeture de la modale
@@ -95,7 +111,6 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        // Empêcher la propagation du clic sur la modale elle-même
         modalContainer.addEventListener('click', (e) => {
             e.stopPropagation();
         });
@@ -122,9 +137,11 @@
 (function() {
     document.addEventListener('DOMContentLoaded', function() {
         const cookieConsent = document.getElementById('cookieConsent');
+        if (!cookieConsent) return;
+        
         cookieConsent.setAttribute('data-cookieconsent', 'true');
-        const     acceptBtn = document.getElementById('acceptCookies');
-        const     refuseBtn = document.getElementById('refuseCookies');
+        const acceptBtn = document.getElementById('acceptCookies');
+        const refuseBtn = document.getElementById('refuseCookies');
     
         // Vérifier si l'utilisateur a déjà fait son choix
         if (!localStorage.getItem('cookieChoice')) {
@@ -133,11 +150,13 @@
             }, 1000);
         }
     
+        // Gestionnaire pour le bouton d'acceptation
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieChoice', 'accepted');
             cookieConsent.classList.remove('active');
         });
     
+        // Gestionnaire pour le bouton de refus
         refuseBtn.addEventListener('click', () => {
             localStorage.setItem('cookieChoice', 'refused');
             cookieConsent.classList.remove('active');

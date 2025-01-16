@@ -23,15 +23,26 @@ CSRFProtection::initialize();
     
     <title><?php echo isset($pageTitle) ? $pageTitle : 'Le Petit Chalet dans La Montagne'; ?></title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'" as="style">
-    <link rel="stylesheet" href="../public/assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" fetchpriority="high">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <link rel="preload" href="../public/assets/css/style.css" as="style" fetchpriority="high">
+    <link rel="stylesheet" href="../public/assets/css/style.css">
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" fetchpriority="low" onload="this.onload=null;this.rel='stylesheet'" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" fetchpriority="high">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" as="style" fetchpriority="high">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" as="style">
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" as="style" fetchpriority="high">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" as="style" fetchpriority="high">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap">
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" as="style" fetchpriority="high">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap">
     
     <link rel="icon" type="image/x-icon" href="../public/assets/Images/favicon.png">
 
@@ -61,7 +72,7 @@ CSRFProtection::initialize();
                     <a class="navbar-brand p-0 m-0" href="index.php">
                         <img src="../public/assets/Images/cabin-logo.png" alt="Logo" height="60">
                     </a>
-                    <h1 class="main-title">Le Petit Chalet dans La Montagne</h1>
+                    <h2 class="main-title">Le Petit Chalet dans La Montagne</h2>
                 </div>
                 
                 <!-- Menu burger pour mobile -->

@@ -167,6 +167,11 @@ input, button, textarea, select {
     font: inherit;
 }
 
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
 /* -------------------------------------------------------------- */
 
 /* ------------------------ BOUTONS ----------------------------- */
@@ -1276,7 +1281,7 @@ html.contact .footer-grid {
 }
 
 .modal-content h3 {
-    margin-top: 2em;
+    margin: 2em 0 0.7em 0;
 }
 
 /* PAGE ACTIVITÉS */
@@ -1729,7 +1734,7 @@ textarea {
 }
 
 .ma-top {
-    margin-top: none
+    margin-top: 0;
 }
 
 .info-block {
@@ -1831,6 +1836,11 @@ textarea {
 }
 
 /* modales */
+
+#nouv_choix {
+    font-style: italic;
+    font-weight: bolder;
+}
 
 .modal-header h2 {
     margin: 0;

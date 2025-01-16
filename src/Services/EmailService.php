@@ -1,5 +1,18 @@
 <?php
+
 namespace App\Services;
+
+/**
+ * Ce fichier contient le contrôleur pour gérer les envois d'email récapitulatifs au client.
+ *
+ * @package App\Controllers
+ * @author VotreNom
+ * @version 1.0.0
+ */
+
+/**
+ * Classe pour gérer les réservations.
+ */
 
 require_once BASE_PATH . '/lib/PHPMailer/Exception.php';
 require_once BASE_PATH . '/lib/PHPMailer/PHPMailer.php';
@@ -135,6 +148,7 @@ class EmailService {
             error_log("Email envoyé avec succès");
 
             return $result;
+
         } catch (Exception $e) {
             error_log("Erreur détaillée lors de l'envoi de l'email : " . $e->getMessage());
             error_log("Debug SMTP : " . $this->mailer->ErrorInfo);
